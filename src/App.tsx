@@ -209,23 +209,12 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
             ))}
           </span>
           <span>Join 10,000+ successful students!</span>
-          <span className="inline-flex items-center -space-x-2">
-            {[
-              '/images/sps/cole-headshot.png',
-              '/images/sps/dickie-headshot.png',
-              '/images/sps/cole-headshot.png',
-              '/images/sps/dickie-headshot.png',
-            ].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                className="w-7 h-7 rounded-[6px] object-cover border-2 border-ink-deep"
-              />
-            ))}
-          </span>
+          <img
+            src="/images/s30-people.png"
+            alt="Recent Start Writing Online students"
+            loading="lazy"
+            className="h-7 w-auto rounded-[6px]"
+          />
         </div>
         <p className="text-[11px] font-bold uppercase text-fg-3 mt-12 mb-4" style={{ letterSpacing: '0.22em' }}>Cart Closes In</p>
         <CountdownTimer targetDate={CART_CLOSE_DATE} hero />
