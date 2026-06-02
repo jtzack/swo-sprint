@@ -169,9 +169,8 @@ function StarCanvas() {
     if (!ctx) return
 
     const motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const comets = motion
-    const density = 1
-    const speed = 1
+    const comets = false        // shooting stars off — too distracting
+    const density = 0.6         // fewer stars
 
     let w = 0, h = 0, dpr = 1
     let stars: Star[] = []
@@ -223,11 +222,8 @@ function StarCanvas() {
       ctx.clearRect(0, 0, w, h)
 
       for (const s of stars) {
-        if (motion) {
-          s.y += s.layer * 0.012 * speed * dt
-          if (s.y > h + 2) { s.y -= h + 4; s.x = Math.random() * w }
-        }
-        const twk = motion ? (0.55 + 0.45 * Math.sin(now * 0.001 * s.tw * speed + s.phase)) : 1
+        // stars hold position — a gentle twinkle only, no drift
+        const twk = motion ? (0.72 + 0.28 * Math.sin(now * 0.0006 * s.tw + s.phase)) : 1
         ctx.globalAlpha = Math.max(0, s.base * twk)
         ctx.fillStyle = '#ffffff'
         ctx.beginPath()
