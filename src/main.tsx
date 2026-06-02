@@ -6,7 +6,7 @@ import App from './App.tsx'
 
 function Root() {
   useEffect(() => {
-    Fathom.load('NOQPYJNS', { spa: 'auto' })
+    Fathom.load('IUQCZTMO', { spa: 'auto' })
   }, [])
   return <App />
 }
