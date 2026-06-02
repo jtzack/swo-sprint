@@ -249,24 +249,34 @@ function Stats() {
   ]
   return (
     <section className="py-20 md:py-28 px-5 md:px-8">
-      <div className="max-w-container mx-auto">
-        <div className="flex flex-col items-center text-center mb-14">
+      <div className="max-w-container mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* Image */}
+        <div className="flex justify-center lg:justify-start">
+          <img
+            src="/images/swo-hero-2.png"
+            alt="Sprint cohort together on a live group video call"
+            className="w-full max-w-[480px] object-contain"
+            loading="lazy"
+          />
+        </div>
+        {/* Heading + stats + CTA */}
+        <div>
           <Eyebrow className="mb-4">The sprint</Eyebrow>
-          <h2 className="font-extrabold text-white tracking-display max-w-[18ch]" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
+          <h2 className="font-extrabold text-white tracking-display mb-8" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
             What is the Start Writing Online Sprint?
           </h2>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-[1000px] mx-auto">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-card-2 rounded-card p-5 md:p-6 flex flex-col">
-              <p className="font-black text-gradient leading-none mb-3" style={{ fontSize: 'clamp(40px, 4vw, 56px)' }}>{s.num}</p>
-              <p className="text-[13px] font-bold text-white mb-2 leading-tight">{s.label}</p>
-              <p className="text-[13px] md:text-[14px] leading-[1.5] text-fg-2">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-14 text-center">
-          <CTA size="lg" track="Stats">Join The Sprint</CTA>
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
+            {stats.map((s) => (
+              <div key={s.label} className="bg-card-2 rounded-card p-5 md:p-6 flex flex-col">
+                <p className="font-black text-gradient leading-none mb-3" style={{ fontSize: 'clamp(40px, 4vw, 56px)' }}>{s.num}</p>
+                <p className="text-[13px] font-bold text-white mb-2 leading-tight">{s.label}</p>
+                <p className="text-[13px] md:text-[14px] leading-[1.5] text-fg-2">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10">
+            <CTA size="lg" track="Stats">Join The Sprint</CTA>
+          </div>
         </div>
       </div>
     </section>
