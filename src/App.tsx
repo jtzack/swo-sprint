@@ -158,7 +158,25 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
           className="font-black text-white tracking-display mx-auto max-w-[14ch]"
           style={{ fontSize: 'clamp(44px, 7.5vw, 92px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
         >
-          Start Writing Online In 5 Days
+          Start Writing Online In{' '}
+          <span className="relative inline-block whitespace-nowrap">
+            5 Days
+            <svg
+              aria-hidden="true"
+              className="absolute left-0 w-full pointer-events-none"
+              style={{ bottom: '-0.16em', height: '0.34em' }}
+              viewBox="0 0 200 24"
+              preserveAspectRatio="none"
+              fill="none"
+            >
+              <path
+                d="M4 16 C 48 7, 116 8, 196 12"
+                stroke="#F97316"
+                strokeWidth="6"
+                strokeLinecap="round"
+              />
+            </svg>
+          </span>
         </h1>
         <div className="max-w-[640px] mx-auto mt-8 mb-10">
           <p className="text-fg-2" style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.55 }}>
