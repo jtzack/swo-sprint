@@ -162,7 +162,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
         </h1>
         <div className="max-w-[640px] mx-auto mt-8 mb-10">
           <p className="text-fg-2" style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.55 }}>
-            Create your niche, differentiate your ideas, and build a timeless library of content.
+            Create your niche, differentiate your ideas, and kickstart a timeless library of content.
           </p>
         </div>
         <a
