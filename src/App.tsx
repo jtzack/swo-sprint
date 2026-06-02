@@ -154,118 +154,6 @@ function CountdownTimer({ targetDate, compact, hero }: { targetDate: Date; compa
 }
 
 /* ═══════════════════════════════════════════════════════════
-   STAR CANVAS — twinkling, drifting stars + shooting stars
-   (Aurora Drift hero background; respects reduced-motion)
-   ═══════════════════════════════════════════════════════════ */
-type Star = { x: number; y: number; r: number; base: number; phase: number; tw: number; layer: number }
-type Comet = { x: number; y: number; vx: number; vy: number; len: number; life: number; max: number }
-
-function StarCanvas() {
-  const ref = useRef<HTMLCanvasElement>(null)
-  useEffect(() => {
-    const canvas = ref.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const comets = false        // shooting stars off — too distracting
-    const density = 0.6         // fewer stars
-
-    let w = 0, h = 0, dpr = 1
-    let stars: Star[] = []
-    const cometArr: Comet[] = []
-    let raf = 0
-    let last = performance.now()
-    let cometTimer = 1600
-
-    function init() {
-      const count = Math.round((w * h) / 7000 * density)
-      stars = []
-      for (let i = 0; i < count; i++) {
-        const layer = 0.4 + Math.random() * 1.6
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: (Math.random() * 1.1 + 0.3) * (layer > 1.4 ? 1.4 : 1),
-          base: 0.25 + Math.random() * 0.6,
-          phase: Math.random() * Math.PI * 2,
-          tw: 0.4 + Math.random() * 1.2,
-          layer,
-        })
-      }
-    }
-    function resize() {
-      if (!canvas || !ctx) return
-      dpr = Math.min(window.devicePixelRatio || 1, 2)
-      w = canvas.clientWidth; h = canvas.clientHeight
-      canvas.width = Math.max(1, w * dpr); canvas.height = Math.max(1, h * dpr)
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      init()
-      if (!motion) raf = requestAnimationFrame(frame)
-    }
-    function spawnComet() {
-      const fromTop = Math.random() > 0.5
-      const startX = Math.random() * w * 0.7
-      const startY = fromTop ? -20 : Math.random() * h * 0.4
-      const ang = (18 + Math.random() * 16) * Math.PI / 180
-      const sp = 0.5 + Math.random() * 0.4
-      cometArr.push({
-        x: startX, y: startY,
-        vx: Math.cos(ang) * 9 * sp, vy: Math.sin(ang) * 9 * sp,
-        len: 160 + Math.random() * 160, life: 0, max: 90 + Math.random() * 40,
-      })
-    }
-    function frame(now: number) {
-      if (!ctx) return
-      const dt = Math.min(50, now - last); last = now
-      ctx.clearRect(0, 0, w, h)
-
-      for (const s of stars) {
-        // stars hold position — a gentle twinkle only, no drift
-        const twk = motion ? (0.72 + 0.28 * Math.sin(now * 0.0006 * s.tw + s.phase)) : 1
-        ctx.globalAlpha = Math.max(0, s.base * twk)
-        ctx.fillStyle = '#ffffff'
-        ctx.beginPath()
-        ctx.arc(s.x, s.y, s.r, 0, 6.2832)
-        ctx.fill()
-      }
-      ctx.globalAlpha = 1
-
-      if (comets && motion) {
-        cometTimer -= dt
-        if (cometTimer <= 0) { spawnComet(); cometTimer = 2600 + Math.random() * 3600 }
-        for (let i = cometArr.length - 1; i >= 0; i--) {
-          const c = cometArr[i]
-          c.x += c.vx; c.y += c.vy; c.life += 1
-          const hyp = Math.hypot(c.vx, c.vy)
-          const tailX = c.x - c.vx / hyp * c.len
-          const tailY = c.y - c.vy / hyp * c.len
-          const fade = c.life < 12 ? c.life / 12 : Math.max(0, 1 - (c.life - 12) / (c.max - 12))
-          const g = ctx.createLinearGradient(c.x, c.y, tailX, tailY)
-          g.addColorStop(0, `rgba(255,180,90,${0.9 * fade})`)
-          g.addColorStop(0.4, `rgba(232,75,41,${0.4 * fade})`)
-          g.addColorStop(1, 'rgba(211,22,81,0)')
-          ctx.strokeStyle = g; ctx.lineWidth = 2.2; ctx.lineCap = 'round'
-          ctx.beginPath(); ctx.moveTo(tailX, tailY); ctx.lineTo(c.x, c.y); ctx.stroke()
-          ctx.globalAlpha = fade; ctx.fillStyle = '#fff'
-          ctx.beginPath(); ctx.arc(c.x, c.y, 2.2, 0, 6.2832); ctx.fill()
-          ctx.globalAlpha = 1
-          if (c.life > c.max || c.x > w + 200 || c.y > h + 200) cometArr.splice(i, 1)
-        }
-      }
-      if (motion) raf = requestAnimationFrame(frame)
-    }
-
-    resize()
-    window.addEventListener('resize', resize)
-    raf = requestAnimationFrame(frame)
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
-  }, [])
-  return <canvas ref={ref} className="star-canvas" aria-hidden="true" />
-}
-
-/* ═══════════════════════════════════════════════════════════
    HERO — centered countdown hero on an animated aurora sky
    ═══════════════════════════════════════════════════════════ */
 function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> }) {
@@ -273,7 +161,6 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
     <header className="relative isolate overflow-hidden flex items-center justify-center min-h-screen" style={{ background: '#10142A' }}>
       {/* animated background layers */}
       <div className="swo-hero-bg">
-        <StarCanvas />
         <div className="bg-aurora-fx">
           <div className="blob a" />
           <div className="blob b" />

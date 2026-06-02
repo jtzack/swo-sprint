@@ -39,11 +39,9 @@ body {
 }
 
 /* ===============================================================
-   SWO Live Sprint hero — animated Aurora Drift background
-   (ported from the Claude Design "SWO Live Sprint Hero")
+   SWO Live Sprint hero — Aurora Drift glow background
    =============================================================== */
 .swo-hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.star-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
 .bg-aurora-fx { position: absolute; inset: -25%; pointer-events: none; opacity: 0.5; }
 .bg-aurora-fx .blob {
