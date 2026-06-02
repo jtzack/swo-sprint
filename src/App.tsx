@@ -286,14 +286,14 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
       </div>
       <div className="swo-vignette" aria-hidden="true" />
 
-      <div className="relative z-[2] w-full max-w-[1040px] mx-auto px-5 md:px-8 py-20 text-center flex flex-col items-center">
-        <div className="inline-flex items-center gap-3 bg-card-2/80 border border-line rounded-full px-[22px] py-3 text-[17px] font-semibold text-fg-1 backdrop-blur-[6px]">
-          <span className="swo-pulse w-[9px] h-[9px] rounded-full bg-red flex-shrink-0" />
+      <div className="relative z-[2] w-full max-w-[900px] mx-auto px-5 md:px-8 py-20 text-center flex flex-col items-center">
+        <div className="inline-flex items-center gap-2.5 bg-card-2/80 border border-line rounded-full px-4 py-2 text-[14px] font-semibold text-fg-1 backdrop-blur-[6px]">
+          <span className="swo-pulse w-2 h-2 rounded-full bg-red flex-shrink-0" />
           Live Sprint Begins Monday, June 15, 2026
         </div>
         <h1
-          className="font-black text-white mt-[30px]"
-          style={{ fontSize: 'clamp(40px, 6vw, 82px)', lineHeight: 0.98, letterSpacing: '-0.03em', textWrap: 'balance' as React.CSSProperties['textWrap'] }}
+          className="font-black text-white mt-7"
+          style={{ fontSize: 'clamp(38px, 5.2vw, 68px)', lineHeight: 1.0, letterSpacing: '-0.03em', textWrap: 'balance' as React.CSSProperties['textWrap'] }}
         >
           Start Writing<br />
           Online In{' '}
@@ -304,18 +304,18 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
             </svg>
           </span>
         </h1>
-        <p className="text-fg-2 max-w-[720px] mt-[30px]" style={{ fontSize: 'clamp(18px, 2.1vw, 26px)', lineHeight: 1.5 }}>
+        <p className="text-fg-2 max-w-[560px] mt-6" style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', lineHeight: 1.55 }}>
           Create your niche, differentiate your ideas, and kickstart a timeless library of content.
         </p>
         <a
           ref={ctaRef}
           href={DEFAULT_CTA_URL}
           onClick={() => trackCTA('Hero')}
-          className="swo-cta-glow inline-flex items-center justify-center mt-12 font-extrabold text-[22px] text-white bg-cta-gradient rounded-btn px-14 py-[22px] transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
+          className="swo-cta-glow inline-flex items-center justify-center mt-9 font-extrabold text-[17px] text-white bg-cta-gradient rounded-btn px-10 py-[17px] transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
         >
           Join The Sprint
         </a>
-        <p className="text-[13px] font-bold uppercase text-fg-3 mt-14 mb-4" style={{ letterSpacing: '0.22em' }}>Cart Closes In</p>
+        <p className="text-[11px] font-bold uppercase text-fg-3 mt-12 mb-4" style={{ letterSpacing: '0.22em' }}>Cart Closes In</p>
         <CountdownTimer targetDate={CART_CLOSE_DATE} hero />
       </div>
     </header>
