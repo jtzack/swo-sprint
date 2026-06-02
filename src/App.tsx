@@ -190,7 +190,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
           </span>
         </h1>
         <p className="text-fg-2 max-w-[560px] mt-6" style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', lineHeight: 1.55 }}>
-          Create your niche, differentiate your ideas, and kickstart a timeless library of content.
+          Join us for a five-day sprint where you will create your niche, differentiate your ideas, and kickstart your timeless library of content.
         </p>
         <a
           ref={ctaRef}
@@ -200,6 +200,22 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
         >
           Join The Sprint
         </a>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-5 text-[15px] font-semibold text-fg-1">
+          <span className="inline-flex items-center gap-0.5 text-[#FF8203]" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <svg key={i} viewBox="0 0 20 20" className="w-[18px] h-[18px]" fill="currentColor">
+                <path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.1l-4.94 2.6.94-5.5-4-3.9 5.53-.8L10 1.5z" />
+              </svg>
+            ))}
+          </span>
+          <span>Join 10,000+ successful students!</span>
+          <img
+            src="/images/s30-people.png"
+            alt="Recent Start Writing Online students"
+            loading="lazy"
+            className="h-7 w-auto rounded-[6px]"
+          />
+        </div>
         <p className="text-[11px] font-bold uppercase text-fg-3 mt-12 mb-4" style={{ letterSpacing: '0.22em' }}>Cart Closes In</p>
         <CountdownTimer targetDate={CART_CLOSE_DATE} hero />
       </div>
