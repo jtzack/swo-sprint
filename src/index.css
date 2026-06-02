@@ -69,23 +69,35 @@ body {
 }
 .swo-pulse { animation: pulseDot 2s ease-out infinite; }
 
-/* hand-drawn marker underline under "5 Days" */
+/* marker underline under "5 Days" — a subtle comet sweeps along it */
 .swo-ul { position: relative; white-space: nowrap; }
-.swo-ul .swo-stroke { position: absolute; left: -2%; bottom: -0.22em; width: 104%; height: 0.42em; overflow: visible; }
-.swo-ul .swo-stroke path { fill: none; stroke: #D31652; stroke-width: 6; stroke-linecap: round; }
+.swo-ul .swo-ul-svg { position: absolute; left: -2%; bottom: -0.22em; width: 104%; height: 0.42em; overflow: visible; }
+.swo-ul .swo-ul-svg path { fill: none; stroke-linecap: round; }
 
-/* twinkle sparkle on the tip of the underline */
-.swo-ul .swo-spark {
-  position: absolute; right: -0.12em; bottom: -0.40em;
-  width: 0.5em; height: 0.5em;
-  fill: #fff;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,0.75));
-  transform-origin: center;
-  animation: sparkTwinkle 2.4s ease-in-out infinite;
+/* faint static underline that's always there */
+.swo-ul .ul-base { stroke: #D31652; stroke-width: 5; opacity: 0.22; }
+
+/* soft trailing tail (period = on + gap = 1.30) */
+.swo-ul .ul-trail {
+  stroke: #D31652; stroke-width: 5;
+  stroke-dasharray: 0.30 1.00;
+  filter: drop-shadow(0 0 4px rgba(211,22,81,0.65));
+  animation: ulTrail 3.6s linear infinite;
 }
-@keyframes sparkTwinkle {
-  0%, 100% { opacity: 0.25; transform: scale(0.6) rotate(0deg); }
-  50%      { opacity: 1;    transform: scale(1)   rotate(18deg); }
+/* bright comet head — same period (0.09 + 1.21 = 1.30), phase-shifted ahead */
+.swo-ul .ul-comet {
+  stroke: #FFE2BE; stroke-width: 5;
+  stroke-dasharray: 0.09 1.21;
+  filter: drop-shadow(0 0 6px rgba(255,140,50,0.95));
+  animation: ulComet 3.6s linear infinite;
+}
+@keyframes ulTrail {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1.30; }
+}
+@keyframes ulComet {
+  from { stroke-dashoffset: -0.21; }
+  to   { stroke-dashoffset: -1.51; }
 }
 
 /* glowing CTA */
@@ -112,5 +124,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bg-aurora-fx .blob, .swo-pulse, .swo-ul .swo-spark { animation: none; opacity: 1; }
+  .bg-aurora-fx .blob, .swo-pulse { animation: none; }
+  .swo-ul .ul-trail, .swo-ul .ul-comet { display: none; }
+  .swo-ul .ul-base { opacity: 0.55; }
 }

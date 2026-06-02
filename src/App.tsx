@@ -182,18 +182,10 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
           Online In{' '}
           <span className="swo-ul">
             5 Days
-            <svg className="swo-stroke" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="swoComet" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stopColor="#D31652" stopOpacity="0" />
-                  <stop offset="0.5" stopColor="#D31652" stopOpacity="0.45" />
-                  <stop offset="1" stopColor="#D31652" stopOpacity="1" />
-                </linearGradient>
-              </defs>
-              <path d="M4 16 C 70 6, 150 4, 296 12" stroke="url(#swoComet)" />
-            </svg>
-            <svg className="swo-spark" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 1 C 13 8, 16 11, 23 12 C 16 13, 13 16, 12 23 C 11 16, 8 13, 1 12 C 8 11, 11 8, 12 1 Z" />
+            <svg className="swo-ul-svg" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+              <path className="ul-base" d="M4 16 C 70 6, 150 4, 296 12" pathLength={1} />
+              <path className="ul-trail" d="M4 16 C 70 6, 150 4, 296 12" pathLength={1} />
+              <path className="ul-comet" d="M4 16 C 70 6, 150 4, 296 12" pathLength={1} />
             </svg>
           </span>
         </h1>
