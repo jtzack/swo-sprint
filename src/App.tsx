@@ -293,7 +293,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
         </div>
         <h1
           className="font-black text-white mt-[30px]"
-          style={{ fontSize: 'clamp(48px, 9.2vw, 132px)', lineHeight: 0.95, letterSpacing: '-0.03em', textWrap: 'balance' as React.CSSProperties['textWrap'] }}
+          style={{ fontSize: 'clamp(40px, 6vw, 82px)', lineHeight: 0.98, letterSpacing: '-0.03em', textWrap: 'balance' as React.CSSProperties['textWrap'] }}
         >
           Start Writing<br />
           Online In{' '}
