@@ -261,8 +261,8 @@ function Stats() {
         </div>
         {/* Heading + stats + CTA */}
         <div>
-          <Eyebrow className="mb-4">The sprint</Eyebrow>
-          <h2 className="font-extrabold text-white tracking-display mb-8" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
+          <Eyebrow className="mb-4 text-center">The sprint</Eyebrow>
+          <h2 className="font-extrabold text-white tracking-display mb-8 text-center" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
             What is the Start Writing Online Sprint?
           </h2>
           <div className="grid grid-cols-2 gap-3 md:gap-4">
@@ -274,7 +274,7 @@ function Stats() {
               </div>
             ))}
           </div>
-          <div className="mt-10">
+          <div className="mt-10 text-center">
             <CTA size="lg" track="Stats">Join The Sprint</CTA>
           </div>
         </div>
