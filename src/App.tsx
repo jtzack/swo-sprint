@@ -153,7 +153,6 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
             Sprint Begins Monday, June 15, 2026
           </span>
         </div>
-        <Eyebrow className="mb-6 !text-[14px]">An AI Writing Skool Live Sprint</Eyebrow>
         <h1
           className="font-black text-white tracking-display mx-auto max-w-[14ch]"
           style={{ fontSize: 'clamp(44px, 7.5vw, 92px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
