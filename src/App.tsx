@@ -92,7 +92,7 @@ function CTA({
 }
 
 /* ─── Countdown Timer ─── */
-function CountdownTimer({ targetDate, compact }: { targetDate: Date; compact?: boolean }) {
+function CountdownTimer({ targetDate, compact, hero }: { targetDate: Date; compact?: boolean; hero?: boolean }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
   useEffect(() => {
@@ -126,6 +126,19 @@ function CountdownTimer({ targetDate, compact }: { targetDate: Date; compact?: b
     { label: 'Sec', value: timeLeft.seconds },
   ]
 
+  if (hero) {
+    return (
+      <div className="swo-countdown">
+        {units.map((u) => (
+          <div key={u.label} className="cd-unit">
+            <div className="cd-box">{String(u.value).padStart(2, '0')}</div>
+            <span>{u.label}</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className="inline-flex gap-3">
       {units.map((u) => (
@@ -141,58 +154,169 @@ function CountdownTimer({ targetDate, compact }: { targetDate: Date; compact?: b
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HERO — centered display headline + lead + gradient CTA
+   STAR CANVAS — twinkling, drifting stars + shooting stars
+   (Aurora Drift hero background; respects reduced-motion)
+   ═══════════════════════════════════════════════════════════ */
+type Star = { x: number; y: number; r: number; base: number; phase: number; tw: number; layer: number }
+type Comet = { x: number; y: number; vx: number; vy: number; len: number; life: number; max: number }
+
+function StarCanvas() {
+  const ref = useRef<HTMLCanvasElement>(null)
+  useEffect(() => {
+    const canvas = ref.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const comets = motion
+    const density = 1
+    const speed = 1
+
+    let w = 0, h = 0, dpr = 1
+    let stars: Star[] = []
+    const cometArr: Comet[] = []
+    let raf = 0
+    let last = performance.now()
+    let cometTimer = 1600
+
+    function init() {
+      const count = Math.round((w * h) / 7000 * density)
+      stars = []
+      for (let i = 0; i < count; i++) {
+        const layer = 0.4 + Math.random() * 1.6
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: (Math.random() * 1.1 + 0.3) * (layer > 1.4 ? 1.4 : 1),
+          base: 0.25 + Math.random() * 0.6,
+          phase: Math.random() * Math.PI * 2,
+          tw: 0.4 + Math.random() * 1.2,
+          layer,
+        })
+      }
+    }
+    function resize() {
+      if (!canvas || !ctx) return
+      dpr = Math.min(window.devicePixelRatio || 1, 2)
+      w = canvas.clientWidth; h = canvas.clientHeight
+      canvas.width = Math.max(1, w * dpr); canvas.height = Math.max(1, h * dpr)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      init()
+      if (!motion) raf = requestAnimationFrame(frame)
+    }
+    function spawnComet() {
+      const fromTop = Math.random() > 0.5
+      const startX = Math.random() * w * 0.7
+      const startY = fromTop ? -20 : Math.random() * h * 0.4
+      const ang = (18 + Math.random() * 16) * Math.PI / 180
+      const sp = 0.5 + Math.random() * 0.4
+      cometArr.push({
+        x: startX, y: startY,
+        vx: Math.cos(ang) * 9 * sp, vy: Math.sin(ang) * 9 * sp,
+        len: 160 + Math.random() * 160, life: 0, max: 90 + Math.random() * 40,
+      })
+    }
+    function frame(now: number) {
+      if (!ctx) return
+      const dt = Math.min(50, now - last); last = now
+      ctx.clearRect(0, 0, w, h)
+
+      for (const s of stars) {
+        if (motion) {
+          s.y += s.layer * 0.012 * speed * dt
+          if (s.y > h + 2) { s.y -= h + 4; s.x = Math.random() * w }
+        }
+        const twk = motion ? (0.55 + 0.45 * Math.sin(now * 0.001 * s.tw * speed + s.phase)) : 1
+        ctx.globalAlpha = Math.max(0, s.base * twk)
+        ctx.fillStyle = '#ffffff'
+        ctx.beginPath()
+        ctx.arc(s.x, s.y, s.r, 0, 6.2832)
+        ctx.fill()
+      }
+      ctx.globalAlpha = 1
+
+      if (comets && motion) {
+        cometTimer -= dt
+        if (cometTimer <= 0) { spawnComet(); cometTimer = 2600 + Math.random() * 3600 }
+        for (let i = cometArr.length - 1; i >= 0; i--) {
+          const c = cometArr[i]
+          c.x += c.vx; c.y += c.vy; c.life += 1
+          const hyp = Math.hypot(c.vx, c.vy)
+          const tailX = c.x - c.vx / hyp * c.len
+          const tailY = c.y - c.vy / hyp * c.len
+          const fade = c.life < 12 ? c.life / 12 : Math.max(0, 1 - (c.life - 12) / (c.max - 12))
+          const g = ctx.createLinearGradient(c.x, c.y, tailX, tailY)
+          g.addColorStop(0, `rgba(255,180,90,${0.9 * fade})`)
+          g.addColorStop(0.4, `rgba(232,75,41,${0.4 * fade})`)
+          g.addColorStop(1, 'rgba(211,22,81,0)')
+          ctx.strokeStyle = g; ctx.lineWidth = 2.2; ctx.lineCap = 'round'
+          ctx.beginPath(); ctx.moveTo(tailX, tailY); ctx.lineTo(c.x, c.y); ctx.stroke()
+          ctx.globalAlpha = fade; ctx.fillStyle = '#fff'
+          ctx.beginPath(); ctx.arc(c.x, c.y, 2.2, 0, 6.2832); ctx.fill()
+          ctx.globalAlpha = 1
+          if (c.life > c.max || c.x > w + 200 || c.y > h + 200) cometArr.splice(i, 1)
+        }
+      }
+      if (motion) raf = requestAnimationFrame(frame)
+    }
+
+    resize()
+    window.addEventListener('resize', resize)
+    raf = requestAnimationFrame(frame)
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
+  }, [])
+  return <canvas ref={ref} className="star-canvas" aria-hidden="true" />
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — centered countdown hero on an animated aurora sky
    ═══════════════════════════════════════════════════════════ */
 function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> }) {
   return (
-    <header className="starfield-dense">
-      <div className="max-w-container mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28 text-center">
-        <div className="flex justify-center mb-6">
-          <span className="inline-flex items-center gap-2.5 bg-card-2 border border-line text-fg-1 text-[13px] font-semibold px-4 py-2 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
-            Live Sprint Begins Monday, June 15, 2026
-          </span>
+    <header className="relative isolate overflow-hidden flex items-center justify-center min-h-screen" style={{ background: '#10142A' }}>
+      {/* animated background layers */}
+      <div className="swo-hero-bg">
+        <StarCanvas />
+        <div className="bg-aurora-fx">
+          <div className="blob a" />
+          <div className="blob b" />
+          <div className="blob c" />
+        </div>
+      </div>
+      <div className="swo-vignette" aria-hidden="true" />
+
+      <div className="relative z-[2] w-full max-w-[1040px] mx-auto px-5 md:px-8 py-20 text-center flex flex-col items-center">
+        <div className="inline-flex items-center gap-3 bg-card-2/80 border border-line rounded-full px-[22px] py-3 text-[17px] font-semibold text-fg-1 backdrop-blur-[6px]">
+          <span className="swo-pulse w-[9px] h-[9px] rounded-full bg-red flex-shrink-0" />
+          Live Sprint Begins Monday, June 15, 2026
         </div>
         <h1
-          className="font-black text-white tracking-display mx-auto max-w-[14ch]"
-          style={{ fontSize: 'clamp(44px, 7.5vw, 92px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
+          className="font-black text-white mt-[30px]"
+          style={{ fontSize: 'clamp(48px, 9.2vw, 132px)', lineHeight: 0.95, letterSpacing: '-0.03em', textWrap: 'balance' as React.CSSProperties['textWrap'] }}
         >
-          Start Writing Online In{' '}
-          <span className="relative inline-block whitespace-nowrap">
+          Start Writing<br />
+          Online In{' '}
+          <span className="swo-ul">
             5 Days
-            <svg
-              aria-hidden="true"
-              className="absolute left-0 w-full pointer-events-none"
-              style={{ bottom: '-0.16em', height: '0.34em' }}
-              viewBox="0 0 200 24"
-              preserveAspectRatio="none"
-              fill="none"
-            >
-              <path
-                d="M4 16 C 48 7, 116 8, 196 12"
-                stroke="#D31652"
-                strokeWidth="6"
-                strokeLinecap="round"
-              />
+            <svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 16 C 70 6, 150 4, 296 12" />
             </svg>
           </span>
         </h1>
-        <div className="max-w-[640px] mx-auto mt-8 mb-10">
-          <p className="text-fg-2" style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.55 }}>
-            Create your niche, differentiate your ideas, and kickstart a timeless library of content.
-          </p>
-        </div>
+        <p className="text-fg-2 max-w-[720px] mt-[30px]" style={{ fontSize: 'clamp(18px, 2.1vw, 26px)', lineHeight: 1.5 }}>
+          Create your niche, differentiate your ideas, and kickstart a timeless library of content.
+        </p>
         <a
           ref={ctaRef}
           href={DEFAULT_CTA_URL}
           onClick={() => trackCTA('Hero')}
-          className="inline-block font-bold rounded-btn bg-cta-gradient text-white shadow-cta transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
-          style={{ padding: '20px 40px', fontSize: 'clamp(16px, 1.5vw, 22px)' }}
+          className="swo-cta-glow inline-flex items-center justify-center mt-12 font-extrabold text-[22px] text-white bg-cta-gradient rounded-btn px-14 py-[22px] transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
         >
           Join The Sprint
         </a>
-        <p className="text-[10px] uppercase tracking-caps text-fg-3 mt-10 mb-3">Cart closes in</p>
-        <CountdownTimer targetDate={CART_CLOSE_DATE} />
+        <p className="text-[13px] font-bold uppercase text-fg-3 mt-14 mb-4" style={{ letterSpacing: '0.22em' }}>Cart Closes In</p>
+        <CountdownTimer targetDate={CART_CLOSE_DATE} hero />
       </div>
     </header>
   )
