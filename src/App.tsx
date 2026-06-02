@@ -171,7 +171,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
             >
               <path
                 d="M4 16 C 48 7, 116 8, 196 12"
-                stroke="#F97316"
+                stroke="#D31652"
                 strokeWidth="6"
                 strokeLinecap="round"
               />
