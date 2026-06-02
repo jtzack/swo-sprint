@@ -146,54 +146,69 @@ function CountdownTimer({ targetDate, compact }: { targetDate: Date; compact?: b
 function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> }) {
   return (
     <header className="starfield-dense">
-      <div className="max-w-container mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28 text-center">
-        <div className="flex justify-center mb-6">
-          <span className="inline-flex items-center gap-2.5 bg-card-2 border border-line text-fg-1 text-[13px] font-semibold px-4 py-2 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
-            Sprint Begins Monday, June 15, 2026
-          </span>
-        </div>
-        <Eyebrow className="mb-6 !text-[14px]">An AI Writing Skool Live Sprint</Eyebrow>
-        <h1
-          className="font-black text-white tracking-display mx-auto max-w-[14ch]"
-          style={{ fontSize: 'clamp(44px, 7.5vw, 92px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
-        >
-          Start Writing Online In{' '}
-          <span className="relative inline-block whitespace-nowrap">
-            5 Days
-            <svg
-              aria-hidden="true"
-              className="absolute left-0 w-full pointer-events-none"
-              style={{ bottom: '-0.16em', height: '0.34em' }}
-              viewBox="0 0 200 24"
-              preserveAspectRatio="none"
-              fill="none"
+      <div className="max-w-container mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Copy */}
+          <div className="text-center lg:text-left">
+            <div className="flex justify-center lg:justify-start mb-6">
+              <span className="inline-flex items-center gap-2.5 bg-card-2 border border-line text-fg-1 text-[13px] font-semibold px-4 py-2 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
+                Sprint Begins Monday, June 15, 2026
+              </span>
+            </div>
+            <Eyebrow className="mb-6 !text-[14px]">An AI Writing Skool Live Sprint</Eyebrow>
+            <h1
+              className="font-black text-white tracking-display mx-auto lg:mx-0 max-w-[14ch]"
+              style={{ fontSize: 'clamp(40px, 5.4vw, 70px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
             >
-              <path
-                d="M4 16 C 48 7, 116 8, 196 12"
-                stroke="#D31652"
-                strokeWidth="6"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
-        </h1>
-        <div className="max-w-[640px] mx-auto mt-8 mb-10">
-          <p className="text-fg-2" style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.55 }}>
-            Create your niche, differentiate your ideas, and kickstart a timeless library of content.
-          </p>
+              Start Writing Online In{' '}
+              <span className="relative inline-block whitespace-nowrap">
+                5 Days
+                <svg
+                  aria-hidden="true"
+                  className="absolute left-0 w-full pointer-events-none"
+                  style={{ bottom: '-0.16em', height: '0.34em' }}
+                  viewBox="0 0 200 24"
+                  preserveAspectRatio="none"
+                  fill="none"
+                >
+                  <path
+                    d="M4 16 C 48 7, 116 8, 196 12"
+                    stroke="#D31652"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </h1>
+            <div className="max-w-[540px] mx-auto lg:mx-0 mt-8 mb-10">
+              <p className="text-fg-2" style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.55 }}>
+                Create your niche, differentiate your ideas, and kickstart a timeless library of content.
+              </p>
+            </div>
+            <a
+              ref={ctaRef}
+              href={DEFAULT_CTA_URL}
+              onClick={() => trackCTA('Hero')}
+              className="inline-block font-bold rounded-btn bg-cta-gradient text-white shadow-cta transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
+              style={{ padding: '20px 40px', fontSize: 'clamp(16px, 1.5vw, 22px)' }}
+            >
+              Join The Sprint
+            </a>
+            <p className="text-[10px] uppercase tracking-caps text-fg-3 mt-10 mb-3">Cart closes in</p>
+            <CountdownTimer targetDate={CART_CLOSE_DATE} />
+          </div>
+
+          {/* Hero image */}
+          <div className="flex justify-center lg:justify-end order-first lg:order-none">
+            <img
+              src="/images/swo-hero.png"
+              alt="Start Writing Online Sprint"
+              className="w-full max-w-[520px] object-contain"
+              loading="eager"
+            />
+          </div>
         </div>
-        <a
-          ref={ctaRef}
-          href={DEFAULT_CTA_URL}
-          onClick={() => trackCTA('Hero')}
-          className="inline-block font-bold rounded-btn bg-cta-gradient text-white shadow-cta transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
-          style={{ padding: '20px 40px', fontSize: 'clamp(16px, 1.5vw, 22px)' }}
-        >
-          Join The Sprint
-        </a>
-        <p className="text-[10px] uppercase tracking-caps text-fg-3 mt-10 mb-3">Cart closes in</p>
-        <CountdownTimer targetDate={CART_CLOSE_DATE} />
       </div>
     </header>
   )
