@@ -141,33 +141,19 @@ function CountdownTimer({ targetDate, compact }: { targetDate: Date; compact?: b
 }
 
 /* ═══════════════════════════════════════════════════════════
-   NAV — sticky, blurred midnight
-   ═══════════════════════════════════════════════════════════ */
-function NavBar() {
-  return (
-    <nav className="sticky top-0 z-40 backdrop-blur-md" style={{ background: 'rgba(16,20,42,0.72)' }}>
-      <div className="max-w-container mx-auto flex items-center gap-6 px-5 md:px-8 py-4">
-        <Logo size={18} />
-        <div className="flex items-center gap-4 ml-auto">
-          <span className="hidden lg:flex items-center gap-2 text-[12px] text-fg-2 uppercase tracking-caps">
-            <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
-            Begins Mon, Jun 15
-          </span>
-          <CTA size="sm" variant="red" track="Nav">Join The Sprint</CTA>
-        </div>
-      </div>
-    </nav>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════════
    HERO — centered display headline + lead + gradient CTA
    ═══════════════════════════════════════════════════════════ */
 function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> }) {
   return (
     <header className="starfield-dense">
       <div className="max-w-container mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28 text-center">
-        <Eyebrow className="mb-6 !text-[14px]">An AI Writing Skool sprint</Eyebrow>
+        <div className="flex justify-center mb-6">
+          <span className="inline-flex items-center gap-2.5 bg-card-2 border border-line text-fg-1 text-[13px] font-semibold px-4 py-2 rounded-full">
+            <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
+            Sprint Begins Monday, June 15, 2026
+          </span>
+        </div>
+        <Eyebrow className="mb-6 !text-[14px]">An AI Writing Skool Live Sprint</Eyebrow>
         <h1
           className="font-black text-white tracking-display mx-auto max-w-[14ch]"
           style={{ fontSize: 'clamp(44px, 7.5vw, 92px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
@@ -188,9 +174,6 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
         >
           Join The Sprint
         </a>
-        <p className="italic font-semibold text-[15px] text-fg-3 mt-6">
-          Live sprint begins Monday, June 15, 2026.
-        </p>
         <p className="text-[10px] uppercase tracking-caps text-fg-3 mt-10 mb-3">Cart closes in</p>
         <CountdownTimer targetDate={CART_CLOSE_DATE} />
       </div>
@@ -282,7 +265,7 @@ function Instructors() {
       bio: 'Former Wall Street trader at BlackRock turned digital entrepreneur. Creator of Ship 30 for 30 — the fastest-growing cohort-based writing program on the internet. Used online writing to sell $20,000,000 in digital products.',
     },
   ]
-  const pills = ['10,000+ Writers Taught', '$20M+ In Digital Products', '100M+ Views On Quora', 'The #1 Writing Program']
+  const pills = ['10,000+ Writers Taught', '$20M+ In Digital Products']
   return (
     <section id="instructors" className="py-20 md:py-28 px-5 md:px-8">
       <div className="max-w-container mx-auto grid lg:grid-cols-[1fr_1.05fr] gap-12 lg:gap-16 items-start">
@@ -546,6 +529,39 @@ function AIWritingSkool() {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   BONUSES — placeholder (copy + assets TBD)
+   ═══════════════════════════════════════════════════════════ */
+function BonusSection() {
+  const bonuses = [
+    { tag: 'Bonus #1', title: 'Bonus title coming soon', desc: 'Placeholder copy for the first bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
+    { tag: 'Bonus #2', title: 'Bonus title coming soon', desc: 'Placeholder copy for the second bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
+    { tag: 'Bonus #3', title: 'Bonus title coming soon', desc: 'Placeholder copy for the third bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
+  ]
+  return (
+    <section id="bonuses" className="py-20 md:py-28 px-5 md:px-8">
+      <div className="max-w-container mx-auto">
+        <div className="flex flex-col items-center text-center mb-14">
+          <Eyebrow className="mb-4">Plus free bonuses</Eyebrow>
+          <h2 className="font-extrabold text-white tracking-display max-w-[18ch]" style={{ fontSize: 'clamp(30px, 4.4vw, 50px)', lineHeight: 1.08 }}>
+            Enroll today and unlock these bonuses.
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {bonuses.map((b) => (
+            <div key={b.tag} className="bg-card-2 rounded-card p-7 flex flex-col border border-dashed border-line">
+              <span className="inline-block self-start bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px] mb-4">{b.tag}</span>
+              <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
+              <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
+              <p className="text-[13px] text-red font-semibold mt-4">({b.value} value)</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════
    PRICING — Offer stack
    ═══════════════════════════════════════════════════════════ */
 function Pricing() {
@@ -772,7 +788,6 @@ export default function App() {
 
   return (
     <main className="starfield min-h-screen">
-      <NavBar />
       <Hero ctaRef={heroCtaRef} />
       <FadeIn><WhyWriteOnline /></FadeIn>
       <FadeIn><Stats /></FadeIn>
@@ -781,6 +796,7 @@ export default function App() {
       <Divider />
       <FadeIn><Curriculum /></FadeIn>
       <FadeIn><AIWritingSkool /></FadeIn>
+      <FadeIn><BonusSection /></FadeIn>
       <FadeIn><Pricing /></FadeIn>
       <FadeIn><CTABand /></FadeIn>
       <FadeIn><FAQ /></FadeIn>
