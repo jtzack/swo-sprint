@@ -150,7 +150,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
         <div className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2.5 bg-card-2 border border-line text-fg-1 text-[13px] font-semibold px-4 py-2 rounded-full">
             <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
-            Sprint Begins Monday, June 15, 2026
+            Live Sprint Begins Monday, June 15, 2026
           </span>
         </div>
         <h1
