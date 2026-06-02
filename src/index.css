@@ -71,8 +71,22 @@ body {
 
 /* hand-drawn marker underline under "5 Days" */
 .swo-ul { position: relative; white-space: nowrap; }
-.swo-ul svg { position: absolute; left: -2%; bottom: -0.22em; width: 104%; height: 0.42em; overflow: visible; }
-.swo-ul path { fill: none; stroke: #D31652; stroke-width: 10; stroke-linecap: round; }
+.swo-ul .swo-stroke { position: absolute; left: -2%; bottom: -0.22em; width: 104%; height: 0.42em; overflow: visible; }
+.swo-ul .swo-stroke path { fill: none; stroke: #D31652; stroke-width: 6; stroke-linecap: round; }
+
+/* twinkle sparkle on the tip of the underline */
+.swo-ul .swo-spark {
+  position: absolute; right: -0.12em; bottom: -0.40em;
+  width: 0.5em; height: 0.5em;
+  fill: #fff;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.75));
+  transform-origin: center;
+  animation: sparkTwinkle 2.4s ease-in-out infinite;
+}
+@keyframes sparkTwinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.6) rotate(0deg); }
+  50%      { opacity: 1;    transform: scale(1)   rotate(18deg); }
+}
 
 /* glowing CTA */
 .swo-cta-glow { box-shadow: 0 0 46px 0 rgba(211,22,81,0.55), 0 14px 30px rgba(0,0,0,0.4); }
@@ -98,5 +112,5 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bg-aurora-fx .blob, .swo-pulse { animation: none; }
+  .bg-aurora-fx .blob, .swo-pulse, .swo-ul .swo-spark { animation: none; opacity: 1; }
 }
