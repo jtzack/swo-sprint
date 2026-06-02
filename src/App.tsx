@@ -256,13 +256,13 @@ function Instructors() {
       name: 'Nicolas Cole',
       role: 'Co-Founder, Ship 30 for 30 & Premium Ghostwriting Academy',
       img: '/images/sps/cole-headshot.png',
-      bio: 'Author of 10+ books, including The Art & Business of Online Writing. #1 most-read writer on Quora with 100M+ views. Co-founder of Ship 30 for 30, the internet’s biggest digital writing program.',
+      bio: 'Challenged himself to write every single day on Quora for a year — and became the #1 most-read writer on the platform, out of 200 million users. That habit led to a column at Inc Magazine, a multimillion-dollar ghostwriting agency, and his book The Art & Business of Online Writing. Today he’s distilled 10+ years of online writing into Ship 30 for 30 to get you started in just 30 days.',
     },
     {
       name: 'Dickie Bush',
       role: 'Co-Founder, Ship 30 for 30',
       img: '/images/sps/dickie-headshot.png',
-      bio: 'Former Wall Street trader at BlackRock turned digital entrepreneur. Creator of Ship 30 for 30 — the fastest-growing cohort-based writing program on the internet. Used online writing to sell $20,000,000 in digital products.',
+      bio: 'Started writing online in January 2020 by publishing a short post every single day for 30 days — squashing his perfectionism, 10x-ing his writing speed, and growing his audience over 500%. A single tweet to 500 followers turned that experiment into Ship 30 for 30. Together with Cole, he’s packed everything they know about building habits and writing online into the program.',
     },
   ]
   const pills = ['10,000+ Writers Taught', '$20M+ In Digital Products']
