@@ -75,21 +75,21 @@ body {
 .swo-ul .swo-ul-svg path { fill: none; stroke-linecap: round; }
 
 /* faint static underline that's always there */
-.swo-ul .ul-base { stroke: #D31652; stroke-width: 5; opacity: 0.22; }
+.swo-ul .ul-base { stroke: #D31652; stroke-width: 2.5; opacity: 0.22; }
 
 /* soft trailing tail (period = on + gap = 1.30) */
 .swo-ul .ul-trail {
-  stroke: #D31652; stroke-width: 5;
+  stroke: #D31652; stroke-width: 2.5;
   stroke-dasharray: 0.30 1.00;
   filter: drop-shadow(0 0 4px rgba(211,22,81,0.65));
-  animation: ulTrail 3.6s linear infinite;
+  animation: ulTrail 1.8s linear infinite;
 }
 /* bright comet head — same period (0.09 + 1.21 = 1.30), phase-shifted ahead */
 .swo-ul .ul-comet {
-  stroke: #FFE2BE; stroke-width: 5;
+  stroke: #FFE2BE; stroke-width: 2.5;
   stroke-dasharray: 0.09 1.21;
   filter: drop-shadow(0 0 6px rgba(255,140,50,0.95));
-  animation: ulComet 3.6s linear infinite;
+  animation: ulComet 1.8s linear infinite;
 }
 @keyframes ulTrail {
   from { stroke-dashoffset: 0; }
