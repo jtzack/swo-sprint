@@ -687,6 +687,7 @@ function FAQ() {
     { q: 'I’m not a great writer. Can I still do this?', a: 'You don’t need to be a great writer. You need to be a clear thinker. The frameworks show you how to organize your ideas, and the AI prompt that comes with each session helps with the words. We’ve seen total beginners publish posts they’re genuinely proud of by Friday.' },
     { q: 'Do I need an audience or a following already?', a: 'Not at all. The Sprint is built for people starting from zero. You’ll leave with a niche, a publishing habit, and your first library of content — the foundation every audience is built on.' },
     { q: 'Won’t AI-assisted writing sound generic?', a: 'Not the way we teach it. There’s a difference between AI-generated slop (which readers scroll right past) and AI-assisted writing (which is the new standard). Each AI prompt helps you write faster while keeping every post recognizably yours.' },
+    { q: 'How is this different from Ship 30 for 30?', a: 'Think of them as sequential, not competing. Ship 30 for 30 helps you build a daily writing habit. The sprint kickstarts your progress.' },
     { q: 'How long do I have access?', a: 'Lifetime. Every replay, slide, template, and AI prompt is yours forever — including every update we ship to the curriculum.' },
     { q: 'Is there a guarantee?', a: 'Yes. Show up to Session 1, do the work, and if it isn’t what you expected — email us within 7 days and we’ll refund you in full. No questions asked.' },
   ]
