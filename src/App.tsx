@@ -344,6 +344,45 @@ function Instructors() {
   )
 }
 
+/* ─── Lite YouTube embed — thumbnail facade, loads the real
+       player only on click (fast first paint, no cookies until play) ─── */
+function LiteYouTube({ id, title }: { id: string; title: string }) {
+  const [active, setActive] = useState(false)
+  return (
+    <div className="relative w-full aspect-video rounded-card overflow-hidden bg-card-2 shadow-card">
+      {active ? (
+        <iframe
+          className="absolute inset-0 w-full h-full"
+          src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setActive(true)}
+          className="group absolute inset-0 w-full h-full flex items-center justify-center cursor-pointer"
+          aria-label={`Play video: ${title}`}
+        >
+          <img
+            src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <span className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/10" />
+          <span className="relative flex items-center justify-center w-[72px] h-[72px] rounded-full bg-cta-gradient shadow-cta transition-transform duration-150 group-hover:scale-105 group-active:scale-95">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="white" className="ml-1">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
+      )}
+    </div>
+  )
+}
+
 /* ═══════════════════════════════════════════════════════════
    SOCIAL PROOF — testimonials from Ship 30 for 30 writers
    ═══════════════════════════════════════════════════════════ */
@@ -376,19 +415,28 @@ function SocialProof() {
   ]
   return (
     <div className="max-w-container mx-auto mt-12 lg:mt-16 pt-10 lg:pt-12 border-t border-line">
-      <Eyebrow className="mb-8 text-center">Loved by 10,000+ writers</Eyebrow>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-        {testimonials.map((t) => (
-          <figure key={t.name} className="bg-card-2 rounded-card p-6 flex flex-col">
-            <blockquote className="text-[15px] leading-[1.6] text-fg-2 flex-1">“{t.quote}”</blockquote>
-            <figcaption className="flex items-center gap-3 mt-5">
-              <span className="w-9 h-9 rounded-full bg-cta-gradient flex items-center justify-center font-bold text-[14px] text-white flex-shrink-0">
-                {t.name.charAt(0)}
-              </span>
-              <span className="font-bold text-[14px] text-white">{t.name}</span>
-            </figcaption>
-          </figure>
-        ))}
+      <h2 className="font-extrabold text-white tracking-display text-center mb-12 md:mb-14" style={{ fontSize: 'clamp(28px, 4.2vw, 48px)', lineHeight: 1.08 }}>
+        Loved by 10,000+ writers
+      </h2>
+      <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-12 items-start">
+        {/* Testimonials */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="bg-card-2 rounded-card p-6 flex flex-col">
+              <blockquote className="text-[15px] leading-[1.6] text-fg-2 flex-1">“{t.quote}”</blockquote>
+              <figcaption className="flex items-center gap-3 mt-5">
+                <span className="w-9 h-9 rounded-full bg-cta-gradient flex items-center justify-center font-bold text-[14px] text-white flex-shrink-0">
+                  {t.name.charAt(0)}
+                </span>
+                <span className="font-bold text-[14px] text-white">{t.name}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        {/* Video — lite YouTube facade */}
+        <div className="lg:sticky lg:top-24">
+          <LiteYouTube id="c_HHqXB2qWM" title="Start Writing Online Sprint" />
+        </div>
       </div>
     </div>
   )
