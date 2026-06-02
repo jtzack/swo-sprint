@@ -184,20 +184,8 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
             5 Days
             <svg className="swo-ul-svg" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
               <path className="ul-base" d="M4 16 C 70 6, 150 4, 296 12" pathLength={1} />
-              {Array.from({ length: 6 }).map((_, i) => (
-                <path
-                  key={i}
-                  className="ul-seg"
-                  d="M4 16 C 70 6, 150 4, 296 12"
-                  pathLength={1}
-                  style={{
-                    '--o': `${(i * 0.05).toFixed(3)}`,
-                    opacity: 1 - i * 0.16,
-                    stroke: i === 0 ? '#FFE2BE' : '#D31652',
-                    filter: i === 0 ? 'drop-shadow(0 0 6px rgba(255,140,50,0.95))' : 'none',
-                  } as React.CSSProperties}
-                />
-              ))}
+              <path className="ul-draw" d="M4 16 C 70 6, 150 4, 296 12" pathLength={1} />
+              <path className="ul-comet" d="M4 16 C 70 6, 150 4, 296 12" pathLength={1} />
             </svg>
           </span>
         </h1>
