@@ -77,27 +77,17 @@ body {
 /* faint static underline that's always there */
 .swo-ul .ul-base { stroke: #D31652; stroke-width: 2.5; opacity: 0.22; }
 
-/* soft trailing tail (period = on + gap = 1.30) */
-.swo-ul .ul-trail {
-  stroke: #D31652; stroke-width: 2.5;
-  stroke-dasharray: 0.30 1.00;
-  filter: drop-shadow(0 0 4px rgba(211,22,81,0.65));
-  animation: ulTrail 1.8s linear infinite;
+/* comet built from fading segments — sweeps the stroke once, then stops.
+   Large gap (period 2.06 > path) keeps a single comet on screen; each
+   segment is phase-shifted by --o so they trail the bright head. */
+.swo-ul .ul-seg {
+  stroke-width: 2.5;
+  stroke-dasharray: 0.06 2.0;
+  animation: ulSweep 1.3s ease-out forwards;
 }
-/* bright comet head — same period (0.09 + 1.21 = 1.30), phase-shifted ahead */
-.swo-ul .ul-comet {
-  stroke: #FFE2BE; stroke-width: 2.5;
-  stroke-dasharray: 0.09 1.21;
-  filter: drop-shadow(0 0 6px rgba(255,140,50,0.95));
-  animation: ulComet 1.8s linear infinite;
-}
-@keyframes ulTrail {
-  from { stroke-dashoffset: 0; }
-  to   { stroke-dashoffset: -1.30; }
-}
-@keyframes ulComet {
-  from { stroke-dashoffset: -0.21; }
-  to   { stroke-dashoffset: -1.51; }
+@keyframes ulSweep {
+  from { stroke-dashoffset: calc(0.10 + var(--o, 0)); }
+  to   { stroke-dashoffset: calc(-1.30 + var(--o, 0)); }
 }
 
 /* glowing CTA */
@@ -125,6 +115,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .bg-aurora-fx .blob, .swo-pulse { animation: none; }
-  .swo-ul .ul-trail, .swo-ul .ul-comet { display: none; }
+  .swo-ul .ul-seg { display: none; }
   .swo-ul .ul-base { opacity: 0.55; }
 }
