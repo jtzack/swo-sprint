@@ -38,7 +38,7 @@ function Logo({ size = 20, className = '' }: { size?: number; className?: string
     <div className={`flex items-center gap-2.5 ${className}`}>
       <span style={{ fontSize: size * 1.2, lineHeight: 1 }} role="img" aria-label="ship">🚢</span>
       <span className="font-extrabold text-white tracking-[-0.01em] leading-none" style={{ fontSize: size }}>
-        AI Writing Skool Sprint
+        Start Writing Online Sprint
       </span>
     </div>
   )
@@ -167,17 +167,16 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
   return (
     <header className="starfield-dense">
       <div className="max-w-container mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28 text-center">
-        <Eyebrow className="mb-6">AI Writing Skool Sprint</Eyebrow>
+        <Eyebrow className="mb-6 !text-[14px]">An AI Writing Skool sprint</Eyebrow>
         <h1
           className="font-black text-white tracking-display mx-auto max-w-[14ch]"
           style={{ fontSize: 'clamp(44px, 7.5vw, 92px)', lineHeight: 0.98, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
         >
-          How To Start Writing Online In 5 Days
+          Start Writing Online In 5 Days
         </h1>
         <div className="max-w-[640px] mx-auto mt-8 mb-10">
           <p className="text-fg-2" style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.55 }}>
-            Create your niche, differentiate your ideas, and build a <strong className="text-white font-semibold">timeless library of content</strong>
-            &nbsp;— in five live sessions over five days.
+            Create your niche, differentiate your ideas, and build a <strong className="text-white font-semibold">timeless library of content</strong>.
           </p>
         </div>
         <a
@@ -187,7 +186,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
           className="inline-block font-bold rounded-btn bg-cta-gradient text-white shadow-cta transition-[transform,filter] duration-150 hover:brightness-[1.06] active:scale-[0.98]"
           style={{ padding: '20px 40px', fontSize: 'clamp(16px, 1.5vw, 22px)' }}
         >
-          Join The AI Writing Skool Sprint
+          Join The Sprint
         </a>
         <p className="italic font-semibold text-[15px] text-fg-3 mt-6">
           Live sprint begins Monday, June 15, 2026.
@@ -204,7 +203,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
    ═══════════════════════════════════════════════════════════ */
 function WhyWriteOnline() {
   const reasons = [
-    { num: '01', title: 'Build the skill.', body: 'Writing online is the highest-leverage skill of the decade. Every post sharpens how you think — and compounds how far your ideas travel.' },
+    { num: '01', title: 'Build the skill.', body: 'Writing online is the highest-leverage skill of the decade. Learn the fundamentals (especially in the age of AI) — every post sharpens how you think and compounds how far your ideas travel.' },
     { num: '02', title: 'Claim your niche.', body: 'The internet rewards specificity. Stake your claim on a niche and become the go-to voice people follow, trust, and learn from.' },
     { num: '03', title: 'Build an audience asset.', body: 'A library of content is the front door to your entire business — the asset that turns readers into subscribers, customers, and clients.' },
   ]
@@ -213,7 +212,7 @@ function WhyWriteOnline() {
       <div className="max-w-container mx-auto">
         <Eyebrow className="mb-3">The opportunity</Eyebrow>
         <h2 className="font-extrabold text-white tracking-display mb-12 max-w-[16ch]" style={{ fontSize: 'clamp(32px, 5vw, 56px)', lineHeight: 1.05 }}>
-          Why write online? And why now?
+          Why start writing online in 2026?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {reasons.map((r) => (
@@ -245,7 +244,7 @@ function Stats() {
         <div className="flex flex-col items-center text-center mb-14">
           <Eyebrow className="mb-4">The sprint</Eyebrow>
           <h2 className="font-extrabold text-white tracking-display max-w-[18ch]" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
-            What is the AI Writing Skool Sprint?
+            What is the Start Writing Online Sprint?
           </h2>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-[1000px] mx-auto">
@@ -258,7 +257,7 @@ function Stats() {
           ))}
         </div>
         <div className="mt-14 text-center">
-          <CTA size="lg" track="Stats">Join The AI Writing Skool Sprint</CTA>
+          <CTA size="lg" track="Stats">Join The Sprint</CTA>
         </div>
       </div>
     </section>
@@ -317,26 +316,59 @@ function Instructors() {
         </div>
       </div>
 
-      {/* Book covers row — quiet evidence of their authority as writers */}
-      <div className="max-w-container mx-auto mt-12 lg:mt-16 pt-10 lg:pt-12 border-t border-line">
-        <div className="grid grid-cols-4 lg:grid-cols-8 gap-3 md:gap-4">
-          {[
-            { src: '/images/sps/book_artbiz.webp', alt: 'The Art & Business of Online Writing' },
-            { src: '/images/sps/book_ghost.webp', alt: 'The Art & Business of Ghostwriting' },
-            { src: '/images/sps/book_22laws.jpg', alt: 'The 22 Laws of Online Writing' },
-            { src: '/images/sps/book_niche.jpg', alt: 'Niche Down' },
-            { src: '/images/sps/book_pillars.png', alt: 'The 8 Pillars of Premium Ghostwriting' },
-            { src: '/images/sps/book_career.webp', alt: 'Writer Career Paths' },
-            { src: '/images/sps/book_confessions.webp', alt: 'Confessions of a Teenage Gamer' },
-            { src: '/images/sps/book_snow.jpg', alt: 'Snow Leopard' },
-          ].map((c) => (
-            <div key={c.src} className="aspect-[2/3] overflow-hidden rounded-[6px] bg-card shadow-card transition-transform duration-200 hover:-translate-y-1">
-              <img src={c.src} alt={c.alt} loading="lazy" className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Social proof — what Ship 30 for 30 writers say */}
+      <SocialProof />
     </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SOCIAL PROOF — testimonials from Ship 30 for 30 writers
+   ═══════════════════════════════════════════════════════════ */
+function SocialProof() {
+  const testimonials = [
+    {
+      name: 'David Miller',
+      quote: 'Ignore every other course and community on Twitter and go all in with Ship 30 for 30! It’s hard to describe the inspiration I feel surging through my body every day since joining.',
+    },
+    {
+      name: 'Nicole Folker',
+      quote: 'Ship 30 for 30 is the best course I’ve taken hands down (and I’ve taken a lot). Not only will you learn how to be a digital writer, but you’ll meet incredible people in the community.',
+    },
+    {
+      name: 'Omer Khan',
+      quote: 'Before Ship 30 for 30, I had never written and published anything for more than a couple of days in a row. After, I published 30 days in a row and overcame my fear of perfection.',
+    },
+    {
+      name: 'Tin',
+      quote: 'Ship 30 is the best cohort-course I’ve ever taken. It truly is a life-changing experience. You will go from 0 to 1 if you take this course.',
+    },
+    {
+      name: 'Pia Mailhot-Leichter',
+      quote: 'Hard-core value. It provides the best (and super professional) framework for learning — actually practicing. Learning by doing with a strong, supportive, and engaged community.',
+    },
+    {
+      name: 'Kevin Alexander',
+      quote: 'From Day 1, it’s full of actionable takeaways you can immediately use to improve your writing. I’ve been in a couple of other cohort-based courses — I got the most value from this one.',
+    },
+  ]
+  return (
+    <div className="max-w-container mx-auto mt-12 lg:mt-16 pt-10 lg:pt-12 border-t border-line">
+      <Eyebrow className="mb-8 text-center">Loved by 10,000+ writers</Eyebrow>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {testimonials.map((t) => (
+          <figure key={t.name} className="bg-card-2 rounded-card p-6 flex flex-col">
+            <blockquote className="text-[15px] leading-[1.6] text-fg-2 flex-1">“{t.quote}”</blockquote>
+            <figcaption className="flex items-center gap-3 mt-5">
+              <span className="w-9 h-9 rounded-full bg-cta-gradient flex items-center justify-center font-bold text-[14px] text-white flex-shrink-0">
+                {t.name.charAt(0)}
+              </span>
+              <span className="font-bold text-[14px] text-white">{t.name}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -356,11 +388,9 @@ function Check() {
    ═══════════════════════════════════════════════════════════ */
 function QuizSection() {
   const cards = [
-    { title: 'Have you been <em>meaning to start writing online</em> for years — but never actually posted?', body: "A notes app full of half-ideas, a blank profile, and a nagging sense you've got <strong>something worth saying</strong>." },
-    { title: 'Do you have <em>the expertise</em>, but no idea <em>what to post</em>?', body: 'You know your subject cold — you just don’t know how to turn it into posts people <strong>actually read and share</strong>.' },
-    { title: 'Do you want an audience that <em>compounds</em> — not posts that <em>disappear</em>?', body: 'Posting at random, <strong>publishing into the void</strong>, and wondering why nothing ever sticks.' },
-    { title: 'Are you tired of <em>staring at a blank page</em>?', body: 'Draft after draft, second-guessing every line, <strong>never hitting publish</strong>.' },
-    { title: 'Want to use AI to <em>accelerate</em> — without sounding like <em>generic AI slop</em>?', body: 'You want to write faster — but not at the cost of <strong>sounding like everyone else</strong>.' },
+    { title: 'Have you wanted to <em>start writing online</em>, but aren’t sure the first step to take?', body: 'Are you <strong>overwhelmed</strong> with the number of different platforms, topics, and strategies out there for writing online?' },
+    { title: 'Have you <em>started writing online</em>, but now feel stuck?', body: 'Are you hacking away at blog posts, <strong>publishing into the void</strong>, never gaining any traction?' },
+    { title: 'Do you have <em>plenty of ideas</em>, but struggle to put yourself out there?', body: 'Do you find yourself creating <strong>draft after draft</strong>, never hitting publish?' },
   ]
   return (
     <section className="py-20 md:py-28 px-5 md:px-8">
@@ -386,11 +416,11 @@ function QuizSection() {
         <div className="text-center my-14 md:my-16">
           <p className="font-extrabold text-white tracking-tight2 mb-4" style={{ fontSize: 'clamp(26px, 3.6vw, 44px)', lineHeight: 1.1 }}>If any of these sound familiar…</p>
           <p className="font-extrabold text-white tracking-tight2" style={{ fontSize: 'clamp(26px, 3.6vw, 44px)', lineHeight: 1.1 }}>
-            Then the <span className="text-gradient">AI Writing Skool Sprint</span> was built for you.
+            Then the <span className="text-gradient">Start Writing Online Sprint</span> was built for you.
           </p>
         </div>
         <div className="text-center">
-          <CTA size="lg" track="Quiz">Join The AI Writing Skool Sprint</CTA>
+          <CTA size="lg" track="Quiz">Join The Sprint</CTA>
         </div>
       </div>
     </section>
@@ -456,7 +486,7 @@ function Curriculum() {
             We build <span className="text-gradient">together</span>. You leave with <span className="text-gradient">a library of content</span>.
           </p>
           <p className="text-[16px] text-fg-2 mb-8">This isn’t self-paced content you buy and forget.</p>
-          <CTA size="lg" track="Curriculum">Join The AI Writing Skool Sprint</CTA>
+          <CTA size="lg" track="Curriculum">Join The Sprint</CTA>
         </div>
       </div>
     </section>
@@ -559,7 +589,7 @@ function Pricing() {
               onClick={() => trackCTA('Pricing')}
               className="inline-block bg-white text-red font-bold text-[16px] px-9 py-[18px] rounded-btn mt-6 transition-[transform,filter] duration-150 hover:brightness-[0.97] active:scale-[0.98]"
             >
-              Join The AI Writing Skool Sprint →
+              Join The Sprint →
             </a>
             <p className="text-[12px] text-white/80 mt-4">7-day money-back guarantee</p>
           </div>
@@ -585,7 +615,7 @@ function CTABand() {
         <p className="text-[19px] text-fg-2 max-w-[600px] mx-auto mb-9 leading-[1.6]">
           Five live sessions, five done-for-you AI prompts, and a 5-day schedule that takes you from blank page to a publishing habit. Lifetime access — and a 7-day no-questions-asked refund if you show up to Session 1 and decide it isn’t for you.
         </p>
-        <CTA size="lg" track="Final">Join The AI Writing Skool Sprint</CTA>
+        <CTA size="lg" track="Final">Join The Sprint</CTA>
         <p className="text-[14px] text-fg-3 mt-6">Live sprint begins Monday, June 15, 2026.</p>
       </div>
     </section>
@@ -681,7 +711,7 @@ function StickyCtaBar({ heroCtaRef }: { heroCtaRef: React.RefObject<HTMLAnchorEl
         <div className="hidden md:block">
           <CountdownTimer targetDate={CART_CLOSE_DATE} compact />
         </div>
-        <CTA size="sm" track="Sticky Bar" className="mx-auto md:mx-0">Join Now</CTA>
+        <CTA size="sm" track="Sticky Bar" className="mx-auto md:mx-0">Join The Sprint</CTA>
       </div>
     </div>
   )
