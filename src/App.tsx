@@ -249,22 +249,24 @@ function Stats() {
   ]
   return (
     <section className="py-20 md:py-28 px-5 md:px-8">
-      <div className="max-w-container mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* Image */}
-        <div className="flex justify-center lg:justify-start">
-          <img
-            src="/images/swo-hero-2.png"
-            alt="Sprint cohort together on a live group video call"
-            className="w-full max-w-[480px] object-contain"
-            loading="lazy"
-          />
-        </div>
-        {/* Heading + stats + CTA */}
-        <div>
-          <Eyebrow className="mb-4 text-center">The sprint</Eyebrow>
-          <h2 className="font-extrabold text-white tracking-display mb-8 text-center" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
+      <div className="max-w-container mx-auto">
+        {/* Centered header */}
+        <div className="flex flex-col items-center text-center mb-14">
+          <Eyebrow className="mb-4">The sprint</Eyebrow>
+          <h2 className="font-extrabold text-white tracking-display max-w-[18ch]" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)', lineHeight: 1.08 }}>
             What is the Start Writing Online Sprint?
           </h2>
+        </div>
+        {/* Image left, stats right */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="flex justify-center lg:justify-start">
+            <img
+              src="/images/swo-hero-2.png"
+              alt="Sprint cohort together on a live group video call"
+              className="w-full max-w-[480px] object-contain"
+              loading="lazy"
+            />
+          </div>
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             {stats.map((s) => (
               <div key={s.label} className="bg-card-2 rounded-card p-5 md:p-6 flex flex-col">
@@ -274,9 +276,10 @@ function Stats() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <CTA size="lg" track="Stats">Join The Sprint</CTA>
-          </div>
+        </div>
+        {/* Centered CTA */}
+        <div className="mt-14 text-center">
+          <CTA size="lg" track="Stats">Join The Sprint</CTA>
         </div>
       </div>
     </section>
