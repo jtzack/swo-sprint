@@ -5,7 +5,7 @@ import * as Fathom from 'fathom-client'
 const DEFAULT_CTA_URL = 'https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50'
 
 // Cart closes at midnight ET the night before Session 1 (Monday, June 15, 2026)
-const CART_CLOSE_DATE = new Date('2026-06-15T03:59:00Z')
+const CART_CLOSE_DATE = new Date('2026-06-13T04:00:00Z') // Sat June 13, 2026 12:00 AM ET
 
 const trackCTA = (location: string) => Fathom.trackEvent(`CTA: ${location}`)
 
