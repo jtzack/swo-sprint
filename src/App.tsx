@@ -200,7 +200,7 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
         >
           Join The Sprint
         </a>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-5 text-[15px] font-semibold text-fg-1">
+        <div className="flex flex-col items-center gap-y-2 sm:flex-row sm:flex-wrap sm:justify-center gap-x-3 mt-5 text-[15px] font-semibold text-fg-1">
           <span className="inline-flex items-center gap-0.5 text-[#FF8203]" aria-hidden="true">
             {Array.from({ length: 5 }).map((_, i) => (
               <svg key={i} viewBox="0 0 20 20" className="w-[18px] h-[18px]" fill="currentColor">
