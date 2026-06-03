@@ -636,9 +636,9 @@ function AIWritingSkool() {
    ═══════════════════════════════════════════════════════════ */
 function BonusSection() {
   const bonuses = [
-    { tag: 'Bonus #1', title: 'Bonus title coming soon', desc: 'Placeholder copy for the first bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
-    { tag: 'Bonus #2', title: 'Bonus title coming soon', desc: 'Placeholder copy for the second bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
-    { tag: 'Bonus #3', title: 'Bonus title coming soon', desc: 'Placeholder copy for the third bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
+    { tag: 'Bonus #1', title: 'Viral Hook Vault', desc: '24 proven content hooks & styles crushing it across X (Twitter) and LinkedIn — which you can use during the sprint and beyond!', value: '$299' },
+    { tag: 'Bonus #2', title: 'Build Your Audience On Autopilot', desc: "Get the blueprint we've used to grow our audience to 750,000 followers over the past 3 years (instead of wasting 10,000 hours \"figuring it out\" on your own).", value: '$199' },
+    { tag: 'Bonus #3', title: 'Digital Writing Book Bundle', desc: 'Free digital copies of our library of books: The Art & Business of Online Writing, The Art & Business of Ghostwriting, and Writer Career Paths.', value: '$100' },
   ]
   return (
     <section id="bonuses" className="py-20 md:py-28 px-5 md:px-8">
@@ -676,6 +676,9 @@ function Pricing() {
     { name: 'Session Replays', price: '$300' },
     { name: 'Lifetime Access to the Curriculum', price: 'Priceless' },
     { name: '30-Day AI Writing Skool Trial', price: '$99' },
+    { name: 'BONUS: Viral Hook Vault', price: '$299' },
+    { name: 'BONUS: Build Your Audience On Autopilot', price: '$199' },
+    { name: 'BONUS: Digital Writing Book Bundle', price: '$100' },
   ]
   return (
     <section id="pricing" className="py-24 md:py-32 px-5 md:px-8">
@@ -696,7 +699,7 @@ function Pricing() {
             ))}
             <div className="flex justify-between items-center pt-4 mt-3 border-t border-line">
               <span className="text-[14px] font-bold text-white">Total Value</span>
-              <span className="font-black text-[24px] text-white line-through decoration-red decoration-2">$3,199</span>
+              <span className="font-black text-[24px] text-white line-through decoration-red decoration-2">$3,797</span>
             </div>
           </div>
           {/* Price reveal — gradient panel */}
