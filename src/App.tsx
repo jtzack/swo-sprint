@@ -654,7 +654,9 @@ function BonusSection() {
             <div key={b.tag} className="bg-card-2 rounded-card p-7 flex flex-col border border-line">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <span className="inline-block bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px]">{b.tag}</span>
-                <img src={b.img} alt={b.title} className="w-24 h-24 object-contain flex-shrink-0" loading="lazy" />
+                <div className="w-20 h-20 flex-shrink-0 rounded-[10px] bg-card-3 flex items-center justify-center p-2.5">
+                  <img src={b.img} alt={b.title} className="max-w-full max-h-full object-contain" loading="lazy" />
+                </div>
               </div>
               <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
               <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
