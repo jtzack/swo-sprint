@@ -706,7 +706,6 @@ function Pricing() {
               <span className="font-black text-white/60 leading-none line-through decoration-2" style={{ fontSize: 'clamp(32px,5.5vw,48px)' }}>$149</span>
               <span className="font-black text-white leading-none" style={{ fontSize: 'clamp(64px,11vw,96px)' }}>$99</span>
             </div>
-            <p className="text-[12px] font-bold uppercase tracking-caps text-white mt-3">Early Prime Day Special</p>
             <a
               href={DEFAULT_CTA_URL}
               onClick={() => trackCTA('Pricing')}
