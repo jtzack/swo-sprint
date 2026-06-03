@@ -636,9 +636,9 @@ function AIWritingSkool() {
    ═══════════════════════════════════════════════════════════ */
 function BonusSection() {
   const bonuses = [
-    { tag: 'Bonus #1', title: 'Viral Hook Vault', desc: '24 proven content hooks & styles crushing it across X (Twitter) and LinkedIn — which you can use during the sprint and beyond!', value: '$299' },
-    { tag: 'Bonus #2', title: 'Build Your Audience On Autopilot', desc: "Get the blueprint we've used to grow our audience to 750,000 followers over the past 3 years (instead of wasting 10,000 hours \"figuring it out\" on your own).", value: '$199' },
-    { tag: 'Bonus #3', title: 'Digital Writing Book Bundle', desc: 'Free digital copies of our library of books: The Art & Business of Online Writing, The Art & Business of Ghostwriting, and Writer Career Paths.', value: '$100' },
+    { tag: 'Bonus #1', title: 'Viral Hook Vault', desc: '24 proven content hooks & styles crushing it across X (Twitter) and LinkedIn — which you can use during the sprint and beyond!', value: '$299', img: '/images/bonus-1-hook-vault.png' },
+    { tag: 'Bonus #2', title: 'Build Your Audience On Autopilot', desc: "Get the blueprint we've used to grow our audience to 750,000 followers over the past 3 years (instead of wasting 10,000 hours \"figuring it out\" on your own).", value: '$199', img: '/images/bonus-2-audience-autopilot.png' },
+    { tag: 'Bonus #3', title: 'Digital Writing Book Bundle', desc: 'Free digital copies of our library of books: The Art & Business of Online Writing, The Art & Business of Ghostwriting, and Writer Career Paths.', value: '$100', img: '/images/bonus-3-swo-sprint-book-bundle.png' },
   ]
   return (
     <section id="bonuses" className="py-20 md:py-28 px-5 md:px-8">
@@ -651,11 +651,14 @@ function BonusSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {bonuses.map((b) => (
-            <div key={b.tag} className="bg-card-2 rounded-card p-7 flex flex-col border border-dashed border-line">
-              <span className="inline-block self-start bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px] mb-4">{b.tag}</span>
-              <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
-              <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
-              <p className="text-[13px] text-red font-semibold mt-4">({b.value} value)</p>
+            <div key={b.tag} className="bg-card-2 rounded-card flex flex-col border border-line overflow-hidden">
+              <img src={b.img} alt={b.title} className="w-full aspect-[16/9] object-cover border-b border-line" loading="lazy" />
+              <div className="p-7 flex flex-col flex-1">
+                <span className="inline-block self-start bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px] mb-4">{b.tag}</span>
+                <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
+                <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
+                <p className="text-[13px] text-red font-semibold mt-4">({b.value} value)</p>
+              </div>
             </div>
           ))}
         </div>
