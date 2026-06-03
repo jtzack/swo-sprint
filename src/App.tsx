@@ -228,9 +228,9 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLAnchorElement | null> })
    ═══════════════════════════════════════════════════════════ */
 function WhyWriteOnline() {
   const reasons = [
-    { num: '01', title: 'Build the skill.', body: 'Writing online is the highest-leverage skill of the decade. Learn the fundamentals (especially in the age of AI) — every post sharpens how you think and compounds how far your ideas travel.' },
-    { num: '02', title: 'Claim your niche.', body: 'The internet rewards specificity. Stake your claim on a niche and become the go-to voice people follow, trust, and learn from.' },
-    { num: '03', title: 'Build an audience asset.', body: 'A library of content is the front door to your entire business — the asset that turns readers into subscribers, customers, and clients.' },
+    { num: '01', title: 'Niche Authority', body: 'If you want to build an audience, position yourself as a leader in your industry, or monetize in any way, then the first step is to become known for a niche you own.' },
+    { num: '02', title: 'Clarity of Thought', body: "The most valuable skill in the digital age (and the age of AI) is writing. You can't automate what you can't articulate." },
+    { num: '03', title: 'Scale Yourself', body: 'Consistently publishing your perspectives online will attract all kinds of life-changing opportunities into your life—like speaking on podcasts, getting hired for exclusive roles, even making likeminded friends.' },
   ]
   return (
     <section className="py-20 md:py-28 px-5 md:px-8">
