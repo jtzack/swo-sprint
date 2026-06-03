@@ -2,7 +2,7 @@ import './index.css'
 import { useState, useEffect, useRef } from 'react'
 import * as Fathom from 'fathom-client'
 
-const DEFAULT_CTA_URL = 'https://vine-perch-730.notion.site/aiws-swo-sprint-coming-soon?pvs=74'
+const DEFAULT_CTA_URL = 'https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50'
 
 // Cart closes at midnight ET the night before Session 1 (Monday, June 15, 2026)
 const CART_CLOSE_DATE = new Date('2026-06-15T03:59:00Z')
