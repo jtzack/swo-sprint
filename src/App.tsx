@@ -764,7 +764,7 @@ function FAQ() {
     { q: 'Won’t AI-assisted writing sound generic?', a: 'Not the way we teach it. There’s a difference between AI-generated slop (which readers scroll right past) and AI-assisted writing (which is the new standard). Each AI prompt helps you write faster while keeping every post recognizably yours.' },
     { q: 'How is this different from Ship 30 for 30?', a: 'Think of them as sequential, not competing. Ship 30 for 30 helps you build a daily writing habit. The sprint kickstarts your progress.' },
     { q: 'How long do I have access?', a: 'Lifetime. Every replay, slide, template, and AI prompt is yours forever — including every update we ship to the curriculum.' },
-    { q: 'Is there a guarantee?', a: 'Yes. Show up to Session 1, do the work, and if it isn’t what you expected — email us within 7 days and we’ll refund you in full. No questions asked.' },
+    { q: 'Is there a guarantee?', a: 'We provide a tremendous amount of free education on the internet for writers. If you’re hesitant as to whether this Sprint is for you, consume some of our free stuff first. All sales are final.' },
   ]
   const [open, setOpen] = useState<number | null>(0)
   return (
