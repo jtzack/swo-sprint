@@ -651,14 +651,14 @@ function BonusSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {bonuses.map((b) => (
-            <div key={b.tag} className="bg-card-2 rounded-card flex flex-col border border-line overflow-hidden">
-              <img src={b.img} alt={b.title} className="w-full aspect-[16/9] object-cover border-b border-line" loading="lazy" />
-              <div className="p-7 flex flex-col flex-1">
-                <span className="inline-block self-start bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px] mb-4">{b.tag}</span>
-                <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
-                <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
-                <p className="text-[13px] text-red font-semibold mt-4">({b.value} value)</p>
+            <div key={b.tag} className="bg-card-2 rounded-card p-7 flex flex-col border border-line">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <span className="inline-block bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px]">{b.tag}</span>
+                <img src={b.img} alt={b.title} className="w-16 h-16 object-cover rounded-[8px] border border-line flex-shrink-0" loading="lazy" />
               </div>
+              <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
+              <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
+              <p className="text-[13px] text-red font-semibold mt-4">({b.value} value)</p>
             </div>
           ))}
         </div>
