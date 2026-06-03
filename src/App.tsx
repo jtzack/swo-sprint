@@ -2,10 +2,10 @@ import './index.css'
 import { useState, useEffect, useRef } from 'react'
 import * as Fathom from 'fathom-client'
 
-const DEFAULT_CTA_URL = 'https://vine-perch-730.notion.site/aiws-swo-sprint-coming-soon?pvs=74'
+const DEFAULT_CTA_URL = 'https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50'
 
 // Cart closes at midnight ET the night before Session 1 (Monday, June 15, 2026)
-const CART_CLOSE_DATE = new Date('2026-06-15T03:59:00Z')
+const CART_CLOSE_DATE = new Date('2026-06-13T04:00:00Z') // Sat June 13, 2026 12:00 AM ET
 
 const trackCTA = (location: string) => Fathom.trackEvent(`CTA: ${location}`)
 
@@ -636,9 +636,9 @@ function AIWritingSkool() {
    ═══════════════════════════════════════════════════════════ */
 function BonusSection() {
   const bonuses = [
-    { tag: 'Bonus #1', title: 'Bonus title coming soon', desc: 'Placeholder copy for the first bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
-    { tag: 'Bonus #2', title: 'Bonus title coming soon', desc: 'Placeholder copy for the second bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
-    { tag: 'Bonus #3', title: 'Bonus title coming soon', desc: 'Placeholder copy for the third bonus. Swap this out with the real bonus name, description, and value.', value: 'TBD' },
+    { tag: 'Bonus #1', title: 'Viral Hook Vault', desc: '24 proven content hooks & styles crushing it across X (Twitter) and LinkedIn — which you can use during the sprint and beyond!', value: '$299', img: '/images/bonus-1-hook-vault.png' },
+    { tag: 'Bonus #2', title: 'Build Your Audience On Autopilot', desc: "Get the blueprint we've used to grow our audience to 750,000 followers over the past 3 years (instead of wasting 10,000 hours \"figuring it out\" on your own).", value: '$199', img: '/images/bonus-2-audience-autopilot.png' },
+    { tag: 'Bonus #3', title: 'Digital Writing Book Bundle', desc: 'Free digital copies of our library of books: The Art & Business of Online Writing, The Art & Business of Ghostwriting, and Writer Career Paths.', value: '$100', img: '/images/bonus-3-swo-sprint-book-bundle.png' },
   ]
   return (
     <section id="bonuses" className="py-20 md:py-28 px-5 md:px-8">
@@ -651,8 +651,13 @@ function BonusSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {bonuses.map((b) => (
-            <div key={b.tag} className="bg-card-2 rounded-card p-7 flex flex-col border border-dashed border-line">
-              <span className="inline-block self-start bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px] mb-4">{b.tag}</span>
+            <div key={b.tag} className="bg-card-2 rounded-card p-7 flex flex-col border border-line">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <span className="inline-block bg-card-3 text-red text-[11px] font-bold uppercase tracking-caps px-3 py-1 rounded-[6px]">{b.tag}</span>
+                <div className="w-20 h-20 flex-shrink-0 rounded-[10px] bg-card-3 flex items-center justify-center p-2.5">
+                  <img src={b.img} alt={b.title} className="max-w-full max-h-full object-contain" loading="lazy" />
+                </div>
+              </div>
               <h3 className="font-bold text-[20px] text-white mb-3">{b.title}</h3>
               <p className="text-[15px] leading-[1.6] text-fg-2 flex-1">{b.desc}</p>
               <p className="text-[13px] text-red font-semibold mt-4">({b.value} value)</p>
@@ -676,6 +681,9 @@ function Pricing() {
     { name: 'Session Replays', price: '$300' },
     { name: 'Lifetime Access to the Curriculum', price: 'Priceless' },
     { name: '30-Day AI Writing Skool Trial', price: '$99' },
+    { name: 'BONUS: Viral Hook Vault', price: '$299' },
+    { name: 'BONUS: Build Your Audience On Autopilot', price: '$199' },
+    { name: 'BONUS: Digital Writing Book Bundle', price: '$100' },
   ]
   return (
     <section id="pricing" className="py-24 md:py-32 px-5 md:px-8">
@@ -696,7 +704,7 @@ function Pricing() {
             ))}
             <div className="flex justify-between items-center pt-4 mt-3 border-t border-line">
               <span className="text-[14px] font-bold text-white">Total Value</span>
-              <span className="font-black text-[24px] text-white line-through decoration-red decoration-2">$3,199</span>
+              <span className="font-black text-[24px] text-white line-through decoration-red decoration-2">$3,797</span>
             </div>
           </div>
           {/* Price reveal — gradient panel */}
