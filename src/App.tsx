@@ -258,7 +258,7 @@ function WhyWriteOnline() {
    ═══════════════════════════════════════════════════════════ */
 function Stats() {
   const stats = [
-    { num: '5', label: 'Live Sessions', desc: 'One per day over 5 days. 60 min each. 3:00 PM ET.' },
+    { num: '5', label: 'Live Sessions', desc: 'One per day over 5 days. 60 min each. 12:00 PM ET.' },
     { num: '5', label: 'Days To Start Writing Online', desc: 'From blank page to a publishing habit and your first library of content.' },
     { num: '5', label: 'AI Prompts', desc: 'A plug-and-play AI prompt included with every single session.' },
     { num: '2', label: 'World-Class Instructors', desc: 'Nicolas Cole & Dickie Bush — founders of Ship 30 for 30.' },
@@ -537,7 +537,7 @@ function Curriculum() {
           Here’s what you’ll build.
         </h2>
         <p className="text-[15px] text-fg-2 text-center mb-14">
-          All sessions 60 min · Mon–Fri · 3:00 PM ET · June 15 – June 19, 2026
+          All sessions 60 min · Mon–Fri · 12:00 PM ET · June 15 – June 19, 2026
         </p>
 
         <div className="relative">
@@ -721,7 +721,6 @@ function Pricing() {
             >
               Join The Sprint →
             </a>
-            <p className="text-[12px] text-white/80 mt-4">7-day money-back guarantee</p>
           </div>
         </div>
 
@@ -743,7 +742,7 @@ function CTABand() {
           Start writing online. This week.
         </h2>
         <p className="text-[19px] text-fg-2 max-w-[600px] mx-auto mb-9 leading-[1.6]">
-          Five live sessions, five done-for-you AI prompts, and a 5-day schedule that takes you from blank page to a publishing habit. Lifetime access — and a 7-day no-questions-asked refund if you show up to Session 1 and decide it isn’t for you.
+          Five live sessions, five done-for-you AI prompts, and a 5-day schedule that takes you from blank page to a publishing habit. Lifetime access.
         </p>
         <CTA size="lg" track="Final">Join The Sprint</CTA>
         <p className="text-[14px] text-fg-3 mt-6">Live sprint begins Monday, June 15, 2026.</p>
@@ -757,7 +756,7 @@ function CTABand() {
    ═══════════════════════════════════════════════════════════ */
 function FAQ() {
   const faqs = [
-    { q: 'How much time do I need?', a: 'One 60-minute live session per day (Monday–Friday at 3:00 PM ET), plus about 30 minutes to write and publish each day. Everything is built during the session itself, so implementation time is minimal.' },
+    { q: 'How much time do I need?', a: 'One 60-minute live session per day (Monday–Friday at 12:00 PM ET), plus about 30 minutes to write and publish each day. Everything is built during the session itself, so implementation time is minimal.' },
     { q: 'What if I can’t attend live?', a: 'Every session is recorded and the replay goes up within hours, along with the full slide deck. Showing up live is where the real value is — real-time Q&A and feedback can’t be replicated in a replay.' },
     { q: 'I’m not a great writer. Can I still do this?', a: 'You don’t need to be a great writer. You need to be a clear thinker. The frameworks show you how to organize your ideas, and the AI prompt that comes with each session helps with the words. We’ve seen total beginners publish posts they’re genuinely proud of by Friday.' },
     { q: 'Do I need an audience or a following already?', a: 'Not at all. The Sprint is built for people starting from zero. You’ll leave with a niche, a publishing habit, and your first library of content — the foundation every audience is built on.' },
