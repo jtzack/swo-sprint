@@ -1,17 +1,1948 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Start Writing Online Sprint &mdash; Start writing online in 5 days.</title>
-    <meta name="description" content="A 5-day live sprint to create your niche, differentiate your ideas, and build a timeless library of content. Taught by Nicolas Cole and Dickie Bush." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%A2%3C/text%3E%3C/svg%3E" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Writing Online Sprint &mdash; Start writing online in 5 days.</title>
+<meta name="description" content="A 5-day live sprint to create your niche, differentiate your ideas, and build a timeless library of content. Taught by Nicolas Cole and Dickie Bush.">
+<link rel="canonical" href="https://www.startwritingonline.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Start Writing Online Sprint">
+<meta property="og:description" content="A 5-day live sprint to create your niche, differentiate your ideas, and build a timeless library of content.">
+<meta property="og:image" content="/images/swo/asset-02.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%A2%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.usefathom.com/script.js" data-site="IUQCZTMO" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000000;
+    --panel:rgba(255,255,255,0.04);
+    --line:rgba(255,255,255,0.12);
+    --white:#FFFFFF;
+    --muted:rgba(255,255,255,0.68);
+    --faint:rgba(255,255,255,0.45);
+    --purple:#544CED;
+    --yellow:#F9E549;
+    --navy:#0F172A;
+    --cream:#F5EFE6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  h1,h2,h3,h4,.jaro,.p-card h3,.format-item h4,.instr-card .avatar,.day .dnum,.big-price .amt,.wordmark{
+    font-optical-sizing:none;
+  }
+  h1[class*="display"],h2[class*="display"],.p-card h3,.format-item h4,.instr-card .avatar,.day .dnum,.big-price .amt,.wordmark{
+    font-variation-settings:'opsz' 8;
+    line-height:0.78;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .jaro{font-family:'Jaro',sans-serif; letter-spacing:0.01em; font-optical-sizing:none; font-variation-settings:'opsz' 6;}
+  .mono{font-family:'Space Mono',monospace; letter-spacing:0.02em;}
+  a{color:inherit; text-decoration:none;}
+  section{padding:120px 64px;}
+  .wrap{max-width:1240px; margin:0 auto;}
+  @media (max-width:800px){
+    section{padding:80px 28px;}
+    footer{padding:64px 28px 40px;}
+    .sec-label{margin-bottom:20px;}
+    h1.display, h2.display, .how-headline, .testimonial-block .sub{line-height:0.98; margin-bottom:24px;}
+    .hero-sub{margin-top:20px;}
+  }
+
+  /* cursor signature glyph — stands in for a letterform, nods to the blinking text cursor */
+  /* cursor glyph removed per feedback */
+
+  /* ILLUSTRATION PLACEHOLDER — used only in hero, problems, and section-break spots */
+  .illus{
+    border:1.5px dashed rgba(255,255,255,0.25);
+    border-radius:20px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-size:12.5px;
+    color:var(--faint); text-align:center; padding:20px;
+  }
+  .illus-break{
+    max-width:190px; margin:0 auto;
+  }
+  .illus-break img{width:100%; display:block;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; gap:10px; font-size:15px;}
+  .nav-left{display:flex; align-items:center; gap:16px;}
+  .from-badge{
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.3px;
+    color:rgba(255,255,255,0.65);
+    padding:6px 12px; border:1px solid var(--line); border-radius:20px;
+    display:flex; align-items:center; gap:6px; white-space:nowrap;
+  }
+  @media (max-width:700px){ .from-badge{display:none;} }
+  .logo .dot{width:22px;height:22px;border-radius:50%;background:transparent;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:11px;}
+  .navlinks{display:flex; gap:14px;}
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px; border-radius:999px;
+    font-family:'Space Mono',monospace; font-size:13px; font-weight:700;
+    border:1px solid transparent; cursor:pointer; white-space:nowrap;
+  }
+  .pill.purple{background:var(--purple); color:var(--white);}
+  .pill.yellow{background:var(--yellow); color:#000;}
+  .pill.cream{background:var(--cream); color:var(--navy);}
+  .pill.black{background:#000; color:var(--white); border-color:#000;}
+  .pill.outline{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.3);}
+
+  /* HERO */
+  .hero{
+    padding-top:90px; padding-bottom:100px;
+    background:linear-gradient(135deg, #000000 0%, #2A1F8F 22%, #544CED 45%, #9B93FF 72%, #F5F3FF 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:0.85fr 1.15fr;
+    gap:32px; align-items:center;
+  }
+  .hero-image{
+    aspect-ratio:4/3;
+    margin-right:-64px;
+    padding:48px;
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-image{aspect-ratio:4/3; order:-1; margin-right:0; padding:24px;}
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Mono',monospace; font-size:13px; color:var(--muted);
+    border:1px solid var(--line); border-radius:999px;
+    padding:8px 16px; margin-bottom:32px;
+  }
+  .eyebrow::before{content:"●"; font-size:9px; color:var(--faint);}
+  @media (max-width:800px){
+    .eyebrow{font-size:11px; padding:7px 14px; gap:8px;}
+  }
+  h1.display{
+    font-family:'Jaro',sans-serif;
+    font-size:clamp(48px,6.4vw,92px);
+    line-height:0.78;
+    text-transform:uppercase;
+    max-width:480px;
+  }
+  h1.display .accent{color:var(--white);}
+  .hero-sub{
+    font-size:18px; color:var(--muted);
+    max-width:480px; margin-top:28px;
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:44px; flex-wrap:wrap;}
+  .price-tag{
+    display:inline-flex; align-items:baseline; gap:6px;
+    font-family:'Space Mono',monospace; font-size:14px; color:var(--faint);
+    margin-top:20px;
+  }
+  .price-tag b{color:var(--white); font-size:16px;}
+
+  /* SECTION LABEL */
+  .sec-label{
+    font-family:'Space Mono',monospace; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--muted); margin-bottom:18px; font-weight:700;
+  }
+  h2.display{
+    font-family:'Jaro',sans-serif;
+    font-size:clamp(34px,4.6vw,58px);
+    text-transform:uppercase;
+    line-height:0.78;
+    margin-bottom:20px;
+    color:var(--white);
+  }
+
+  /* WHY */
+  .why{background:var(--bg); border-bottom:1px solid var(--line);}
+  .why-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .why-list{display:flex; flex-direction:column; gap:28px; margin-top:8px;}
+  .why-item{display:flex; gap:20px;}
+  .why-num{font-family:'Space Mono',monospace; font-size:15px; color:var(--faint); padding-top:2px;}
+  .why-item h4{font-size:19px; margin-bottom:6px;}
+  .why-item p{font-size:15.5px; color:var(--muted);}
+
+  /* PROBLEMS — tag cloud, not a sequence. Illustration lives here. */
+  .problems{background:var(--bg); border-bottom:1px solid var(--line);}
+  .problems h2{max-width:820px;}
+  .problems p.lead{max-width:640px; color:var(--muted); font-size:17px; margin-bottom:40px;}
+  .problems-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:56px; align-items:start;}
+  .problem-list{display:grid; grid-template-columns:1fr 1fr; column-gap:32px; row-gap:22px;}
+  .problem-item{
+    display:flex; align-items:center; gap:14px;
+    font-family:'Space Mono',monospace; font-size:17.5px; font-weight:700;
+    padding:4px 0;
+    color:var(--white);
+  }
+  .x-mark{
+    flex:0 0 auto; width:28px; height:28px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700; color:#FF6B4A;
+    border:1.5px solid #FF6B4A;
+  }
+  @media (max-width:600px){ .problem-list{grid-template-columns:1fr; row-gap:18px;} }
+  
+  .problems-illus{max-width:480px; margin:64px auto 0;}
+  .problems-illus img{width:100%; display:block;}
+  @media (max-width:900px){
+    .problems-grid{grid-template-columns:1fr; gap:40px;}
+    .problems-illus{max-width:340px; margin:0 auto;}
+  }
+
+  /* PLATFORM CARDS */
+  .platforms{background:var(--navy); color:var(--white); border-bottom:1px solid var(--line);}
+  .platforms .sec-label{color:var(--yellow); opacity:1; text-align:center;}
+  .platforms h2.display{text-align:center;}
+  .card-row{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px;}
+  .p-card{border-radius:20px; padding:36px 30px; min-height:260px; display:flex; flex-direction:column; justify-content:space-between; background:var(--panel); border:1px solid var(--line);}
+  .p-logo{width:40px; height:40px; border-radius:9px; object-fit:cover; margin-bottom:14px;}
+  .p-top{display:flex; flex-direction:column;}
+  .p-card .num{font-family:'Space Mono',monospace; font-size:13px; color:var(--yellow); font-weight:700; margin-top:20px;}
+  .p-card h3{font-family:'Inter',sans-serif; font-weight:700; font-size:26px; line-height:1.3; text-transform:none; margin:14px 0 10px; color:var(--white);}
+  .p-card p{font-size:15px; line-height:1.5; color:var(--muted);}
+
+  /* FORMATS — 3-over-2 centered grid with a length meter that visualizes short → long progression */
+  .formats{background:linear-gradient(to bottom, #0F172A 0%, #0F172A 55%, #0B111F 70%, #05070D 85%, #000000 100%); color:var(--white);}
+  .formats .sec-label{color:#FF6B4A; opacity:1; text-align:center;}
+  .formats h2.display{text-align:center;}
+  .format-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+    margin-top:48px;
+  }
+  .format-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:32px;
+    display:flex; flex-direction:column; gap:18px;
+    min-width:0;
+  }
+  .format-card .flabel{font-family:'Space Mono',monospace; font-size:12px; color:var(--faint); letter-spacing:0.05em;}
+  .format-card h4{font-family:'Inter',sans-serif; font-weight:700; font-size:26px; line-height:1.3; text-transform:none; color:var(--white);}
+  .format-card p{color:var(--muted); font-size:15px; flex-grow:1;}
+  .meter{display:flex; gap:5px;}
+  .meter span{height:6px; flex:1; border-radius:3px; background:rgba(255,255,255,0.12);}
+  .meter span.on{background:#FF6B4A;}
+  @media (min-width:601px) and (max-width:999px){
+    .format-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (min-width:1000px){
+    .format-grid{grid-template-columns:repeat(6,1fr);}
+    .format-card{grid-column:span 2;}
+    .format-card:nth-child(4){grid-column:2 / 4;}
+    .format-card:nth-child(5){grid-column:4 / 6;}
+  }
+
+  /* BREAKER — full-bleed black transition section between sections */
+  .breaker{background:var(--bg); text-align:center; padding:160px 64px 90px;}
+  .breaker-title{
+    font-family:'Caveat',cursive;
+    font-weight:700;
+    font-size:clamp(42px,6.5vw,80px);
+    line-height:1.25;
+    text-transform:none;
+    max-width:1040px;
+    margin:0 auto;
+    color:var(--white);
+  }
+  .breaker-title .hl{
+    text-decoration:none;
+    position:relative;
+    display:inline-block;
+    white-space:nowrap;
+  }
+  .breaker-title .hl::after{
+    content:"";
+    position:absolute;
+    left:-3%;
+    right:-3%;
+    bottom:-0.16em;
+    height:0.22em;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'><path d='M4,13 C36,6 62,18 100,11 C132,5 158,15 196,8' fill='none' stroke='%23F9E549' stroke-width='6' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:100% 100%;
+    pointer-events:none;
+  }
+  @media (max-width:800px){ .breaker{padding:96px 28px 56px;} }
+  @media (max-width:420px){ .breaker-title{font-size:clamp(30px,8.5vw,80px);} }
+  .breaker-image{max-width:280px; margin:56px auto 0;}
+  .breaker-image img{display:block; width:100%; height:auto;}
+  @media (max-width:800px){ .breaker-image{max-width:190px; margin-top:40px;} }
+
+  /* INSTRUCTORS */
+  .instructors{background:var(--bg); border-bottom:1px solid var(--line);}
+  .instr-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:48px;}
+  .instr-card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:36px;}
+  .instr-card .avatar{width:72px;height:72px;border-radius:50%;background:transparent; border:1px solid var(--line); margin-bottom:20px; display:flex;align-items:center;justify-content:center; color:var(--white); font-family:'Jaro',sans-serif; font-size:22px;}
+  .instr-card h4{font-size:20px; margin-bottom:10px; color:var(--white);}
+  .instr-card p{font-size:15px; color:var(--muted);}
+  .stat-strip{margin-top:40px; padding-top:32px; border-top:1px solid var(--line); font-family:'Space Mono',monospace; color:var(--white); font-size:16px;}
+
+  /* SECTION BREAK — illustration breathing room */
+  .section-break{padding:64px; background:var(--bg); border-bottom:1px solid var(--line);}
+
+  /* TIMELINE — left-rail roadmap, same structure every row */
+  .timeline{background:linear-gradient(to bottom, #000000 0%, #0F172A 25%, #0F172A 100%); border-bottom:1px solid var(--line); padding-top:90px;}
+  @media (max-width:800px){ .timeline{padding-top:56px;} }
+  .timeline-meta{
+    display:flex; flex-wrap:wrap; gap:10px 28px;
+    margin-top:22px;
+    font-family:'Space Mono',monospace; font-size:13px; color:var(--faint);
+  }
+  .timeline-meta span{position:relative; padding-left:16px;}
+  .timeline-meta span::before{content:"●"; position:absolute; left:0; top:1px; font-size:8px; color:var(--purple);}
+
+  .day-rows{position:relative; margin-top:80px; display:flex; flex-direction:column; gap:80px;}
+  .day-rows::before{
+    content:""; position:absolute; left:27px; top:6px; bottom:6px; width:2px;
+    background:rgba(255,255,255,0.14); z-index:0;
+  }
+  .day-row{
+    position:relative;
+    display:grid;
+    grid-template-columns:56px 1fr 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  .day-row:not(:first-child){
+    padding-top:56px;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+
+  .day-marker{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--navy); border:2px solid var(--yellow);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-weight:700; font-size:16px;
+    color:var(--yellow); z-index:2;
+  }
+
+  .day-date{
+    font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.4px;
+    color:var(--yellow); margin-bottom:14px;
+  }
+  .day-title{
+    font-size:clamp(28px,2.6vw,36px); font-weight:800; color:var(--white);
+    line-height:1.1; margin:0 0 16px;
+  }
+  .day-desc{font-size:16px; line-height:1.7; color:var(--muted); max-width:420px;}
+  .day-desc a{color:var(--white); text-decoration:underline; text-decoration-color:var(--purple);}
+
+  .day-image{display:flex; justify-content:flex-start; margin-left:-20px;}
+  .day-photo{
+    width:auto; height:auto; max-width:100%;
+    display:block; border-radius:14px;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 25px 60px -25px rgba(124,92,255,0.4);
+  }
+  /* per-example visual weight — balanced, not identical, dimensions */
+  .day-photo--tweets{max-width:330px;}
+  .day-photo--atomic{max-height:350px;}
+  .day-photo--linkedin{max-height:350px;}
+  .day-photo--xarticles{max-width:350px;}
+  .day-photo--aiprompts{max-width:350px;}
+
+  @media (max-width:900px){
+    .day-row{grid-template-columns:1fr 1fr; gap:14px;}
+    .day-marker{grid-column:1 / -1; margin-bottom:4px;}
+    .day-rows::before{display:none;}
+  }
+  @media (max-width:640px){
+    .day-rows{margin-top:48px; gap:56px;}
+    .day-row{grid-template-columns:1fr; gap:16px;}
+    .day-row:not(:first-child){padding-top:40px;}
+    .day-marker{width:44px; height:44px; font-size:13px;}
+    .day-title{font-size:26px;}
+    .day-desc{max-width:none;}
+    .day-image{justify-content:flex-start;}
+    .day-photo, .day-photo--tweets, .day-photo--atomic, .day-photo--linkedin, .day-photo--xarticles, .day-photo--aiprompts{
+      max-height:none; max-width:100%; width:100%;
+    }
+  }
+
+  /* BONUSES */
+  .assets{background:var(--bg); border-bottom:1px solid var(--line);}
+.assets-intro{max-width:1240px; margin:0 auto 52px; text-align:center;}
+.assets-intro .assets-desc{
+  font-family:'Inter',sans-serif; font-size:17px; line-height:1.6;
+  color:var(--muted); max-width:960px; margin:0 auto;
+}
+@media (max-width:1024px){
+  .assets-intro .assets-desc{max-width:700px;}
+}
+
+.asset-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.asset-card{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  padding:52px 26px;
+  text-align:left;
+  border-left:none;
+  border-top:none;
+}
+/* desktop 3+2 placement */
+.asset-card:nth-child(1){grid-column:1 / 3;}
+.asset-card:nth-child(2){grid-column:3 / 5;}
+.asset-card:nth-child(3){grid-column:5 / 7;}
+.asset-card:nth-child(4){grid-column:2 / 4;}
+.asset-card:nth-child(5){grid-column:4 / 6;}
+/* vertical dividers (row 1: between 1-2 and 2-3; row 2: between 4-5) */
+.asset-card:nth-child(2),
+.asset-card:nth-child(3),
+.asset-card:nth-child(5){
+  border-left:1px solid rgba(255,255,255,0.1);
+}
+/* horizontal divider between row 1 and row 2 */
+.asset-card:nth-child(4),
+.asset-card:nth-child(5){
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+.asset-visual{flex:0 0 34%; max-width:156px;}
+.asset-visual img{
+  display:block; width:100%; height:auto;
+}
+.asset-info{flex:1; min-width:0;}
+.asset-day{
+  font-family:'Space Mono',monospace; font-size:12.5px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--yellow); font-weight:700; margin-bottom:8px;
+}
+.asset-title{
+  font-size:clamp(17px,1.5vw,20px); font-weight:800; color:var(--white); margin:0 0 12px; line-height:1.2;
+}
+.asset-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+.asset-list li{
+  position:relative; padding-left:25px; font-size:13.5px; line-height:1.42; color:var(--muted);
+}
+.asset-list li::before{
+  content:"\2713"; position:absolute; left:0; top:1px; width:17px; height:17px; border-radius:50%;
+  background:var(--navy); color:var(--yellow); font-size:9.5px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+
+@media (max-width:1024px){
+  .asset-grid{grid-template-columns:repeat(4,1fr);}
+  .asset-card{padding:44px 22px;}
+  /* tablet 2-col placement: (1,2) row1, (3,4) row2, (5) row3 centered */
+  .asset-card:nth-child(1){grid-column:1 / 3;}
+  .asset-card:nth-child(2){grid-column:3 / 5;}
+  .asset-card:nth-child(3){grid-column:1 / 3;}
+  .asset-card:nth-child(4){grid-column:3 / 5;}
+  .asset-card:nth-child(5){grid-column:2 / 4;}
+  /* reset then reapply dividers for the 2-column grouping */
+  .asset-card:nth-child(3),
+  .asset-card:nth-child(5){
+    border-left:none;
+  }
+  .asset-card:nth-child(2),
+  .asset-card:nth-child(4){
+    border-left:1px solid rgba(255,255,255,0.1);
+  }
+  .asset-card:nth-child(4){border-top:none;}
+  .asset-card:nth-child(3),
+  .asset-card:nth-child(4){
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .asset-card:nth-child(5){
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+}
+
+@media (max-width:800px){
+  .assets-intro{margin-bottom:32px;}
+  .asset-grid{grid-template-columns:1fr; border-top:none;}
+  .asset-card{
+    grid-column:1 / 2 !important;
+    padding:38px 0;
+    border-left:none !important;
+    border-top:1px solid rgba(255,255,255,0.1) !important;
+  }
+  .asset-card:nth-child(1){border-top:none !important;}
+  .asset-visual{flex:0 0 34%; max-width:132px;}
+}
+
+
+@media (max-width:480px){
+  .asset-card{flex-direction:column;}
+  .asset-visual{max-width:176px;}
+}
+.bonuses{
+    background:linear-gradient(to bottom right, #000000 0%, #2A1F8F 28%, #544CED 55%, #7A6CDD 80%, #8F82D9 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .bonuses-intro{max-width:760px; margin-bottom:8px;}
+  .bonuses-intro .sec-label{color:var(--yellow);}
+  .bonuses-intro .display{color:var(--white); margin-top:16px;}
+  .bonuses-intro p{
+    font-size:17px; line-height:1.6; color:rgba(245,243,255,0.85);
+    margin-top:20px; max-width:600px;
+  }
+  .bonus-rows{display:flex; flex-direction:column;}
+  .bonus-row{padding:56px 0;}
+  .bonus-row:not(:first-child){border-top:1px solid rgba(255,255,255,0.18);}
+  .bonus-header{max-width:720px; margin-bottom:36px;}
+  .bonus-tag{
+    font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--yellow); font-weight:700; margin-bottom:16px;
+  }
+  .bonus-title{
+    font-family:'Inter',sans-serif; font-weight:800; text-transform:none;
+    font-size:clamp(26px,2.6vw,36px); color:var(--white);
+    margin:0 0 18px; line-height:1.15;
+  }
+  .bonus-intro-copy{
+    font-size:16px; line-height:1.6; color:rgba(245,243,255,0.8);
+    max-width:600px; margin:0;
+  }
+  .bonus-content{
+    display:grid;
+    grid-template-columns:450px 1fr;
+    gap:36px;
+    align-items:start;
+  }
+  .bonus-row:nth-of-type(1) .bonus-content,
+  .bonus-row:nth-of-type(2) .bonus-content{
+    grid-template-columns:330px 1fr;
+  }
+  .bonus-visual{width:100%;}
+  .bonus-placeholder{
+    width:100%; aspect-ratio:4/5; border-radius:20px;
+    border:1px dashed rgba(255,255,255,0.4);
+    background:rgba(0,0,0,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-size:13px;
+    letter-spacing:0.06em; color:rgba(245,243,255,0.55);
+    text-transform:uppercase; text-align:center; padding:24px;
+  }
+  .bonus-product-img{
+    width:100%; height:auto; display:block; border-radius:16px;
+  }
+  .bonus-list-label{
+    font-size:12.5px; letter-spacing:0.01em; color:rgba(245,243,255,0.6);
+    margin:0 0 20px; text-transform:uppercase; font-family:'Space Mono',monospace;
+  }
+  .bonus-resource-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px;}
+  .bonus-resource-list li{
+    position:relative; padding-left:34px; font-size:15.5px; line-height:1.55;
+    color:rgba(245,243,255,0.85); max-width:520px;
+  }
+  .bonus-resource-list li::before{
+    content:"\2713"; position:absolute; left:0; top:2px; width:22px; height:22px; border-radius:50%;
+    background:rgba(249,229,73,0.2); color:var(--yellow); font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .bonus-resource-list strong{color:var(--white); font-weight:700;}
+  .bonus-extra{margin-top:28px; max-width:520px;}
+  .bonus-extra-copy{
+    font-size:15px; line-height:1.6; color:rgba(245,243,255,0.7);
+    max-width:520px; margin:0;
+  }
+  .bonus-extra-copy + .bonus-extra-copy{margin-top:14px;}
+  @media (max-width:800px){
+    .bonuses-intro{margin-bottom:6px;}
+    .bonus-row{padding:40px 0;}
+    .bonus-header{margin-bottom:24px;}
+    .bonus-content,
+    .bonus-row:nth-of-type(1) .bonus-content,
+    .bonus-row:nth-of-type(2) .bonus-content{grid-template-columns:1fr; gap:24px;}
+    .bonus-placeholder{max-width:100%; aspect-ratio:4/5;}
+    .bonus-product-img{max-width:420px; margin:0 auto;}
+  }
+
+  /* PRICE STACK */
+
+
+
+  .pricing{background:var(--navy); text-align:center; border-bottom:1px solid var(--line);}
+  .stack{max-width:640px; margin:56px auto 0; text-align:left;}
+  .stack-row{display:flex; justify-content:space-between; gap:24px; padding:18px 0; border-bottom:1px solid var(--line); font-size:16.5px;}
+  .stack-row span:first-child{color:var(--white); max-width:440px;}
+  .stack-row.total{border-bottom:none; border-top:1px solid var(--line); padding-top:26px; margin-top:10px; font-weight:700; font-size:19px;}
+  .stack-row .val{font-family:'Space Mono',monospace; color:var(--muted); font-weight:600; white-space:nowrap;}
+  .stack-row.total .val{
+    font-family:'Space Mono',monospace;
+    text-decoration:line-through;
+    text-decoration-color:#FF6B4A;
+    text-decoration-thickness:2.5px;
+    color:var(--faint);
+  }
+  .big-price{margin-top:44px;}
+  .big-price .today{font-family:'Space Mono',monospace; font-size:14px; color:var(--muted); margin-bottom:6px;}
+  .big-price .amt{font-family:'Jaro',sans-serif; font-size:clamp(56px,9vw,110px); color:var(--white);}
+  .big-price .amt.amt-plain{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-optical-sizing:auto;
+    font-variation-settings:normal;
+    line-height:1;
+    letter-spacing:-0.02em;
+  }
+  .cta-big{margin-top:8px;}
+  @media (max-width:800px){
+    .stack-row span:first-child{max-width:220px;}
+  }
+
+  /* FAQ */
+  .faq{background:var(--bg);}
+  .faq-item{border-bottom:1px solid var(--line); padding:26px 0;}
+  .faq-item summary{cursor:pointer; font-size:18px; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center; color:var(--white);}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+"; font-family:'Space Mono',monospace; font-size:22px; color:var(--white);}
+  .faq-item[open] summary::after{content:"−";}
+  .faq-item p{margin-top:14px; font-size:15.5px; color:var(--muted); max-width:760px;}
+
+  /* FOOTER */
+  footer{background:#000000; padding:64px 64px 40px; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; max-width:1240px; margin:0 auto;}
+  .foot-col h5{font-family:'Space Mono',monospace; font-size:13px; color:var(--muted); margin-bottom:16px; text-transform:uppercase;}
+  .foot-col a{display:block; font-size:14.5px; color:var(--muted); margin-bottom:10px;}
+  .foot-logos{max-width:1240px; margin:40px auto 0; display:flex; align-items:center; gap:36px; flex-wrap:wrap; opacity:0.85;}
+  .foot-logo-link{display:inline-flex; align-items:center; cursor:pointer; transition:filter 0.2s ease, opacity 0.2s ease;}
+  .foot-logo-link:hover, .foot-logo-link:focus-visible{filter:brightness(1.2); opacity:1;}
+  .foot-bottom{max-width:1240px; margin:48px auto 0; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-family:'Space Mono',monospace; font-size:12.5px; color:var(--faint); flex-wrap:wrap; gap:10px;}
+  .wordmark{font-family:'Jaro',sans-serif; font-size:clamp(44px,10vw,140px); text-transform:uppercase; color:rgba(255,255,255,0.06); letter-spacing:0.02em; margin-top:40px; white-space:nowrap; overflow:hidden;}
+
+  @media (max-width:800px){
+    .why-grid, .instr-grid, .card-row, .foot-grid{grid-template-columns:1fr;}
+    .format-item{grid-template-columns:1fr;}
+  }
+
+  /* Countdown */
+  .countdown-wrap{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin:28px 0 0;
+  }
+  .countdown-label{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--faint);
+    white-space:nowrap;
+  }
+  .countdown-units{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  .countdown-unit{
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+    line-height:1;
+  }
+  .countdown-unit .num{
+    font-family:'Jaro',sans-serif;
+    font-optical-sizing:none;
+    font-variation-settings:'opsz' 8;
+    font-size:22px;
+    font-weight:800;
+    color:var(--yellow);
+    line-height:1;
+  }
+  .countdown-unit .lbl{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--faint);
+  }
+  .countdown-colon{
+    color:var(--faint);
+    font-family:'Jaro',sans-serif;
+    font-size:20px;
+    font-weight:800;
+  }
+  .countdown-wrap.is-urgent .countdown-unit .num{
+    color:#FF6B4A;
+    animation:countdownPulse 1s ease-in-out infinite;
+  }
+  @keyframes countdownPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+  }
+  @media (max-width:520px){
+    .countdown-wrap{flex-wrap:wrap; gap:6px 14px;}
+    .countdown-unit .num{font-size:19px;}
+  }
+
+  /* SOLUTION — stat callout + feature cards + testimonial embed */
+  .solution{background:var(--navy);}
+  .solution-band-b{background:#141B2E;}
+  .solution-band-a{background:var(--navy);}
+
+  /* HOW IT WORKS */
+  .how-section{background:var(--bg);}
+  .how-block{max-width:100%;}
+  .how-intro-wrap{max-width:760px;}
+  .how-eyebrow{
+    font-family:'Space Mono',monospace; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--yellow); margin-bottom:18px; font-weight:700;
+  }
+  .how-headline{
+    font-family:'Jaro',sans-serif;
+    font-size:clamp(34px,4.6vw,58px);
+    text-transform:uppercase;
+    line-height:0.78;
+    margin-bottom:20px;
+    color:var(--white);
+  }
+  .how-intro{font-size:17px; line-height:1.6; color:var(--muted); margin-bottom:0;}
+  .how-roadmap{
+    display:flex;
+    gap:24px;
+    margin:56px 0 48px;
+    position:relative;
+  }
+  .how-line{
+    position:absolute;
+    top:10px; left:10px; right:10px;
+    height:2px;
+    background:linear-gradient(90deg, #F9E549, #FF6B4A, #3FE0B0);
+    z-index:0;
+  }
+  .how-step{flex:1; min-width:0; position:relative; z-index:1;}
+  .how-dot-track{position:relative; height:20px; margin-bottom:26px;}
+  .how-step:last-child .how-dot-track::before{display:none;}
+  .how-dot{
+    display:block; width:20px; height:20px; border-radius:50%;
+    background:var(--accent,#3FE0B0);
+    box-shadow:0 0 0 6px rgba(255,255,255,0.05), 0 0 24px -4px var(--accent,#3FE0B0);
+    position:relative; z-index:1;
+  }
+  .how-card-step{
+    font-family:'Space Mono',monospace; font-size:12px; font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent,#3FE0B0); margin-bottom:14px;
+  }
+  .how-step h4{
+    font-family:'Jaro',sans-serif;
+    font-size:clamp(22px,2.4vw,28px);
+    text-transform:uppercase;
+    line-height:1.02;
+    margin-bottom:14px;
+    color:var(--white);
+  }
+  .how-step p{
+    font-size:15.5px; color:var(--muted); line-height:1.55;
+    max-width:280px;
+  }
+  .how-outro-wrap{
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+    padding-top:32px; border-top:1px solid var(--line);
+  }
+  .how-outro{font-size:16px; line-height:1.55; color:var(--muted); margin:0; flex:1; min-width:260px;}
+  .how-outro b{color:var(--white);}
+  .how-outro-badge{
+    flex-shrink:0;
+    font-family:'Space Mono',monospace; font-size:12px; font-weight:700;
+    color:var(--bg); background:var(--yellow);
+    padding:10px 18px; border-radius:999px; white-space:nowrap;
+  }
+  @media (max-width:800px){
+    .how-roadmap{flex-direction:column; gap:36px;}
+    .how-line{display:none;}
+    .how-step p{max-width:100%;}
+    .how-outro-wrap{flex-direction:column; align-items:flex-start;}
+  }
+  .solution-stat{
+    max-width:760px;
+    font-size:19px;
+    line-height:1.5;
+    color:var(--muted);
+    margin:22px 0 8px;
+  }
+  .solution-stat b{color:var(--white);}
+  .solution-stat .highlight{color:var(--yellow); font-weight:700;}
+  .solution-stat-lines{
+    display:flex; flex-direction:column;
+    gap:8px;
+    margin:26px 0 14px;
+  }
+  .stat-line{max-width:760px; line-height:1.35; margin:0;}
+  .stat-line b{color:var(--white);}
+  .stat-1{font-size:18px; color:var(--muted);}
+  .stat-2{font-size:21px; color:var(--muted);}
+  .stat-3{
+    font-size:30px;
+    font-weight:700;
+    color:var(--yellow);
+    letter-spacing:-0.01em;
+  }
+  .stat-3 b{color:var(--yellow);}
+  .solution-cta{max-width:760px; font-size:16px; color:var(--faint); margin:0;}
+  @media (max-width:800px){
+    .stat-1{font-size:16px;}
+    .stat-2{font-size:18px;}
+    .stat-3{font-size:24px;}
+  }
+  .feature-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    margin-top:48px;
+  }
+  .feature-item{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
+    padding:32px 26px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .feature-icon{
+    width:64px; height:64px;
+    margin-bottom:20px;
+    display:block;
+  }
+  .feature-num{
+    font-family:'Space Mono',monospace; font-size:13px;
+    color:var(--faint); margin-bottom:10px;
+  }
+  .feature-item h4{font-size:19px; margin-bottom:8px;}
+  .feature-item p{font-size:15px; color:var(--muted); line-height:1.5;}
+  @media (max-width:800px){
+    .feature-list{grid-template-columns:1fr;}
+  }
+  .testimonial-block{
+    margin-top:72px;
+    padding-top:56px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .testimonial-block .sub{
+    font-family:'Jaro',sans-serif;
+    font-size:clamp(34px,4.6vw,58px);
+    text-transform:uppercase;
+    line-height:0.78;
+    color:var(--white);
+    margin-bottom:20px;
+  }
+  .testimonial-block h3{
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    font-size:clamp(17px,1.8vw,20px);
+    text-transform:none;
+    color:var(--muted);
+    margin-bottom:28px;
+    line-height:1.5;
+  }
+  .testimonial-embed{
+    max-width:920px; margin:0 auto;
+    min-height:280px;
+  }
+  .testimonial-embed .illus{min-height:280px;}
+  .testimonial-cta{
+    display:inline-block; margin-top:32px;
+  }
+
+  /* Testimonial scroller */
+  .testimonial-scroller-wrap{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    max-width:100%;
+  }
+  .testimonial-scroller{
+    display:grid;
+    grid-template-rows:repeat(2,1fr);
+    grid-auto-flow:column;
+    grid-auto-columns:calc((100% - 48px) / 3);
+    gap:24px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding:6px 4px 20px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    text-align:left;
+    flex:1;
+    min-width:0;
+  }
+  .testimonial-scroller::-webkit-scrollbar{display:none;}
+  .testimonial-card{
+    scroll-snap-align:start;
+    background:var(--white);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;
+    padding:32px 28px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.4);
+  }
+  .testimonial-top{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .testimonial-avatar{
+    width:48px; height:48px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace;
+    font-weight:700; font-size:14.5px;
+    color:#111;
+    flex-shrink:0;
+  }
+  .testimonial-name{font-size:15.5px; font-weight:700; color:#0F172A;}
+  .testimonial-date{font-family:'Space Mono',monospace; font-size:11px; color:rgba(15,23,42,0.5); margin-top:2px;}
+  .testimonial-quote{font-size:15.5px; line-height:1.6; color:rgba(15,23,42,0.8);}
+  .testimonial-card--placeholder{
+    background:rgba(255,255,255,0.04);
+    border:1.5px dashed rgba(255,255,255,0.25);
+    box-shadow:none;
+  }
+  .testimonial-avatar--placeholder{
+    background:rgba(255,255,255,0.08) !important;
+    color:rgba(255,255,255,0.35);
+    border:1px dashed rgba(255,255,255,0.3);
+    font-size:18px;
+  }
+  .testimonial-name--placeholder{color:rgba(255,255,255,0.4) !important;}
+  .testimonial-date--placeholder{color:rgba(255,255,255,0.25) !important;}
+  .testimonial-quote--placeholder{color:rgba(255,255,255,0.35) !important; font-style:italic;}
+  @media (max-width:800px){
+    .testimonial-scroller{grid-auto-columns:280px; gap:16px;}
+    .testimonial-card{padding:24px 22px;}
+    .testimonial-quote{font-size:14.5px;}
+  }
+  .testimonial-dots{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:24px;
+  }
+  .testimonial-dot{
+    width:9px; height:9px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    border:none; padding:0;
+    cursor:pointer;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .testimonial-dot:hover{background:rgba(255,255,255,0.45);}
+  .testimonial-dot.active{
+    background:var(--yellow);
+    transform:scale(1.35);
+  }
+
+  /* CREDIBILITY — instructors block */
+  .credibility-block{
+    margin-top:72px;
+    padding-top:56px;
+    border-top:1px solid var(--line);
+  }
+  .credibility-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .cred-eyebrow{
+    font-family:'Space Mono',monospace; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.08em;
+    color:#FF4FA3; margin-bottom:18px; font-weight:700;
+  }
+  .cred-headline{
+    font-family:'Jaro',sans-serif;
+    font-optical-sizing:none;
+    font-variation-settings:'opsz' 8;
+    font-size:clamp(34px,4.6vw,58px);
+    text-transform:uppercase;
+    line-height:0.78;
+    margin-bottom:20px;
+  }
+  .cred-desc{
+    font-size:16px; line-height:1.6; color:var(--muted);
+    margin-bottom:28px;
+  }
+  .cred-desc b{color:var(--white);}
+  .cred-stats{display:flex; flex-wrap:wrap; gap:14px;}
+  .cred-stat-pill{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:999px;
+    padding:10px 20px;
+    font-family:'Space Mono',monospace;
+    font-size:13px; font-weight:700;
+    letter-spacing:0.02em;
+    color:var(--white);
+  }
+  .cred-cards{display:flex; flex-direction:column; gap:24px;}
+  .cred-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
+    padding:28px;
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+  }
+  .cred-avatar{
+    width:64px; height:64px;
+    border-radius:50%;
+    flex-shrink:0;
+    object-fit:cover;
+  }
+  .cred-name{font-size:19px; font-weight:700; color:#FF4FA3; margin-bottom:2px;}
+  .cred-role{
+    font-family:'Space Mono',monospace; font-size:12px;
+    color:var(--faint); margin-bottom:12px;
+  }
+  .cred-bio{font-size:14.5px; line-height:1.55; color:var(--muted);}
+  @media (max-width:800px){
+    .credibility-grid{grid-template-columns:1fr;}
+    .cred-card{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+  <div class="logo"><svg style="height:18px;width:auto;display:block;" width="475" height="140" viewBox="0 0 475 140" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M410.606 134.535C409.129 134.535 407.845 133.989 406.753 132.897L387.487 113.631C386.459 112.603 385.945 111.319 385.945 109.778V30.7859C385.945 29.3088 386.459 28.0244 387.487 26.9326L406.753 7.66631C407.845 6.63877 409.129 6.125 410.606 6.125H449.717C451.258 6.125 452.542 6.63877 453.57 7.66631L472.836 26.9326C473.928 28.0244 474.474 29.3088 474.474 30.7859V109.778C474.474 111.319 473.928 112.603 472.836 113.631L453.57 132.897C452.542 133.989 451.258 134.535 449.717 134.535H410.606ZM428.139 99.0849H432.281C434.914 99.0849 436.23 97.2546 436.23 93.594V46.9695C436.23 43.3732 434.914 41.575 432.281 41.575H428.139C425.441 41.575 424.093 43.3732 424.093 46.9695V93.594C424.093 97.2546 425.441 99.0849 428.139 99.0849Z" fill="white"/>
+<path d="M261.782 134.535C260.305 134.535 259.02 133.989 257.929 132.897L238.662 113.631C237.635 112.603 237.121 111.319 237.121 109.778V8.53328C237.121 6.92776 237.924 6.125 239.529 6.125H272.86C274.466 6.125 275.268 6.92776 275.268 8.53328V93.016H286.635V8.53328C286.635 6.92776 287.438 6.125 289.044 6.125H322.374C323.98 6.125 324.783 6.92776 324.783 8.53328V93.016H336.054V8.53328C336.054 6.92776 336.856 6.125 338.462 6.125H371.792C373.398 6.125 374.201 6.92776 374.201 8.53328V109.778C374.201 111.319 373.687 112.603 372.659 113.631L353.393 132.897C352.301 133.989 351.017 134.535 349.54 134.535H327.962C326.485 134.535 325.2 133.989 324.108 132.897L307.925 116.714H303.397L287.213 132.897C286.122 133.989 284.837 134.535 283.36 134.535H261.782Z" fill="white"/>
+<path d="M163.223 134.535C161.617 134.535 160.814 133.732 160.814 132.127V107.177C160.814 106.342 160.847 105.7 160.911 105.25C161.039 104.736 161.425 104.287 162.067 103.901L183.645 92.2453V84.4425L162.356 72.69C161.328 72.1121 160.814 71.1487 160.814 69.8001V28.3776C160.814 27.35 160.879 26.6115 161.007 26.162C161.136 25.6482 161.585 25.1023 162.356 24.5243L187.787 7.37731C188.301 6.99198 188.847 6.70299 189.425 6.51032C190.003 6.25344 190.741 6.125 191.641 6.125H223.719C225.324 6.125 226.127 6.92776 226.127 8.53328V34.1575C226.127 35.5703 225.646 36.5336 224.682 37.0474L199.443 47.9329V56.0247L224.682 70.4744C225.646 70.924 226.127 71.9515 226.127 73.557V115.461C226.127 115.975 226.031 116.521 225.838 117.099C225.71 117.613 225.389 118.03 224.875 118.351L194.627 133.379C194.241 133.636 193.76 133.893 193.182 134.15C192.668 134.406 192.154 134.535 191.641 134.535H163.223Z" fill="white"/>
+<rect width="139.203" height="139.203" rx="69.6016" fill="white"/>
+<g opacity="0.8">
+<mask id="mask0_1307_4346" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="21" y="10" width="108" height="108">
+<rect x="21.6729" y="10.6406" width="106.881" height="106.881" fill="url(#pattern0_1307_4346)"/>
+</mask>
+<g mask="url(#mask0_1307_4346)">
+<rect x="21.6729" y="10.457" width="107.044" height="107.044" fill="black"/>
+</g>
+</g>
+<defs>
+<pattern id="pattern0_1307_4346" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1307_4346" transform="scale(0.00195312)"/>
+</pattern>
+<image id="image0_1307_4346" width="512" height="512" preserveAspectRatio="none" href="/images/swo/asset-01.png"/>
+</defs>
+</svg></div>
+  <div class="from-badge">🚢 From the creators of Ship 30 for 30</div>
+  </div>
+  <div class="navlinks">
+    <a class="pill outline" href="#faq">FAQ</a>
+    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50" data-cta="Nav">JOIN — $199</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span> · STARTS THIS MONDAY</div>
+      <h1 class="display">Start<br>writing<br>online in 5<br>days—<span style="color:#F9E549;">live</span>.</h1>
+      <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
+      <div class="hero-ctas">
+        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50" data-cta="Hero">JOIN TODAY — $199</a>
+        <a class="pill black" href="#gameplan">SEE THE 5-DAY PLAN →</a>
+      </div>
+      <div class="countdown-wrap" id="cartCountdown" data-deadline="2026-08-30T00:00:00-04:00">
+        <span class="countdown-label">Cart closes in</span>
+        <div class="countdown-units">
+          <div class="countdown-unit"><span class="num" id="cd-days">00</span><span class="lbl">days</span></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit"><span class="num" id="cd-hours">00</span><span class="lbl">hrs</span></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit"><span class="num" id="cd-mins">00</span><span class="lbl">min</span></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit"><span class="num" id="cd-secs">00</span><span class="lbl">sec</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image"><img src="/images/swo/asset-02.webp" alt="Translucent crystal laptop illustration" style="width:100%; height:100%; object-fit:contain;"></div>
+  </div>
+</section>
+
+<section class="problems">
+  <div class="wrap problems-grid">
+    <div>
+      <div class="sec-label">EVERY BEGINNER HITS THE SAME WALL</div>
+      <h2 class="display">All beginner writers<br>face the same 10 problems.</h2>
+      <p class="lead">If you're reading this, one (or more) of these is keeping you up at night — and keeping you from writing online. Sound familiar?</p>
+      <div class="problem-list">
+        <div class="problem-item"><span class="x-mark">✕</span>Distractions</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Over-editing</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Perfectionism</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Procrastination</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Self-confidence</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Generating ideas</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Impostor syndrome</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Writing consistently</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Choosing a platform</div>
+        <div class="problem-item"><span class="x-mark">✕</span>Finding time to write</div>
+      </div>
+    </div>
+    <div class="problems-illus"><img loading="lazy" decoding="async" src="/images/swo/asset-03.webp" alt="Greek amphora with a fountain pen rising from it"></div>
+  </div>
+</section>
+
+<section class="solution solution-band-a" id="solution">
+  <div class="wrap">
+    <div class="sec-label">OUR PROVEN SOLUTION</div>
+    <h2 class="display">15,000 Students<br>&amp; Counting.</h2>
+    <div class="solution-stat-lines">
+      <p class="stat-line stat-1"><b>90%</b> of internet users only consume content.</p>
+      <p class="stat-line stat-2"><b>9%</b> of them occasionally curate it.</p>
+      <p class="stat-line stat-3">Only <b>1%</b> of them create.</p>
+    </div>
+    <p class="solution-cta">We can help you join the 1% — in a single week.</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <img loading="lazy" decoding="async" class="feature-icon" src="/images/swo/asset-04.webp" alt="Education icon">
+        <h4>Education</h4>
+        <p>No fluff. Stay on the cutting-edge and write using formats most likely to perform well in today's busy digital landscape.</p>
+      </div>
+      <div class="feature-item">
+        <img loading="lazy" decoding="async" class="feature-icon" src="/images/swo/asset-05.webp" alt="Accountability icon">
+        <h4>Accountability</h4>
+        <p>Writing alone is hard. Writing together is fun! Get out of your own way and take action right alongside us.</p>
+      </div>
+      <div class="feature-item">
+        <img loading="lazy" decoding="async" class="feature-icon" src="/images/swo/asset-06.webp" alt="Community icon">
+        <h4>Community</h4>
+        <p>The easiest way to learn how to do something is to surround yourself with lots of other people doing the same thing. People join for the education and accountability, but stay for the community!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solution-band-b">
+  <div class="wrap">
+    <div class="testimonial-block" style="border-top:none; margin-top:0; padding-top:0;">
+      <div class="sub">But don't take our word for it</div>
+      <h3>Look at how many happy writers we've helped join The Creator Economy!</h3>
+      <div class="testimonial-scroller-wrap">
+        <div class="testimonial-scroller" id="testimonialScroller">
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#F9E549;">SP</div>
+              <div><div class="testimonial-name">Shawn Price</div><div class="testimonial-date">Nov 23, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"Dickie and Cole's enthusiasm, excitement, and grit in teaching all things digital writing is infectious. It's impossible to take the course and not accelerate your digital writing journey."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF6B4A;">NS</div>
+              <div><div class="testimonial-name">Neil Sutton</div><div class="testimonial-date">Nov 24, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"Before my first cohort I had 40 followers. After 30 days: 200 followers, 400 tweets, over 15,000 impressions, and 6,000 profile visits."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#3FE0B0;">GC</div>
+              <div><div class="testimonial-name">Gregory Cronie</div><div class="testimonial-date">Nov 23, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"A truly transformative experience! It opened a whole new world of opportunities for me. The energy and positive vibe of the community is really amazing."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#9B93FF;">KD</div>
+              <div><div class="testimonial-name">Keely Dunn</div><div class="testimonial-date">Nov 25, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"For all the courses I've spent money on, this is the One Course To Rule Them All. Dickie and Cole stuff so much value into it — don't hesitate!"</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF4FA3;">BO</div>
+              <div><div class="testimonial-name">Ben Owens</div><div class="testimonial-date">Nov 27, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"I knew Ship 30 was going to be a game changer, but I didn't know by how much. In 30 days I wrote every day, launched a community, and was asked to join an education website in my niche."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#F9E549;">DM</div>
+              <div><div class="testimonial-name">David Miller</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"Ignore every other course and community and go all in with Ship 30 for 30! Guaranteed to make you a better writer and introduce you to like-minded digital friends."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#3FE0B0;">T</div>
+              <div><div class="testimonial-name">Tin</div><div class="testimonial-date">Sep 13, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"It truly is a life-changing experience. You will go from 0 to 1 — from not having a writing habit to hitting publish every single day."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF6B4A;">PL</div>
+              <div><div class="testimonial-name">Pia Mailhot-Leichter</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"You're not committing to a course, you're committing to yourself — to building a daily writing habit and a community. You'll get 2 years of schooling in 30 days."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#9B93FF;">RD</div>
+              <div><div class="testimonial-name">Ryan Dreyer</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"I tried and failed to start a writing habit for 7 years. Ship 30 got me right within 1 month. My favorite parts were the live calls and templates."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF6B4A;">RS</div>
+              <div><div class="testimonial-name">Ramesh Singaram</div><div class="testimonial-date">Nov 29, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"In just over a month, I went from not writing to shipping 45 essays in 45 days — in public. It's so well structured and supported that you can't help but move forward."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#3FE0B0;">MM</div>
+              <div><div class="testimonial-name">Masi Massatsch</div><div class="testimonial-date">Nov 24, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"I was impressed with Cole and Dickie's ability to demystify digital writing and break it down into a digestible, practical framework. After about 21 days, I got nervous if I hadn't published anything that day."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#9B93FF;">MR</div>
+              <div><div class="testimonial-name">Mina Ratkalkar</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"I developed a writing habit, rediscovered how much I love my job, and got real traction on LinkedIn. My biggest lesson: writing and creating are my ticket to professional freedom."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF4FA3;">CG</div>
+              <div><div class="testimonial-name">Clive Griffiths</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"Ship 30 is one of my top three learning experiences, ever — and by far the best value for money. Interactive sessions, cohort community, templates, systems, the lot. Highly recommended."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#F9E549;">SA</div>
+              <div><div class="testimonial-name">Swapnil Agarwal</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"Before Ship 30 for 30, I had a lot of drafts but no confidence to put them out. Now I have 30+ atomic essays published — and I'm still writing regularly."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF6B4A;">KG</div>
+              <div><div class="testimonial-name">Kent Griswold</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"Before Ship 30 for 30, I'd stare at a blank page. Now I start with an idea, choose a template, and jump right in. I've gained real confidence as a writer."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#3FE0B0;">ET</div>
+              <div><div class="testimonial-name">Evan Thomson</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"It's an expertly designed course that keeps you engaged, active, and accountable. With Ship 30, there's an active community reading what you publish and offering real feedback to help you improve."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#9B93FF;">QM</div>
+              <div><div class="testimonial-name">Quico Moya</div><div class="testimonial-date">Sep 19, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"I tried and failed to build a writing habit before — so many blogs in my graveyard! Thanks to this cohort, I finally have one for good. One of the best investments I've made."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div class="testimonial-avatar" style="background:#FF4FA3;">AB</div>
+              <div><div class="testimonial-name">Alison Bowman</div><div class="testimonial-date">Nov 24, 2022</div></div>
+            </div>
+            <p class="testimonial-quote">"I'm super impressed with the Ship 30 structure and community. I'm psyched to be part of this positive space of motivated, empowered individuals."</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots"></div>
+      <a class="pill cream testimonial-cta" href="https://www.ship30for30.com/meet-our-alumni" target="_blank" rel="noopener">MEET OUR ALUMNI →</a>
+    </div>
+  </div>
+</section>
+
+<section class="solution-band-a">
+  <div class="wrap">
+    <div class="credibility-block" style="border-top:none; margin-top:0; padding-top:0;">
+      <div class="credibility-grid">
+        <div>
+          <div class="cred-eyebrow">Meet Your Instructors</div>
+          <h3 class="cred-headline">Built by the founders of the internet's #1 writing program.</h3>
+          <p class="cred-desc">Created by Nicolas Cole &amp; Dickie Bush — the team behind Ship 30 for 30, the program that's taught over <b>10,000 writers</b> to start writing online.</p>
+          <div class="cred-stats">
+            <span class="cred-stat-pill">10,000+ WRITERS TAUGHT</span>
+            <span class="cred-stat-pill">$20M+ IN DIGITAL PRODUCTS</span>
+          </div>
+        </div>
+        <div class="cred-cards">
+          <div class="cred-card">
+            <img loading="lazy" decoding="async" class="cred-avatar" src="/images/swo/asset-07.webp" alt="Nicolas Cole">
+            <div>
+              <div class="cred-name">Nicolas Cole</div>
+              <div class="cred-role">Co-Founder, Ship 30 for 30 &amp; Premium Ghostwriting Academy</div>
+              <p class="cred-bio">I challenged myself to write every single day on Quora for a year — and became the #1 most-read writer on the platform, out of 200 million users. That habit led to a column at Inc Magazine, a multimillion-dollar ghostwriting agency, and my book, The Art &amp; Business of Online Writing. Today I've distilled 10+ years of online writing into Ship 30 for 30 to get you started in just 30 days.</p>
+            </div>
+          </div>
+          <div class="cred-card">
+            <img loading="lazy" decoding="async" class="cred-avatar" src="/images/swo/asset-08.webp" alt="Dickie Bush">
+            <div>
+              <div class="cred-name">Dickie Bush</div>
+              <div class="cred-role">Co-Founder, Ship 30 for 30</div>
+              <p class="cred-bio">I started writing online in January 2020 by publishing a short post every single day for 30 days — squashing my perfectionism, 10x-ing my writing speed, and growing my audience over 500%. A single tweet to 500 followers turned that experiment into Ship 30 for 30. Together with Cole, I've packed everything we know about building habits and writing online into the program.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-section">
+  <div class="wrap">
+    <div class="how-block">
+      <div class="how-intro-wrap">
+        <div class="how-eyebrow">The Process</div>
+        <h2 class="how-headline">How The Start Writing Online 5-Day Sprint Works</h2>
+        <p class="how-intro">You only need to know 3 things when it comes to writing online in 2026:</p>
+      </div>
+      <div class="how-roadmap">
+        <div class="how-line"></div>
+        <div class="how-step">
+          <div class="how-dot-track"><span class="how-dot" style="--accent:#F9E549;"></span></div>
+          <div class="how-card-step" style="color:#F9E549;">Step 01</div>
+          <h4>Where To Write</h4>
+          <p>The text-based platforms that provide the best content distribution today.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-dot-track"><span class="how-dot" style="--accent:#FF6B4A;"></span></div>
+          <div class="how-card-step" style="color:#FF6B4A;">Step 02</div>
+          <h4>What To Write</h4>
+          <p>The text-based formats most likely to perform well in the algorithm today.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-dot-track"><span class="how-dot" style="--accent:#3FE0B0;"></span></div>
+          <div class="how-card-step" style="color:#3FE0B0;">Step 03</div>
+          <h4>How To Write</h4>
+          <p>The headlines, hooks, and content strategies that hook people's attention today.</p>
+        </div>
+      </div>
+      <div class="how-outro-wrap">
+        <p class="how-outro">We help you with all of these. Let's walk through them so you know what you're signing yourself up for! <b>(It's easier than you think.)</b></p>
+        <span class="how-outro-badge">KEEP SCROLLING ↓</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="platforms">
+  <div class="wrap">
+    <div class="sec-label">Where To Write</div>
+    <h2 class="display">The 3 best platforms<br>for publishing today.</h2>
+    <div class="card-row">
+      <div class="p-card c1">
+        <div class="p-top"><img loading="lazy" decoding="async" class="p-logo" src="/images/swo/asset-09.webp" alt="X logo"></div>
+        <div><h3>X</h3><p>The single best platform for short-form, text-based content and long-form essay-style posts.</p></div>
+        <div class="num">500M+ USERS</div>
+      </div>
+      <div class="p-card c2">
+        <div class="p-top"><img loading="lazy" decoding="async" class="p-logo" src="/images/swo/asset-10.webp" alt="LinkedIn logo"></div>
+        <div><h3>LinkedIn</h3><p>The next-best platform for short- and medium-form content — built for professional reach.</p></div>
+        <div class="num">1B+ USERS</div>
+      </div>
+      <div class="p-card c3">
+        <div class="p-top"><img loading="lazy" decoding="async" class="p-logo" src="/images/swo/asset-11.webp" alt="Substack logo"></div>
+        <div><h3>Substack</h3><p>The best home for republishing your X and LinkedIn content into a durable, owned audience.</p></div>
+        <div class="num">30M+ USERS · $90M+ FUNDED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="formats">
+  <div class="wrap">
+    <div class="sec-label">What To Write</div>
+    <h2 class="display">If You Can Write In These 5 Formats,<br>You Can Write Anything.</h2>
+    <div class="format-grid">
+      <div class="format-card">
+        <div class="flabel">01 · SHORT-FORM</div>
+        <h4>Tweets</h4>
+        <p>Bite-sized thoughts compressed into 280 characters or less.</p>
+        <div class="meter"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="format-card">
+        <div class="flabel">02 · SHORT-FORM</div>
+        <h4>Atomic Essays</h4>
+        <p>300-word visual essays to master the fundamentals of writing online.</p>
+        <div class="meter"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="format-card">
+        <div class="flabel">03 · MEDIUM-FORM</div>
+        <h4>LinkedIn Carousels</h4>
+        <p>Multimedia writing that grabs readers' attention and has the highest likelihood of going viral on LinkedIn.</p>
+        <div class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+      </div>
+      <div class="format-card">
+        <div class="flabel">04 · LONG-FORM</div>
+        <h4>X Articles</h4>
+        <p>800+ word blog posts that can be republished across your blog, Medium, even your weekly newsletter.</p>
+        <div class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+      </div>
+      <div class="format-card">
+        <div class="flabel">05 · META-SKILL</div>
+        <h4>AI Prompts</h4>
+        <p>Get leverage on all of these formats and skills by learning how to write your own prompts!</p>
+        <div class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="breaker">
+  <div class="wrap">
+    <h2 class="breaker-title">Everything That's Included In The <span class="hl">Start Writing Online</span> Sprint</h2>
+    <div class="breaker-image">
+      <img loading="lazy" decoding="async" src="/images/swo/asset-12.webp" alt="Crystal fountain pen illustration">
+    </div>
+  </div>
+</section>
+
+<section class="timeline" id="gameplan">
+  <div class="wrap">
+    <div class="sec-label">THE TIMELINE</div>
+    <h2 class="display">Here's what you'll build.</h2>
+    <div class="timeline-meta">
+      <span>All sessions 60 Minutes + 30 Minutes of Optional Breakout Rooms</span>
+      <span>8AM PT, Monday – Friday</span>
+      <span>Monday, August 31st – Friday, September 4th</span>
+    </div>
+
+    <div class="day-rows">
+      <div class="day-row">
+        <div class="day-marker">01</div>
+        <div class="day-text">
+          <div class="day-date">Monday, August 31st</div>
+          <h3 class="day-title">Tweets</h3>
+          <p class="day-desc">How to write <a href="https://x.com/Nicolascole77/status/2086611508063068254" target="_blank" rel="noopener">short-form text posts</a>, and the different styles performing best on X, LinkedIn, and Substack Notes in 2026.</p>
+        </div>
+        <div class="day-image">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-13.webp" class="day-photo day-photo--tweets" alt="Example tweet from Dickie Bush">
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-marker">02</div>
+        <div class="day-text">
+          <div class="day-date">Tuesday, September 1st</div>
+          <h3 class="day-title">Atomic Essays</h3>
+          <p class="day-desc">The <a href="https://x.com/dickiebush/status/2087177257533976913" target="_blank" rel="noopener">300-word visual format</a> we invented for beginner writers to master the fundamentals of writing online.</p>
+        </div>
+        <div class="day-image">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-14.webp" class="day-photo day-photo--atomic" alt="Example atomic essay format">
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-marker">03</div>
+        <div class="day-text">
+          <div class="day-date">Wednesday, September 2nd</div>
+          <h3 class="day-title">LinkedIn Carousels</h3>
+          <p class="day-desc"><a href="https://www.linkedin.com/posts/nicolascole_7-simple-steps-to-make-10000-per-month-activity-7486035325082025984-qZnJ?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAA1v-KIBbWTAwzu-peEXEhfcqWwRpu-jhVo" target="_blank" rel="noopener">Multimedia slideshows</a> that are the highest-performing format on LinkedIn in 2026.</p>
+        </div>
+        <div class="day-image">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-15.webp" class="day-photo day-photo--linkedin" alt="Example LinkedIn carousel">
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-marker">04</div>
+        <div class="day-text">
+          <div class="day-date">Thursday, September 3rd</div>
+          <h3 class="day-title">X Articles</h3>
+          <p class="day-desc"><a href="https://x.com/dickiebush/status/2013970264401531146" target="_blank" rel="noopener">800+ word blog posts</a> that can be republished across your blog, Medium, even your weekly newsletter. Currently the highest-performing format on X.</p>
+        </div>
+        <div class="day-image">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-16.webp" class="day-photo day-photo--xarticles" alt="Example X article">
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-marker">05</div>
+        <div class="day-text">
+          <div class="day-date">Friday, September 4th</div>
+          <h3 class="day-title">AI Prompts</h3>
+          <p class="day-desc">Get leverage on your skills by turning your favorite AI platform into your own personal Digital Writing Assistant—and then turn those <a href="https://x.com/dickiebush/status/2086842299913572625" target="_blank" rel="noopener">prompts into more content/assets</a>!</p>
+        </div>
+        <div class="day-image">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-17.webp" class="day-photo day-photo--aiprompts" alt="Example AI prompt output">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="assets">
+  <div class="wrap">
+    <div class="assets-intro">
+      <h2 class="how-headline">THE ASSETS</h2>
+      <p class="assets-desc">Each Live Session Is Paired With Templates, Prompts, and Swipe Files To Help You Write 10x Faster!</p>
+    </div>
+
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-visual">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-18.webp" alt="Day 1 — Tweets Assets">
+        </div>
+        <div class="asset-info">
+          <div class="asset-day">DAY 1</div>
+          <h3 class="asset-title">Tweets Assets</h3>
+          <ul class="asset-list">
+            <li>100+ Tweet Templates</li>
+            <li>Short-Form Autowriter (AI Prompt)</li>
+            <li>Viral Tweets Swipe File</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="asset-visual">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-19.webp" alt="Day 2 — Atomic Essays Assets">
+        </div>
+        <div class="asset-info">
+          <div class="asset-day">DAY 2</div>
+          <h3 class="asset-title">Atomic Essays Assets</h3>
+          <ul class="asset-list">
+            <li>100+ Atomic Essay Templates</li>
+            <li>Atomic Essay Generator (AI Prompt)</li>
+            <li>Best Student Essays Swipe File</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="asset-visual">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-20.webp" alt="Day 3 — LinkedIn Carousels Assets">
+        </div>
+        <div class="asset-info">
+          <div class="asset-day">DAY 3</div>
+          <h3 class="asset-title">LinkedIn Carousels Assets</h3>
+          <ul class="asset-list">
+            <li>Text-Based LinkedIn Carousel Template</li>
+            <li>Gamma AI Carousel Walkthrough</li>
+            <li>(Advanced) Claude Design Masterclass</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="asset-visual">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-21.webp" alt="Day 4 — X Articles Assets">
+        </div>
+        <div class="asset-info">
+          <div class="asset-day">DAY 4</div>
+          <h3 class="asset-title">X Articles Assets</h3>
+          <ul class="asset-list">
+            <li>X Articles Image Generator (AI Prompt)</li>
+            <li>Thought Leadership Article Generator (AI Prompt)</li>
+            <li>(Advanced) Viral Articles Swipe File</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="asset-visual">
+          <img loading="lazy" decoding="async" src="/images/swo/asset-22.webp" alt="Day 5 — AI Prompts Assets">
+        </div>
+        <div class="asset-info">
+          <div class="asset-day">DAY 5</div>
+          <h3 class="asset-title">AI Prompts Assets</h3>
+          <ul class="asset-list">
+            <li>AI Writing Prompt Library (50+ Prompts!)</li>
+            <li>AI Prompt Writing Training</li>
+            <li>(Advanced) AI Prompt Viral Drop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bonuses">
+  <div class="wrap">
+    <div class="bonuses-intro">
+      <div class="sec-label">THE BONUSES</div>
+      <h2 class="display">We love going above &amp; beyond for our students. You also unlock these free bonuses as soon as you join!</h2>
+      <p>We want to set you up for success. So as part of the Start Writing Online Sprint, we&rsquo;ll also give you:</p>
+    </div>
+    <div class="bonus-rows">
+
+      <div class="bonus-row">
+        <div class="bonus-header">
+          <div class="bonus-tag">BONUS #1 &middot; $350 VALUE</div>
+          <h3 class="bonus-title">The Niche Famous Playbook</h3>
+          <p class="bonus-intro-copy">We have helped over 15,000 people (finally) pick their niche and start writing online.</p>
+        </div>
+        <div class="bonus-content">
+          <div class="bonus-visual">
+            <img loading="lazy" decoding="async" class="bonus-product-img" src="/images/swo/asset-23.webp" alt="The Niche Famous Playbook">
+          </div>
+          <div class="bonus-details">
+            <p class="bonus-list-label">Inside The Niche Famous Playbook, you&rsquo;ll find:</p>
+            <ul class="bonus-resource-list">
+              <li><strong>Niche Opportunity Matrix:</strong> 100 Lucrative Niches To Target In 2026</li>
+              <li><strong>Niche Content Strategy:</strong> Your First 90 Days Of Content Ideas (no matter what niche you pick!)</li>
+              <li><strong>Niche Bio Checklist:</strong> How To Optimize Your Social Profiles To Attract Your Target Readers</li>
+              <li><strong>The Complete Niche FAQ:</strong> The 50 Most Common Niche Questions&mdash;And Our Answers!</li>
+            </ul>
+            <div class="bonus-extra">
+              <p class="bonus-extra-copy">You will unlock The Niche Famous Playbook immediately, so you can pick your niche before the Start Writing Online Sprint begins.</p>
+              <p class="bonus-extra-copy">And don&rsquo;t worry: if you get stuck, we&rsquo;re going to help you make this decision LIVE at the very beginning of the first session.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bonus-row">
+        <div class="bonus-header">
+          <div class="bonus-tag">BONUS #2 &middot; $199 VALUE</div>
+          <h3 class="bonus-title">The Engagement &ldquo;Growth Hacking&rdquo; Playbook</h3>
+          <p class="bonus-intro-copy">Once you start writing online&hellip; then what?</p>
+        </div>
+        <div class="bonus-content">
+          <div class="bonus-visual">
+            <img loading="lazy" decoding="async" class="bonus-product-img" src="/images/swo/asset-24.webp" alt="The Engagement “Growth Hacking” Playbook">
+          </div>
+          <div class="bonus-details">
+            <p class="bonus-list-label">Inside The Engagement &ldquo;Growth Hacking&rdquo; Playbook, you&rsquo;ll find:</p>
+            <ul class="bonus-resource-list">
+              <li><strong>CTA Secrets:</strong> Best Practices For Driving Niche Traffic To An Email Capture Or Newsletter</li>
+              <li><strong>Comments-As-Content:</strong> Our Strategy For Organically &ldquo;Growth Hacking&rdquo; Your Niche Audience</li>
+              <li><strong>Daily Engagement System:</strong> How To Setup Simple Dashboards To Quickly &amp; Easily Engage With Other Relevant Creators</li>
+              <li><strong>Daily Engagement Checklist:</strong> A Simple 30-Minute Routine You Can Repeat Every Day (Without Thinking About It!)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bonus-row">
+        <div class="bonus-header">
+          <div class="bonus-tag">BONUS #3 &middot; FREE 30-DAY TRIAL</div>
+          <h3 class="bonus-title">AI Writing Skool</h3>
+          <p class="bonus-intro-copy">AI Writing Skool is THE community for writers and creators building in the new AI economy &mdash; and you get full access for 30 days so you can get feedback on your writing, trade ideas, and stay sharp as you build.</p>
+        </div>
+        <div class="bonus-content">
+          <div class="bonus-visual">
+            <img loading="lazy" decoding="async" class="bonus-product-img" src="/images/swo/asset-25.webp" alt="AI Writing Skool">
+          </div>
+          <div class="bonus-details">
+            <p class="bonus-list-label">Inside, you&rsquo;ll unlock:</p>
+            <ul class="bonus-resource-list">
+              <li><strong>AI Cole:</strong> Our custom AI model trained on all of our programs, curriculums, books, and content. Ask it anything, 24/7. ($5,000+ value)</li>
+              <li><strong>Monday Hot Seats with Cole &amp; Dickie:</strong> Submit your questions and workshop your specific situation live. ($6,000+ value)</li>
+              <li><strong>Monthly Mini-Products, Templates, Prompts, and .Skills:</strong> New resources dropped every month that you can download and use immediately. ($2,000+ value)</li>
+              <li><strong>Daily Q&amp;A Channel:</strong> Never get stuck. Get answers from the community and our team every single day. (Priceless!)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="join">
+  <div class="wrap">
+    <div class="sec-label">A RECAP OF EVERYTHING YOU GET</div>
+    <h2 class="display">Become a pro writer in 5 days.</h2>
+    <div class="stack">
+      <div class="stack-row"><span>5 &times; 60-minute live sessions</span><span class="val">$6,000</span></div>
+      <div class="stack-row"><span>Lifetime access to the Start Writing Online Sprint curriculum</span><span class="val">$199</span></div>
+      <div class="stack-row"><span>5 days of templates, assets, and swipe files</span><span class="val">$1,000</span></div>
+      <div class="stack-row"><span>(Bonus #1) The Niche Famous Playbook</span><span class="val">$350</span></div>
+      <div class="stack-row"><span>(Bonus #2) The Engagement &ldquo;Growth Hacking&rdquo; Playbook</span><span class="val">$199</span></div>
+      <div class="stack-row"><span>(Bonus #3) AI Writing Skool FREE 30-day trial</span><span class="val">$13,000</span></div>
+      <div class="stack-row total"><span>TOTAL VALUE</span><span class="val">$20,748</span></div>
+    </div>
+    <div class="big-price">
+      <div class="today">JOIN TODAY FOR JUST</div>
+      <div class="amt amt-plain">$199</div>
+      <a class="pill cream cta-big" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50" data-cta="Pricing" style="font-size:15px; padding:16px 36px; margin-top:20px;">CLAIM MY SPOT &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-label">FREQUENTLY ASKED QUESTIONS</div>
+    <h2 class="display">Still have questions?</h2>
+    <div style="margin-top:40px;">
+      <details class="faq-item" open>
+        <summary>I've never written anything online. Will this be too advanced?</summary>
+        <p>No — not at all. We built this 5-day challenge to help people like you get started on the right foot. You're in great hands, and we'll make sure you feel confident every step of the way.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How much time should I plan on dedicating?</summary>
+        <p>5 days, with a 60-minute live session each day. For the best results, show up live (or watch replays before the next session) and block ~30 minutes a day to put your learnings into practice.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I can't attend live?</summary>
+        <p>No problem — every call is recorded and added to your Student Hub immediately, with lifetime access.</p>
+      </details>
+      <details class="faq-item">
+        <summary>I've been writing online for a while. Will this still be valuable?</summary>
+        <p>Yes. Even experienced writers who've gone through our programs walk away with cutting-edge tactics and best practices they hadn't tried before.</p>
+      </details>
+      <details class="faq-item">
+        <summary>I've tried writing online before and didn't see success. How is this different?</summary>
+        <p>After training 10,000+ writers, we can tell you: if you're not seeing results, it's probably a handful of fixable mistakes. We'll help you spot them and show you what to do differently.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Will this sprint make me money?</summary>
+        <p>If you have a product or service, writing online is one of the best ways to drive organic traffic and customers — and we'll show you exactly how. That said, we don't promise any specific monetary outcome.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How is this different from Ship 30 for 30?</summary>
+        <p>Ship 30 for 30 ran from 2023–2025. Think of the Start Writing Online Sprint as a compressed version — the same core outcome in a fraction of the time, updated with current tactics, platforms, and templates.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a discount if I've bought other products from you?</summary>
+        <p>We've made this sprint as financially accessible as possible already, so we don't offer additional discounts on it.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h5>Start here</h5>
+      <a href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50" data-cta="Footer">Join the sprint</a>
+      <a href="#gameplan">The 5-day plan</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="foot-col">
+      <h5>From the team</h5>
+      <a href="https://www.ship30for30.com/" target="_blank" rel="noopener">Ship 30 for 30</a>
+      <a href="https://www.premiumghostwritingacademy.com/" target="_blank" rel="noopener">Premium Ghostwriting Academy</a>
+      <a href="https://www.skool.com/ai-writing-skool/about" target="_blank" rel="noopener">AI Writing Skool</a>
+    </div>
+    <div class="foot-col">
+      <h5>Follow</h5>
+      <a href="https://x.com/dickiebush" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="https://www.linkedin.com/in/nicolascole" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="foot-logos">
+      <a class="foot-logo-link" href="https://www.skool.com/ai-writing-skool/about" target="_blank" rel="noopener" aria-label="AI Writing Skool">
+      <svg role="img" aria-label="AI Writing Skool" style="height:32px;width:auto;" width="520" height="238" viewBox="0 0 520 238" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M509.122 165.161C501.928 158.421 490.605 153.352 475.152 149.949L460.065 146.447C450.339 144.244 443.38 141.608 439.185 138.539C435.055 135.405 432.992 131.333 432.992 126.33C432.992 120.258 435.623 115.288 440.885 111.419C446.148 107.55 452.909 105.615 461.169 105.615C469.894 105.615 476.923 107.851 482.251 112.323C487.579 116.794 490.511 122.965 491.042 130.839L516.118 130.839C515.719 116.027 510.621 104.382 500.834 95.9099C491.108 87.4376 477.919 83.1968 461.268 83.1968C450.344 83.1968 440.754 85.0654 432.494 88.8026C424.3 92.4739 417.905 97.642 413.31 104.316C408.781 110.991 406.516 118.761 406.516 127.638C406.516 138.116 410.045 146.687 417.106 153.361C424.168 160.035 435.125 165.072 449.977 168.475L465.961 172.076C475.885 174.344 482.979 177.145 487.241 180.482C491.502 183.753 493.636 188.022 493.636 193.294C493.636 199.832 490.807 205.07 485.145 209.005C479.484 212.874 472.022 214.809 462.766 214.809C452.378 214.809 444.25 212.272 438.386 207.202C432.593 202.133 429.628 195.092 429.496 186.083L403.617 186.083C403.617 202.03 408.813 214.54 419.202 223.615C429.661 232.624 444.113 237.128 462.564 237.128C474.287 237.128 484.445 235.293 493.039 231.621C501.632 227.884 508.257 222.613 512.923 215.806C517.584 209 519.919 200.961 519.919 191.684C519.919 180.741 516.32 171.901 509.127 165.161L509.122 165.161Z" fill="white"/>
+<path d="M347.358 203.845C346.912 205.323 345.544 206.396 343.928 206.396L337.228 206.396C336.96 206.396 336.707 206.433 336.462 206.485L317.758 206.485L317.758 87.8735L288.157 87.8735L288.157 206.485L269.598 206.485C269.354 206.433 269.1 206.396 268.832 206.396L262.132 206.396C260.21 206.396 258.646 204.88 258.556 202.979L258.556 201.345L258.627 189.578C258.627 189.315 258.603 189.061 258.556 188.821L258.556 87.8735L228.956 87.8735L228.956 206.396L245.457 206.396C245.659 206.429 245.87 206.452 246.091 206.452L254.957 206.41C256.921 206.4 258.523 207.977 258.556 209.94L258.556 236.133L347.532 236.133L347.532 209.535C347.762 207.765 349.275 206.4 351.098 206.41L359.964 206.452C360.185 206.452 360.392 206.429 360.598 206.396L376.959 206.396L376.959 87.8735L347.358 87.8735L347.358 203.845Z" fill="white"/>
+<path d="M118.02 102.293L118.031 102.277V114.692C118.031 116.22 119.259 117.459 120.781 117.481H148.003V236.135H118.02V206.449H29.9824V236.135H0V117.481H27.2305C28.7532 117.46 29.9813 116.22 29.9814 114.692V102.277L29.9824 102.278V87.8711H118.02V102.293ZM202.692 236.131H173.082V87.8721H202.692V236.131ZM40.9238 117.494L31.8232 117.635C30.8068 117.651 29.9913 118.479 29.9912 119.495V124.212L29.9824 124.207V176.839H118.02V119.474C118.008 118.467 117.198 117.65 116.188 117.635L107.088 117.494L107.097 117.481H40.915L40.9238 117.494Z" fill="white"/>
+<path d="M188.865 0L200.877 24.1316L225.009 36.1435L200.877 48.1554L188.865 72.287L176.853 48.1554L152.722 36.1435L176.853 24.1316L188.865 0Z" fill="white"/>
+</svg>
+      </a>
+
+      <a class="foot-logo-link" href="https://www.premiumghostwritingacademy.com/" target="_blank" rel="noopener" aria-label="Premium Ghostwriting Academy">
+      <svg role="img" aria-label="Premium Ghostwriting Academy" style="height:32px;width:auto;" width="281" height="238" viewBox="0 0 281 238" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M53.1493 171.932C49.1122 171.932 45.2755 171.933 40.8566 170.649L39.7676 171.288C40.9818 177.497 40.9818 183.073 39.899 189.539L40.8566 190.115C45.4695 188.387 49.5003 188.387 53.3433 188.387C59.8088 188.387 65.9614 186.597 65.9614 180.125C65.9614 173.654 59.5584 171.926 53.1555 171.926L53.1493 171.932Z" fill="white"/>
+<path d="M232.054 171.479C229.938 179.997 226.865 186.4 222.96 193.123L223.536 193.761C230.514 192.415 235.766 192.221 242.682 193.761L243.195 193.123C239.289 186.269 236.216 180.06 234.295 171.479H232.054Z" fill="white"/>
+<path d="M280.874 189.477C280.874 189.302 280.861 189.121 280.861 188.945C280.555 166.833 271.167 146.192 256.164 134.788C256.064 134.701 255.964 134.619 255.858 134.538L255.526 134.294C233.339 117.959 215.858 64.1209 215.264 62.2621C204.661 25.5044 175.001 0.488183 141.391 0H139.426C105.867 0.488183 76.2128 25.5107 65.6105 62.2746C65.1286 63.7955 47.5978 117.921 25.3542 134.294L25.0162 134.544C24.9098 134.626 24.8034 134.707 24.7033 134.795C9.69481 146.211 0.319196 166.802 0.0125175 188.952C0.0125175 189.127 0 189.302 0 189.477C0 189.54 0 189.603 0 189.665C0 189.797 0 189.922 0 190.053H0.0125175C0.344231 216.015 23.1136 237.044 51.0652 237.044C63.4199 237.044 75.3429 232.882 84.6371 225.321C91.0774 220.083 100.422 220.083 106.862 225.321C116.156 232.882 128.079 237.044 140.434 237.044C152.789 237.044 164.712 232.882 174.006 225.321C180.446 220.083 189.79 220.083 196.231 225.321C205.525 232.882 217.448 237.044 229.803 237.044C257.754 237.044 280.524 216.015 280.855 190.053H280.868C280.868 189.922 280.868 189.797 280.868 189.665C280.868 189.603 280.868 189.54 280.868 189.477H280.874ZM55.3211 195.818C49.7508 195.818 45.3947 195.818 39.887 193.896C41.0386 201.901 41.0386 208.366 41.0386 214.45H32.5205V164.499H54.6139C62.4248 164.499 74.8484 167.059 74.8484 180.058C74.8484 193.057 62.1056 195.811 55.3148 195.811L55.3211 195.818ZM169.205 214.419H162.546C162.421 211.54 161.908 208.786 163.184 204.749L161.776 204.367C157.614 211.99 150.248 215.508 140.065 215.508C122.841 215.508 110.479 204.749 110.479 189.571C110.479 173.367 124.186 163.441 140.64 163.441C152.87 163.441 163.691 169.399 167.603 178.813L159.855 181.823C156.463 175.358 149.609 171.064 140.64 171.064C129.112 171.064 119.379 177.98 119.379 189.765C119.379 202.959 131.29 207.891 141.473 207.891C151.656 207.891 159.661 203.153 163.441 194.441L162.546 193.477C155.179 195.398 148.264 195.655 142.437 195.655V188.996H169.205V214.419ZM252.603 214.456C250.169 209.912 247.865 205.237 246.457 199.854L245.625 199.147C236.149 200.618 230.253 200.687 220.84 199.147L219.945 199.917C218.537 204.786 216.04 210.037 213.736 214.456H204.836L228.401 164.505H238.07L261.572 214.456H252.609H252.603ZM229.809 141.917C217.454 141.917 205.531 146.079 196.237 153.64C189.797 158.878 180.452 158.878 174.012 153.64C164.718 146.079 152.795 141.917 140.44 141.917C128.085 141.917 116.162 146.079 106.868 153.64C100.428 158.878 91.0836 158.878 84.6434 153.64C75.3491 146.079 63.4262 141.917 51.0714 141.917C38.7166 141.917 27.9704 145.823 19.2269 152.332C22.3312 147.819 26.0051 143.926 30.1734 140.866C30.2611 140.803 30.3424 140.734 30.4238 140.665C55.3587 122.027 73.2587 65.1286 73.4214 64.5715C83.0098 31.2499 109.584 8.56823 139.489 8.13638H141.335C171.296 8.56823 197.87 31.2499 207.459 64.5653C207.49 64.6842 212.047 79.0418 219.632 95.6462C229.828 117.971 240.286 133.18 250.707 140.847L250.801 140.916C250.876 140.978 250.945 141.041 251.026 141.097C255.05 144.114 258.612 147.926 261.635 152.319C252.897 145.816 241.838 141.917 229.815 141.917H229.809Z" fill="white"/>
+<path d="M117.669 61.8125C124.222 61.8125 129.536 55.5411 129.536 47.8049C129.536 40.0688 124.222 33.7974 117.669 33.7974C111.115 33.7974 105.802 40.0688 105.802 47.8049C105.802 55.5411 111.115 61.8125 117.669 61.8125Z" fill="white"/>
+<path d="M162.023 61.8125C168.577 61.8125 173.89 55.5411 173.89 47.8049C173.89 40.0688 168.577 33.7974 162.023 33.7974C155.469 33.7974 150.156 40.0688 150.156 47.8049C150.156 55.5411 155.469 61.8125 162.023 61.8125Z" fill="white"/>
+</svg>
+      </a>
+
+      <a class="foot-logo-link" href="https://www.ship30for30.com/" target="_blank" rel="noopener" aria-label="Ship 30 for 30">
+      <svg role="img" aria-label="Ship 30 for 30" style="height:32px;width:auto;" width="590" height="229" viewBox="0 0 590 229" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="227.418" height="227.418" fill="url(#pattern0_590_2114)"/>
+<path d="M531.531 228.83C524.046 228.83 518.245 226.854 514.128 222.904C510.012 218.954 507.87 213.319 507.704 206.001C507.579 199.929 507.496 193.713 507.454 187.351C507.413 180.947 507.413 174.564 507.454 168.201C507.496 161.798 507.579 155.56 507.704 149.489C507.87 142.129 510.012 136.515 514.128 132.648C518.245 128.739 524.046 126.785 531.531 126.785C538.974 126.785 544.734 128.739 548.809 132.648C552.925 136.515 555.088 142.129 555.296 149.489C555.462 154.063 555.566 158.741 555.608 163.523C555.691 168.264 555.732 173.046 555.732 177.87C555.732 182.652 555.691 187.413 555.608 192.153C555.566 196.852 555.462 201.468 555.296 206.001C555.088 213.319 552.925 218.954 548.809 222.904C544.734 226.854 538.974 228.83 531.531 228.83ZM531.531 215.669C536.438 215.669 538.995 213.423 539.203 208.932C539.452 201.988 539.619 194.96 539.702 187.85C539.827 180.697 539.827 173.649 539.702 166.704C539.619 159.719 539.452 153.003 539.203 146.557C539.078 142.15 536.521 139.946 531.531 139.946C526.499 139.946 523.921 142.15 523.796 146.557C523.672 151.755 523.547 157.016 523.422 162.338C523.339 167.619 523.297 172.921 523.297 178.244C523.297 183.525 523.339 188.744 523.422 193.9C523.547 199.056 523.672 204.067 523.796 208.932C523.921 213.423 526.499 215.669 531.531 215.669Z" fill="#F7F5ED"/>
+<path d="M472.374 228.83C463.766 228.83 457.529 227.063 453.662 223.528C449.836 219.994 447.799 214.13 447.549 205.938C447.507 204.441 447.466 203.152 447.424 202.071C447.424 200.949 447.424 199.805 447.424 198.641C447.466 197.435 447.507 195.979 447.549 194.274H463.642V208.059C463.642 210.554 464.349 212.446 465.762 213.735C467.218 215.024 469.276 215.669 471.938 215.669C474.64 215.669 476.678 215.024 478.05 213.735C479.464 212.446 480.192 210.554 480.233 208.059C480.317 205.606 480.358 202.924 480.358 200.013C480.358 197.06 480.317 194.462 480.233 192.216C480.109 189.513 479.443 187.288 478.237 185.542C477.073 183.795 474.703 182.964 471.127 183.047L460.398 183.172L459.899 169.574L477.302 142.129H448.672V127.908L495.702 127.908L495.515 141.568L477.427 169.137C483.789 169.678 488.446 171.778 491.398 175.437C494.351 179.055 495.993 184.627 496.326 192.154C496.368 193.443 496.388 194.711 496.388 195.959C496.43 197.164 496.451 198.329 496.451 199.452C496.451 200.533 496.43 201.614 496.388 202.695C496.388 203.776 496.368 204.857 496.326 205.938C495.952 214.13 493.914 219.994 490.213 223.528C486.554 227.063 480.608 228.83 472.374 228.83Z" fill="#F7F5ED"/>
+<path d="M366.258 227.707V127.908H388.152C396.552 127.908 402.602 129.633 406.303 133.085C410.045 136.536 412.062 142.233 412.353 150.175C412.436 152.837 412.499 155.249 412.54 157.411C412.582 159.532 412.582 161.652 412.54 163.773C412.499 165.852 412.436 168.139 412.353 170.634C412.187 175.708 411.334 179.845 409.796 183.047C408.257 186.207 405.845 188.598 402.56 190.22L413.85 227.707H396.76L387.403 192.902H382.413V227.707H366.258ZM382.413 178.681H388.089C390.792 178.681 392.788 178.078 394.077 176.872C395.408 175.624 396.136 173.816 396.261 171.445C396.385 169.117 396.468 166.705 396.51 164.21C396.552 161.673 396.552 159.157 396.51 156.662C396.468 154.126 396.385 151.693 396.261 149.365C396.136 146.994 395.408 145.206 394.077 144C392.788 142.753 390.813 142.129 388.152 142.129H382.413V178.681Z" fill="#F7F5ED"/>
+<path d="M332.088 228.83C323.771 228.83 317.762 227.083 314.061 223.59C310.361 220.056 308.427 214.192 308.261 206.001C308.177 201.468 308.094 196.831 308.011 192.091C307.97 187.351 307.949 182.589 307.949 177.807C307.949 172.984 307.97 168.201 308.011 163.461C308.094 158.721 308.177 154.063 308.261 149.489C308.427 141.339 310.361 135.517 314.061 132.024C317.762 128.531 323.771 126.785 332.088 126.785C340.446 126.785 346.434 128.531 350.052 132.024C353.669 135.517 355.603 141.339 355.853 149.489C355.977 154.105 356.081 158.783 356.164 163.523C356.248 168.264 356.289 173.046 356.289 177.87C356.289 182.652 356.248 187.413 356.164 192.153C356.081 196.852 355.977 201.468 355.853 206.001C355.603 214.192 353.669 220.056 350.052 223.59C346.434 227.083 340.446 228.83 332.088 228.83ZM332.088 215.669C334.666 215.669 336.579 215.107 337.826 213.985C339.074 212.862 339.718 211.178 339.76 208.932C339.926 204.233 340.051 199.243 340.134 193.962C340.217 188.64 340.259 183.234 340.259 177.745C340.259 172.214 340.217 166.808 340.134 161.527C340.051 156.246 339.926 151.256 339.76 146.557C339.718 144.354 339.053 142.711 337.764 141.63C336.475 140.507 334.583 139.946 332.088 139.946C329.593 139.946 327.701 140.507 326.412 141.63C325.123 142.711 324.436 144.354 324.353 146.557C324.187 151.256 324.041 156.246 323.917 161.527C323.833 166.808 323.792 172.214 323.792 177.745C323.792 183.234 323.833 188.64 323.917 193.962C324.041 199.243 324.187 204.233 324.353 208.932C324.436 211.178 325.123 212.862 326.412 213.985C327.701 215.107 329.593 215.669 332.088 215.669Z" fill="#F7F5ED"/>
+<path d="M261.976 227.707V127.908H301.396V142.129H278.131V169.948H300.149V184.17H278.131V227.707H261.976Z" fill="#F7F5ED"/>
+<path d="M565.033 114.83C557.548 114.83 551.747 112.854 547.63 108.904C543.514 104.954 541.372 99.3192 541.206 92.0006C541.081 85.9294 540.998 79.7127 540.956 73.3505C540.915 66.9467 540.915 60.5637 540.956 54.2015C540.998 47.7977 541.081 41.5602 541.206 35.4891C541.372 28.1288 543.514 22.5151 547.63 18.6479C551.747 14.7391 557.548 12.7847 565.033 12.7847C572.476 12.7847 578.236 14.7391 582.311 18.6479C586.427 22.5151 588.59 28.1288 588.798 35.4891C588.964 40.0632 589.068 44.7413 589.11 49.5234C589.193 54.2639 589.234 59.0459 589.234 63.8696C589.234 68.6516 589.193 73.4129 589.11 78.1534C589.068 82.8523 588.964 87.468 588.798 92.0006C588.59 99.3192 586.427 104.954 582.311 108.904C578.236 112.854 572.476 114.83 565.033 114.83ZM565.033 101.669C569.94 101.669 572.497 99.4231 572.705 94.9322C572.954 87.9878 573.121 80.9602 573.204 73.8495C573.329 66.6972 573.329 59.6489 573.204 52.7045C573.121 45.7185 572.954 39.0028 572.705 32.5574C572.58 28.1496 570.023 25.9457 565.033 25.9457C560.001 25.9457 557.423 28.1496 557.298 32.5574C557.174 37.7553 557.049 43.0156 556.924 48.3382C556.841 53.6193 556.799 58.9212 556.799 64.2438C556.799 69.5249 556.841 74.7435 556.924 79.8999C557.049 85.0562 557.174 90.0669 557.298 94.9322C557.423 99.4231 560.001 101.669 565.033 101.669Z" fill="#F7F5ED"/>
+<path d="M505.876 114.83C497.269 114.83 491.031 113.063 487.164 109.528C483.338 105.994 481.301 100.13 481.051 91.9385C481.01 90.4415 480.968 89.1524 480.927 88.0713C480.927 86.9485 480.927 85.805 480.927 84.6406C480.968 83.4347 481.01 81.9793 481.051 80.2744H497.144V94.0592C497.144 96.5542 497.851 98.4462 499.265 99.7353C500.72 101.024 502.778 101.669 505.44 101.669C508.143 101.669 510.18 101.024 511.553 99.7353C512.966 98.4462 513.694 96.5542 513.736 94.0592C513.819 91.6058 513.86 88.9237 513.86 86.0129C513.86 83.0605 513.819 80.4615 513.736 78.216C513.611 75.5131 512.946 73.2884 511.74 71.542C510.575 69.7955 508.205 68.9638 504.629 69.047L493.9 69.1717L493.401 55.574L510.804 28.1291L482.174 28.1291V13.9077L529.205 13.9077L529.017 27.5678L510.929 55.1374C517.291 55.678 521.948 57.7779 524.901 61.4372C527.853 65.055 529.496 70.6271 529.828 78.1537C529.87 79.4427 529.891 80.711 529.891 81.9585C529.932 83.1644 529.953 84.3288 529.953 85.4515C529.953 86.5327 529.932 87.6138 529.891 88.695C529.891 89.7762 529.87 90.8573 529.828 91.9385C529.454 100.13 527.416 105.994 523.716 109.528C520.056 113.063 514.11 114.83 505.876 114.83Z" fill="#F7F5ED"/>
+<path d="M400.735 113.707V13.9077L422.628 13.9077C431.028 13.9077 437.079 15.6334 440.779 19.0848C444.522 22.5362 446.539 28.2331 446.83 36.1755C446.955 40.2091 447.017 43.91 447.017 47.2782C447.017 50.6048 446.955 54.1394 446.83 57.8819C446.539 65.8243 444.522 71.5419 440.779 75.0349C437.037 78.4863 430.966 80.212 422.566 80.212H416.89V113.707H400.735ZM416.89 65.9906H422.566C425.269 65.9906 427.265 65.3669 428.554 64.1194C429.885 62.8719 430.612 61.0838 430.737 58.7551C430.862 56.3849 430.945 53.8483 430.987 51.1454C431.028 48.4009 431.028 45.6772 430.987 42.9743C430.945 40.2298 430.862 37.6933 430.737 35.3646C430.612 32.9944 429.885 31.2063 428.554 30.0004C427.265 28.7529 425.29 28.1291 422.628 28.1291L416.89 28.1291V65.9906Z" fill="#F7F5ED"/>
+<path d="M373.812 113.707V13.9077L389.967 13.9077V113.707H373.812Z" fill="#F7F5ED"/>
+<path d="M317.041 113.707V13.9077L333.196 13.9077V55.9483L346.981 55.9483V13.9077L363.073 13.9077V113.707L346.981 113.707V70.1697H333.196V113.707H317.041Z" fill="#F7F5ED"/>
+<path d="M284.181 114.83C275.906 114.83 270.001 113.062 266.467 109.528C262.932 105.993 260.978 100.13 260.603 91.9382C260.562 90.3164 260.541 88.6323 260.541 86.8858C260.541 85.1393 260.583 83.4136 260.666 81.7087C260.749 79.9622 260.874 78.2573 261.04 76.594H276.197C276.031 79.7959 275.927 82.977 275.885 86.1373C275.885 89.2561 275.989 92.1669 276.197 94.8698C276.405 97.1153 277.133 98.8202 278.38 99.9845C279.669 101.107 281.603 101.669 284.181 101.669C286.718 101.669 288.568 101.107 289.732 99.9845C290.897 98.8202 291.583 97.1153 291.791 94.8698C291.957 93.2065 292.061 91.6263 292.103 90.1293C292.186 88.6323 292.186 87.1145 292.103 85.576C292.061 84.0374 291.957 82.4156 291.791 80.7107C291.666 78.6316 291.146 76.8019 290.231 75.2218C289.358 73.6416 287.882 72.5812 285.803 72.0406L276.509 69.6704C272.475 68.6308 269.294 67.1338 266.966 65.1794C264.637 63.1834 262.953 60.6884 261.913 57.6945C260.915 54.7005 260.354 51.1659 260.229 47.0908C260.188 45.0532 260.167 43.0988 260.167 41.2275C260.167 39.3147 260.188 37.4227 260.229 35.5514C260.437 30.104 261.331 25.717 262.911 22.3904C264.533 19.0221 267.049 16.5895 270.459 15.0925C273.91 13.554 278.484 12.7847 284.181 12.7847C292.207 12.7847 298.007 14.5519 301.584 18.0865C305.201 21.5795 307.176 27.4011 307.509 35.5514C307.592 37.4643 307.613 39.8137 307.572 42.5998C307.53 45.3858 307.447 48.068 307.322 50.6461H291.853C291.978 47.6521 292.061 44.6581 292.103 41.6642C292.144 38.6286 292.103 35.6138 291.978 32.6198C291.895 30.4159 291.167 28.7526 289.795 27.6298C288.464 26.5071 286.593 25.9457 284.181 25.9457C281.603 25.9457 279.711 26.5071 278.505 27.6298C277.299 28.7526 276.571 30.4159 276.322 32.6198C276.114 35.0316 276.01 37.4435 276.01 39.8553C276.01 42.2671 276.114 44.6789 276.322 47.0908C276.53 49.2531 277.07 51.0827 277.944 52.5797C278.858 54.0767 280.439 55.0955 282.684 55.6361L290.855 57.5697C295.138 58.6093 298.506 60.1687 300.96 62.2478C303.413 64.2854 305.16 66.8428 306.199 69.9199C307.28 72.9971 307.883 76.594 308.008 80.7107C308.05 82.083 308.071 83.3928 308.071 84.6403C308.071 85.8462 308.05 87.0522 308.008 88.2581C308.008 89.4224 307.967 90.6491 307.883 91.9382C307.551 100.13 305.596 105.993 302.02 109.528C298.486 113.062 292.539 114.83 284.181 114.83Z" fill="#F7F5ED"/>
+<defs>
+<pattern id="pattern0_590_2114" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_590_2114" transform="scale(0.00625)"/>
+</pattern>
+<image id="image0_590_2114" width="160" height="160" preserveAspectRatio="none" href="/images/swo/asset-26.png"/>
+</defs>
+</svg>
+      </a>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; Start Writing Online Sprint 2026</span>
+    <span>Privacy Policy &middot; Terms</span>
+  </div>
+  <div class="wordmark">WRITE ONLINE</div>
+</footer>
+
+<script>
+(function(){
+  // Set the deadline: next Monday at 00:00 local time (matches "STARTS THIS MONDAY" eyebrow copy)
+  function getNextMonday(){
+    var now = new Date();
+    var day = now.getDay(); // 0=Sun ... 1=Mon
+    var daysUntilMonday = (8 - day) % 7;
+    if (daysUntilMonday === 0) daysUntilMonday = 7; // if today is Monday, count to next Monday
+    var target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilMonday, 0, 0, 0);
+    return target;
+  }
+
+  var el = document.getElementById('cartCountdown');
+  if (!el) return;
+
+  var deadlineAttr = el.getAttribute('data-deadline');
+  var deadline = deadlineAttr ? new Date(deadlineAttr) : getNextMonday();
+
+  var daysEl = document.getElementById('cd-days');
+  var hoursEl = document.getElementById('cd-hours');
+  var minsEl = document.getElementById('cd-mins');
+  var secsEl = document.getElementById('cd-secs');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function tick(){
+    var now = new Date().getTime();
+    var diff = deadline.getTime() - now;
+
+    if (diff <= 0){
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minsEl.textContent = '00';
+      secsEl.textContent = '00';
+      el.querySelector('.countdown-label').textContent = 'Cart is closed';
+      clearInterval(timer);
+      return;
+    }
+
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    daysEl.textContent = pad(days);
+    hoursEl.textContent = pad(hours);
+    minsEl.textContent = pad(mins);
+    secsEl.textContent = pad(secs);
+
+    if (diff < 1000 * 60 * 60 * 24){
+      el.classList.add('is-urgent');
+    }
+  }
+
+  tick();
+  var timer = setInterval(tick, 1000);
+})();
+
+(function(){
+  var scroller = document.getElementById('testimonialScroller');
+  var dotsWrap = document.getElementById('testimonialDots');
+  if (!scroller || !dotsWrap) return;
+
+  var COLUMNS_PER_GROUP = 3; // 3 columns x 2 rows = 6 cards per group
+
+  function getColumnPositions(){
+    var cards = Array.prototype.slice.call(scroller.querySelectorAll('.testimonial-card'));
+    var positions = [];
+    cards.forEach(function(c){
+      var left = c.offsetLeft;
+      var exists = positions.some(function(p){ return Math.abs(p - left) < 2; });
+      if (!exists) positions.push(left);
+    });
+    positions.sort(function(a, b){ return a - b; });
+    return positions;
+  }
+
+  function getGroupPositions(){
+    var columns = getColumnPositions();
+    var groups = [];
+    for (var i = 0; i < columns.length; i += COLUMNS_PER_GROUP){
+      groups.push(columns[i]);
+    }
+    return groups;
+  }
+
+  function updateActiveDot(){
+    var groups = getGroupPositions();
+    var dots = dotsWrap.querySelectorAll('.testimonial-dot');
+    var current = scroller.scrollLeft;
+    var closestIdx = 0;
+    var closestDist = Infinity;
+    groups.forEach(function(pos, i){
+      var dist = Math.abs(pos - current);
+      if (dist < closestDist){ closestDist = dist; closestIdx = i; }
+    });
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === closestIdx); });
+  }
+
+  function buildDots(){
+    var groups = getGroupPositions();
+    dotsWrap.innerHTML = '';
+    groups.forEach(function(pos, i){
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'testimonial-dot';
+      dot.setAttribute('aria-label', 'Go to testimonials group ' + (i + 1));
+      dot.addEventListener('click', function(){
+        scroller.scrollTo({ left: pos, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(dot);
+    });
+    updateActiveDot();
+  }
+
+  buildDots();
+
+  var scrollTimeout;
+  scroller.addEventListener('scroll', function(){
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(updateActiveDot, 80);
+  });
+
+  var resizeTimeout;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(buildDots, 150);
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  function track(name){ if (window.fathom) window.fathom.trackEvent(name); }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('[data-cta]') : null;
+    if (el) track('CTA: ' + el.getAttribute('data-cta'));
+  });
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if (item.open) track('FAQ: ' + item.querySelector('summary').textContent.trim());
+    });
+  });
+})();
+</script>
+</body>
 </html>
