@@ -16,6 +16,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<script>
+  /* OFFER PHASES — the markup ships in the regular ($199, uncouponed) state and
+     this promotes it to early-bird pricing before first paint. Failing that way
+     round is deliberate: if this script never runs, visitors see the regular
+     price and a checkout link that charges it, rather than $149 copy pointing at
+     a coupon that has expired. Setting the class and rewriting the links happen
+     together for the same reason. */
+  (function(){
+    var OFFER = window.SWO_OFFER = {
+      earlyBirdEnd: '2026-08-21T23:59:00-04:00',
+      cartClose:    '2026-08-30T23:59:00-04:00',
+      coupon:       'EARLY50'
+    };
+    OFFER.isEarlyBird = Date.now() < Date.parse(OFFER.earlyBirdEnd);
+    if (!OFFER.isEarlyBird) return;
+    document.documentElement.classList.add('eb');
+    document.addEventListener('DOMContentLoaded', function(){
+      var links = document.querySelectorAll('a[data-cta]');
+      for (var i = 0; i < links.length; i++){
+        var a = links[i];
+        a.setAttribute('href', a.getAttribute('href').split('?')[0] + '?coupon=' + OFFER.coupon);
+      }
+    });
+  })();
+</script>
 <style>
   :root{
     --nav-h:89px;
@@ -108,6 +133,10 @@
   .pill.outline{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.3);}
   /* struck-through list price sitting next to the early-bird price */
   .pill .was{opacity:0.55; text-decoration-thickness:1.5px; margin-right:1px;}
+  /* early-bird bits are hidden unless the phase script says otherwise */
+  .eb-only{display:none;}
+  .eb .eb-only{display:inline;}
+  .eb .no-eb{display:none;}
 
   /* HERO */
   .hero{
@@ -128,7 +157,8 @@
      the illustration letterbox identically and stay registered at any size. */
   .laptop-stage{position:relative; width:100%; height:100%;}
   .laptop-stage img{width:100%; height:100%; object-fit:contain; display:block;}
-  .laptop-note{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .laptop-note{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; display:none;}
+  .eb .laptop-note{display:block;}
   .laptop-note-label{
     font-family:'Space Mono',monospace; font-weight:700;
     font-size:40px; letter-spacing:5px; fill:rgba(255,255,255,0.94);
@@ -1064,7 +1094,7 @@
     }
     .hero-grid{position:relative; gap:0;}
     .hero-copy{position:relative; z-index:2; min-width:0;}
-    .laptop-note{display:none;}
+    .laptop-note, .eb .laptop-note{display:none;}
     .hero-image{
       position:absolute; z-index:1; order:0; pointer-events:none;
       top:168px; right:-16%; width:96%;
@@ -1199,7 +1229,7 @@
   </div>
   <div class="navlinks">
     <a class="pill outline" href="#faq">FAQ</a>
-    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Nav">JOIN — <s class="was">$199</s> $149</a>
+    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Nav">JOIN — <span class="eb-only"><s class="was">$199</s> $149</span><span class="no-eb">$199</span></a>
   </div>
 </nav>
 
@@ -1211,11 +1241,11 @@
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
       <p class="hero-sub hero-sub--mobile">Publish your first post, build your personal brand, and attract life-changing opportunities. Built for beginners.</p>
       <div class="hero-ctas">
-        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Hero">JOIN TODAY — <s class="was">$199</s> $149</a>
+        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Hero">JOIN TODAY — <span class="eb-only"><s class="was">$199</s> $149</span><span class="no-eb">$199</span></a>
         <a class="pill black" href="#gameplan">SEE THE 5-DAY PLAN →</a>
       </div>
-      <div class="countdown-wrap" id="cartCountdown" data-deadline="2026-08-21T23:59:00-04:00">
-        <span class="countdown-label">Early Bird Pricing Ends In…</span>
+      <div class="countdown-wrap" id="cartCountdown">
+        <span class="countdown-label"><span class="eb-only">Early Bird Pricing Ends In…</span><span class="no-eb">Cart Closes In…</span></span>
         <div class="countdown-units">
           <div class="countdown-unit"><span class="num" id="cd-days">00</span><span class="lbl">days</span></div>
           <span class="countdown-colon">:</span>
@@ -1854,8 +1884,8 @@
     </div>
     <div class="big-price">
       <div class="today">JOIN TODAY FOR JUST</div>
-      <div class="amt amt-plain"><s class="amt-was">$199</s>$149</div>
-      <a class="pill cream cta-big" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Pricing" style="font-size:15px; padding:16px 36px; margin-top:20px;">CLAIM MY SPOT &rarr;</a>
+      <div class="amt amt-plain"><span class="eb-only"><s class="amt-was">$199</s>$149</span><span class="no-eb">$199</span></div>
+      <a class="pill cream cta-big" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Pricing" style="font-size:15px; padding:16px 36px; margin-top:20px;">CLAIM MY SPOT &rarr;</a>
     </div>
   </div>
 </section>
@@ -1905,7 +1935,7 @@
   <div class="foot-grid">
     <div class="foot-col">
       <h5>Start here</h5>
-      <a href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Footer">Join the sprint</a>
+      <a href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Footer">Join the sprint</a>
       <a href="#gameplan">The 5-day plan</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -1973,56 +2003,58 @@
 
 <script>
 (function(){
-  // Set the deadline: next Monday at 00:00 local time (matches "STARTS THIS MONDAY" eyebrow copy)
-  function getNextMonday(){
-    var now = new Date();
-    var day = now.getDay(); // 0=Sun ... 1=Mon
-    var daysUntilMonday = (8 - day) % 7;
-    if (daysUntilMonday === 0) daysUntilMonday = 7; // if today is Monday, count to next Monday
-    var target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilMonday, 0, 0, 0);
-    return target;
-  }
-
   var el = document.getElementById('cartCountdown');
-  if (!el) return;
+  var OFFER = window.SWO_OFFER;
+  if (!el || !OFFER) return;
 
-  var deadlineAttr = el.getAttribute('data-deadline');
-  var deadline = deadlineAttr ? new Date(deadlineAttr) : getNextMonday();
+  var ebEnd = Date.parse(OFFER.earlyBirdEnd);
+  var cartClose = Date.parse(OFFER.cartClose);
+  var root = document.documentElement;
 
   var daysEl = document.getElementById('cd-days');
   var hoursEl = document.getElementById('cd-hours');
   var minsEl = document.getElementById('cd-mins');
   var secsEl = document.getElementById('cd-secs');
 
+  // Tracked so the page can flip phases live, for anyone sitting on it when
+  // early-bird pricing lapses — no reload needed.
+  var phase = OFFER.isEarlyBird ? 'eb' : 'regular';
+
+  function setPhase(next){
+    if (next === phase) return;
+    phase = next;
+    root.classList.toggle('eb', next === 'eb');
+    var links = document.querySelectorAll('a[data-cta]');
+    for (var i = 0; i < links.length; i++){
+      var a = links[i];
+      var base = a.getAttribute('href').split('?')[0];
+      a.setAttribute('href', next === 'eb' ? base + '?coupon=' + OFFER.coupon : base);
+    }
+  }
+
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
   function tick(){
-    var now = new Date().getTime();
-    var diff = deadline.getTime() - now;
+    var now = Date.now();
+    setPhase(now < ebEnd ? 'eb' : 'regular');
+    var diff = (phase === 'eb' ? ebEnd : cartClose) - now;
 
     if (diff <= 0){
       daysEl.textContent = '00';
       hoursEl.textContent = '00';
       minsEl.textContent = '00';
       secsEl.textContent = '00';
-      el.querySelector('.countdown-label').textContent = 'Early bird pricing has ended';
+      el.querySelector('.countdown-label').textContent = 'Cart is closed';
       clearInterval(timer);
       return;
     }
 
-    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    var secs = Math.floor((diff % (1000 * 60)) / 1000);
+    daysEl.textContent = pad(Math.floor(diff / 86400000));
+    hoursEl.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    minsEl.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    secsEl.textContent = pad(Math.floor((diff % 60000) / 1000));
 
-    daysEl.textContent = pad(days);
-    hoursEl.textContent = pad(hours);
-    minsEl.textContent = pad(mins);
-    secsEl.textContent = pad(secs);
-
-    if (diff < 1000 * 60 * 60 * 24){
-      el.classList.add('is-urgent');
-    }
+    el.classList.toggle('is-urgent', diff < 86400000);
   }
 
   tick();
