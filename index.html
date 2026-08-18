@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
+    --nav-h:89px;
     --bg:#000000;
     --panel:rgba(255,255,255,0.04);
     --line:rgba(255,255,255,0.12);
@@ -121,6 +122,23 @@
     aspect-ratio:4/3;
     margin-right:-64px;
     padding:48px;
+  }
+  /* The stage matches the image's content box exactly, so the note overlay and
+     the illustration letterbox identically and stay registered at any size. */
+  .laptop-stage{position:relative; width:100%; height:100%;}
+  .laptop-stage img{width:100%; height:100%; object-fit:contain; display:block;}
+  .laptop-note{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .laptop-note-label{
+    font-family:'Space Mono',monospace; font-weight:700;
+    font-size:40px; letter-spacing:5px; fill:rgba(255,255,255,0.94);
+  }
+  .laptop-note-date{
+    font-family:'Jaro',sans-serif;
+    font-size:98px; fill:var(--yellow);
+  }
+  .laptop-note-time{
+    font-family:'Space Mono',monospace; font-weight:700;
+    font-size:46px; letter-spacing:3px; fill:#FFFFFF;
   }
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;}
@@ -1038,6 +1056,7 @@
     }
     .hero-grid{position:relative; gap:0;}
     .hero-copy{position:relative; z-index:2; min-width:0;}
+    .laptop-note{display:none;}
     .hero-image{
       position:absolute; z-index:1; order:0; pointer-events:none;
       top:168px; right:-16%; width:96%;
@@ -1096,6 +1115,35 @@
       font-size:clamp(12.5px,3.3vw,16px); color:var(--yellow); letter-spacing:0.02em;
     }
     .hero-proof.is-urgent .hero-proof-timer{color:#FF6B4A;}
+  }
+
+  /* DESKTOP HERO FIT — the cart countdown is the last thing in the hero copy
+     stack, so on short laptop screens it used to fall below the fold. Cap each
+     vertical step against the viewport height (min() leaves tall screens at the
+     original fixed values) and let the hero fill the viewport so the gradient
+     still runs to the fold once the copy compresses. */
+  @media (min-width:701px){
+    .hero{
+      display:flex;
+      align-items:center;
+      min-height:calc(100svh - var(--nav-h));
+      padding-top:min(90px,10vh);
+      padding-bottom:min(100px,11vh);
+    }
+    .hero > .hero-grid{width:100%;}
+    /* narrow desktop widths squeeze the copy column enough to wrap the
+       sub-headline onto an extra line, so even the split there */
+    @media (min-width:901px) and (max-width:1150px){
+      .hero-grid{grid-template-columns:1fr 1fr;}
+    }
+    .eyebrow{margin-bottom:min(32px,3.6vh);}
+    h1.display{font-size:clamp(48px,min(6.4vw,10.4vh),92px);}
+    .hero-sub{
+      margin-top:min(28px,3.2vh);
+      font-size:min(18px,2.1vh);
+    }
+    .hero-ctas{margin-top:min(44px,5vh);}
+    .countdown-wrap{margin-top:min(28px,3.2vh);}
   }
 </style>
 </head>
@@ -1164,7 +1212,29 @@
         <span class="hero-proof-timer" id="cd-compact">00:00:00</span>
       </div>
     </div>
-    <div class="hero-image"><img src="/images/swo/asset-02.webp" alt="Translucent crystal laptop illustration" style="width:100%; height:100%; object-fit:contain;"></div>
+    <div class="hero-image">
+      <div class="laptop-stage">
+        <img src="/images/swo/asset-02.webp" alt="Translucent crystal laptop illustration">
+        <!-- Early-bird note sits on the laptop's screen. The SVG shares the
+             image's viewBox and preserveAspectRatio, so its user units line up
+             with image pixels at any size; the matrix maps a 1000x667 text
+             block onto the screen's corner quad. -->
+        <svg class="laptop-note" viewBox="0 0 1113 1123" preserveAspectRatio="xMidYMid meet"
+             role="img" aria-label="Early bird pricing ends Sunday, August 23rd at 11:59 PM Eastern Time">
+          <defs>
+            <filter id="laptopNoteShadow" x="-25%" y="-25%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="7" stdDeviation="11" flood-color="#160B4F" flood-opacity="0.55"/>
+            </filter>
+          </defs>
+          <g transform="matrix(0.726,-0.11,0.10045,0.75712,216.5,209)"
+             text-anchor="middle" filter="url(#laptopNoteShadow)">
+            <text class="laptop-note-label" x="500" y="250">EARLY BIRD PRICING ENDS</text>
+            <text class="laptop-note-date"  x="500" y="360">SUNDAY, AUGUST 23RD</text>
+            <text class="laptop-note-time"  x="500" y="434">11:59 PM ET</text>
+          </g>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 
