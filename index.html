@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
+    --nav-h:89px;
     --bg:#000000;
     --panel:rgba(255,255,255,0.04);
     --line:rgba(255,255,255,0.12);
@@ -92,7 +93,6 @@
     padding:6px 12px; border:1px solid var(--line); border-radius:20px;
     display:flex; align-items:center; gap:6px; white-space:nowrap;
   }
-  @media (max-width:700px){ .from-badge{display:none;} }
   .logo .dot{width:22px;height:22px;border-radius:50%;background:transparent;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:11px;}
   .navlinks{display:flex; gap:14px;}
   .pill{
@@ -106,6 +106,8 @@
   .pill.cream{background:var(--cream); color:var(--navy);}
   .pill.black{background:#000; color:var(--white); border-color:#000;}
   .pill.outline{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.3);}
+  /* struck-through list price sitting next to the early-bird price */
+  .pill .was{opacity:0.55; text-decoration-thickness:1.5px; margin-right:1px;}
 
   /* HERO */
   .hero{
@@ -121,6 +123,23 @@
     aspect-ratio:4/3;
     margin-right:-64px;
     padding:48px;
+  }
+  /* The stage matches the image's content box exactly, so the note overlay and
+     the illustration letterbox identically and stay registered at any size. */
+  .laptop-stage{position:relative; width:100%; height:100%;}
+  .laptop-stage img{width:100%; height:100%; object-fit:contain; display:block;}
+  .laptop-note{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .laptop-note-label{
+    font-family:'Space Mono',monospace; font-weight:700;
+    font-size:40px; letter-spacing:5px; fill:rgba(255,255,255,0.94);
+  }
+  .laptop-note-date{
+    font-family:'Jaro',sans-serif;
+    font-size:98px; fill:var(--yellow);
+  }
+  .laptop-note-time{
+    font-family:'Space Mono',monospace; font-weight:700;
+    font-size:46px; letter-spacing:3px; fill:#FFFFFF;
   }
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;}
@@ -156,7 +175,6 @@
   }
   .price-tag b{color:var(--white); font-size:16px;}
   /* Hero pieces that only appear in the mobile layout */
-  .hero-from-badge,
   .hero-dateline,
   .hero-sub--mobile,
   .hero-proof{display:none;}
@@ -604,6 +622,13 @@
     line-height:1;
     letter-spacing:-0.02em;
   }
+  .big-price .amt-was{
+    color:var(--faint);
+    text-decoration-thickness:2px;
+    font-size:0.5em;
+    margin-right:0.22em;
+    vertical-align:0.16em;
+  }
   .cta-big{margin-top:8px;}
   @media (max-width:800px){
     .stack-row span:first-child{max-width:220px;}
@@ -1028,9 +1053,10 @@
   }
 
   /* MOBILE HERO — image behind the headline, stacked full-width CTAs,
-     compact social-proof + countdown strip in place of the unit blocks */
+     stacked countdown, and a compact social-proof line */
   @media (max-width:700px){
     .navlinks .pill.outline{display:none;}
+    .from-badge{display:none;}
     .hero{
       padding:26px 20px 40px; overflow:hidden;
       /* keep the bottom of the gradient dark enough for the proof strip to read */
@@ -1038,6 +1064,7 @@
     }
     .hero-grid{position:relative; gap:0;}
     .hero-copy{position:relative; z-index:2; min-width:0;}
+    .laptop-note{display:none;}
     .hero-image{
       position:absolute; z-index:1; order:0; pointer-events:none;
       top:168px; right:-16%; width:96%;
@@ -1046,29 +1073,28 @@
       mask-image:linear-gradient(to bottom, #000 42%, rgba(0,0,0,0) 80%);
     }
     .logo svg{height:24px!important;}
-    .hero-from-badge{
-      display:flex; align-items:center; gap:8px;
-      font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.06em;
-      text-transform:uppercase; color:rgba(255,255,255,0.75);
-      margin-bottom:22px;
-    }
     .eyebrow{
-      display:inline-flex; font-size:13px; padding:9px 18px; gap:9px;
+      display:inline-block; font-size:clamp(10px,2.9vw,13px);
+      padding:0; gap:0; white-space:nowrap;
       margin-bottom:0; color:var(--yellow);
-      border-color:rgba(249,229,73,0.5);
+      border:none; border-radius:0;
     }
-    .eyebrow::before{color:var(--yellow); font-size:10px;}
+    .eyebrow::before{color:var(--yellow); font-size:0.85em; margin-right:0.55em;}
     .eyebrow-when{display:none;}
+    /* challenge badge and the dates ride on one line */
     .hero-dateline{
-      display:block; font-family:'Space Mono',monospace;
-      font-size:14px; letter-spacing:0.06em; text-transform:uppercase;
-      color:rgba(255,255,255,0.72); margin:16px 0 20px;
+      display:inline; font-family:inherit; font-size:inherit;
+      letter-spacing:inherit; text-transform:uppercase;
+      color:rgba(255,255,255,0.82); margin:0;
     }
     h1.display{
       font-size:clamp(46px,14.9vw,78px); line-height:0.86;
-      letter-spacing:-0.02em; max-width:none; margin-bottom:0;
+      letter-spacing:-0.02em; max-width:none;
+      margin:min(20px,2.4svh) 0 0;
+      /* the copy sits higher now, so it crosses the brightest part of the
+         illustration — this keeps the white type off the highlights */
+      text-shadow:0 2px 18px rgba(22,11,79,0.45);
     }
-    h1.display br.br-sm{display:none;}
     .hero-sub{display:none;}
     .hero-sub--mobile{
       display:block; font-family:'Space Mono',monospace;
@@ -1077,9 +1103,20 @@
     }
     .hero-ctas{flex-direction:column; gap:12px; margin-top:30px;}
     .hero-ctas .pill{width:100%; justify-content:center; padding:19px 22px; font-size:15px;}
-    .hero-ctas .pill.cream{background:var(--purple); color:var(--white); border-color:var(--purple);}
+    .hero-ctas .pill.cream{
+      background:var(--purple); color:var(--white);
+      border:2px solid rgba(255,255,255,0.92);
+    }
     .hero-ctas .pill.black{background:transparent; border-color:rgba(255,255,255,0.45);}
-    .countdown-wrap{display:none;}
+    .countdown-wrap{
+      display:flex; flex-direction:column; align-items:flex-start;
+      gap:10px; margin-top:28px;
+    }
+    .countdown-label{font-size:12px; color:rgba(255,255,255,0.8);}
+    .countdown-units{gap:10px;}
+    .countdown-unit .num{font-size:28px;}
+    .countdown-unit .lbl{font-size:11px;}
+    .countdown-colon{font-size:24px;}
     .hero-proof{
       display:flex; align-items:center; flex-wrap:wrap; gap:6px;
       margin-top:26px;
@@ -1087,15 +1124,50 @@
       text-transform:uppercase; color:rgba(255,255,255,0.78);
     }
     .hero-stars{color:var(--yellow); letter-spacing:0.06em; font-size:clamp(10px,2.9vw,13px);}
-    .hero-proof-students,
-    .hero-proof-close{white-space:nowrap;}
-    .hero-proof-rule{width:1px; height:13px; background:rgba(255,255,255,0.3);}
-    .hero-proof-timer{
-      font-family:'Jaro',sans-serif; font-optical-sizing:none;
-      font-variation-settings:'opsz' 8;
-      font-size:clamp(12.5px,3.3vw,16px); color:var(--yellow); letter-spacing:0.02em;
+    .hero-proof-students{white-space:nowrap;}
+
+    /* MOBILE HERO FIT — same idea as the desktop block: cap each vertical step
+       against the viewport height so the countdown clears the fold on short
+       phones. These follow the rules above, so a browser without svh/min()
+       simply keeps the fixed values. */
+    .hero{padding-top:min(22px,2.8svh);}
+    .hero-dateline{margin:min(16px,2svh) 0 min(20px,2.4svh);}
+    h1.display{font-size:clamp(44px,min(18.6vw,10.2svh),96px);}
+    .hero-sub--mobile{margin-top:min(28px,3.4svh); font-size:min(14px,1.9svh); line-height:1.5;}
+    .hero-ctas{margin-top:min(20px,2.6svh); gap:min(11px,1.4svh);}
+    .hero-ctas .pill.black{display:none;}
+    .hero-ctas .pill{padding:min(17px,2.1svh) 22px;}
+    .countdown-wrap{margin-top:min(22px,2.8svh);}
+    .hero-proof{margin-top:min(26px,3svh);}
+  }
+
+  /* DESKTOP HERO FIT — the cart countdown is the last thing in the hero copy
+     stack, so on short laptop screens it used to fall below the fold. Cap each
+     vertical step against the viewport height (min() leaves tall screens at the
+     original fixed values) and let the hero fill the viewport so the gradient
+     still runs to the fold once the copy compresses. */
+  @media (min-width:701px){
+    .hero{
+      display:flex;
+      align-items:center;
+      min-height:calc(100svh - var(--nav-h));
+      padding-top:min(90px,10vh);
+      padding-bottom:min(100px,11vh);
     }
-    .hero-proof.is-urgent .hero-proof-timer{color:#FF6B4A;}
+    .hero > .hero-grid{width:100%;}
+    /* narrow desktop widths squeeze the copy column enough to wrap the
+       sub-headline onto an extra line, so even the split there */
+    @media (min-width:901px) and (max-width:1150px){
+      .hero-grid{grid-template-columns:1fr 1fr;}
+    }
+    .eyebrow{margin-bottom:min(32px,3.6vh);}
+    h1.display{font-size:clamp(48px,min(6.4vw,10.4vh),92px);}
+    .hero-sub{
+      margin-top:min(28px,3.2vh);
+      font-size:min(18px,2.1vh);
+    }
+    .hero-ctas{margin-top:min(44px,5vh);}
+    .countdown-wrap{margin-top:min(28px,3.2vh);}
   }
 </style>
 </head>
@@ -1127,25 +1199,23 @@
   </div>
   <div class="navlinks">
     <a class="pill outline" href="#faq">FAQ</a>
-    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Nav">JOIN — $199</a>
+    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Nav">JOIN — <s class="was">$199</s> $149</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="hero-from-badge">🚢 From the creators of Ship 30 for 30</div>
-      <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span></div>
-      <div class="hero-dateline">Aug 31 &ndash; Sep 4 &middot; 8AM PT</div>
+      <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span><span class="hero-dateline">: Aug 31 &ndash; Sep 4</span></div>
       <h1 class="display">Start<br class="br-sm"> writing<br>online in 5<br>days—<span style="color:#F9E549;">live</span>.</h1>
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
       <p class="hero-sub hero-sub--mobile">Publish your first post, build your personal brand, and attract life-changing opportunities. Built for beginners.</p>
       <div class="hero-ctas">
-        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Hero">JOIN TODAY — $199</a>
+        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Hero">JOIN TODAY — <s class="was">$199</s> $149</a>
         <a class="pill black" href="#gameplan">SEE THE 5-DAY PLAN →</a>
       </div>
-      <div class="countdown-wrap" id="cartCountdown" data-deadline="2026-08-30T00:00:00-04:00">
-        <span class="countdown-label">Cart closes in</span>
+      <div class="countdown-wrap" id="cartCountdown" data-deadline="2026-08-21T23:59:00-04:00">
+        <span class="countdown-label">Early Bird Pricing Ends In…</span>
         <div class="countdown-units">
           <div class="countdown-unit"><span class="num" id="cd-days">00</span><span class="lbl">days</span></div>
           <span class="countdown-colon">:</span>
@@ -1159,12 +1229,31 @@
       <div class="hero-proof">
         <span class="hero-stars">★★★★★</span>
         <span class="hero-proof-students">15,000+ students</span>
-        <span class="hero-proof-rule"></span>
-        <span class="hero-proof-close" id="cdCompactLabel">Cart closes <span id="cd-weekday">soon</span></span>
-        <span class="hero-proof-timer" id="cd-compact">00:00:00</span>
       </div>
     </div>
-    <div class="hero-image"><img src="/images/swo/asset-02.webp" alt="Translucent crystal laptop illustration" style="width:100%; height:100%; object-fit:contain;"></div>
+    <div class="hero-image">
+      <div class="laptop-stage">
+        <img src="/images/swo/asset-02.webp" alt="Translucent crystal laptop illustration">
+        <!-- Early-bird note sits on the laptop's screen. The SVG shares the
+             image's viewBox and preserveAspectRatio, so its user units line up
+             with image pixels at any size; the matrix maps a 1000x667 text
+             block onto the screen's corner quad. -->
+        <svg class="laptop-note" viewBox="0 0 1113 1123" preserveAspectRatio="xMidYMid meet"
+             role="img" aria-label="Early bird pricing ends Friday, August 21st at 11:59 PM Eastern Time">
+          <defs>
+            <filter id="laptopNoteShadow" x="-25%" y="-25%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="7" stdDeviation="11" flood-color="#160B4F" flood-opacity="0.55"/>
+            </filter>
+          </defs>
+          <g transform="matrix(0.726,-0.11,0.10045,0.75712,216.5,209)"
+             text-anchor="middle" filter="url(#laptopNoteShadow)">
+            <text class="laptop-note-label" x="500" y="250">EARLY BIRD PRICING ENDS</text>
+            <text class="laptop-note-date"  x="500" y="360">FRIDAY, AUGUST 21ST</text>
+            <text class="laptop-note-time"  x="500" y="434">11:59 PM ET</text>
+          </g>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1765,7 +1854,7 @@
     </div>
     <div class="big-price">
       <div class="today">JOIN TODAY FOR JUST</div>
-      <div class="amt amt-plain">$199</div>
+      <div class="amt amt-plain"><s class="amt-was">$199</s>$149</div>
       <a class="pill cream cta-big" href="https://ship.samcart.com/products/start-writing-online-sprint?coupon=EARLY50" data-cta="Pricing" style="font-size:15px; padding:16px 36px; margin-top:20px;">CLAIM MY SPOT &rarr;</a>
     </div>
   </div>
@@ -1905,15 +1994,6 @@
   var minsEl = document.getElementById('cd-mins');
   var secsEl = document.getElementById('cd-secs');
 
-  // Mobile hero shows the same countdown as one compact strip
-  var proofEl = document.querySelector('.hero-proof');
-  var compactEl = document.getElementById('cd-compact');
-  var compactLabelEl = document.getElementById('cdCompactLabel');
-  var weekdayEl = document.getElementById('cd-weekday');
-  if (weekdayEl){
-    weekdayEl.textContent = deadline.toLocaleDateString('en-US', { weekday: 'long' });
-  }
-
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
   function tick(){
@@ -1925,9 +2005,7 @@
       hoursEl.textContent = '00';
       minsEl.textContent = '00';
       secsEl.textContent = '00';
-      el.querySelector('.countdown-label').textContent = 'Cart is closed';
-      if (compactLabelEl) compactLabelEl.textContent = 'Cart is closed';
-      if (compactEl) compactEl.textContent = '00:00:00';
+      el.querySelector('.countdown-label').textContent = 'Early bird pricing has ended';
       clearInterval(timer);
       return;
     }
@@ -1942,15 +2020,8 @@
     minsEl.textContent = pad(mins);
     secsEl.textContent = pad(secs);
 
-    if (compactEl){
-      compactEl.textContent = days > 0
-        ? days + 'd ' + pad(hours) + ':' + pad(mins)
-        : pad(hours) + ':' + pad(mins) + ':' + pad(secs);
-    }
-
     if (diff < 1000 * 60 * 60 * 24){
       el.classList.add('is-urgent');
-      if (proofEl) proofEl.classList.add('is-urgent');
     }
   }
 
