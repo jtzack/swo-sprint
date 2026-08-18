@@ -93,7 +93,6 @@
     padding:6px 12px; border:1px solid var(--line); border-radius:20px;
     display:flex; align-items:center; gap:6px; white-space:nowrap;
   }
-  @media (max-width:700px){ .from-badge{display:none;} }
   .logo .dot{width:22px;height:22px;border-radius:50%;background:transparent;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:11px;}
   .navlinks{display:flex; gap:14px;}
   .pill{
@@ -176,7 +175,6 @@
   }
   .price-tag b{color:var(--white); font-size:16px;}
   /* Hero pieces that only appear in the mobile layout */
-  .hero-from-badge,
   .hero-dateline,
   .hero-sub--mobile,
   .hero-proof{display:none;}
@@ -1058,6 +1056,23 @@
      stacked countdown, and a compact social-proof line */
   @media (max-width:700px){
     .navlinks .pill.outline{display:none;}
+    /* credit line moves out of the hero and into the header, on its own row
+       under the logo — beside the JOIN button there is not room for it */
+    nav{
+      display:grid; align-items:center;
+      grid-template-columns:1fr auto;
+      grid-template-areas:"logo cta" "credit credit";
+      row-gap:5px; padding:12px 20px;
+    }
+    .nav-left{display:contents;}
+    .logo{grid-area:logo;}
+    .navlinks{grid-area:cta;}
+    .from-badge{
+      grid-area:credit; display:block;
+      font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
+      color:rgba(255,255,255,0.55);
+      padding:0; border:none; border-radius:0; white-space:nowrap;
+    }
     .hero{
       padding:26px 20px 40px; overflow:hidden;
       /* keep the bottom of the gradient dark enough for the proof strip to read */
@@ -1074,17 +1089,11 @@
       mask-image:linear-gradient(to bottom, #000 42%, rgba(0,0,0,0) 80%);
     }
     .logo svg{height:24px!important;}
-    .hero-from-badge{
-      display:flex; align-items:center; gap:8px;
-      font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.06em;
-      text-transform:uppercase; color:rgba(255,255,255,0.75);
-      margin-bottom:22px;
-    }
     .eyebrow{
       display:inline-block; font-size:clamp(10px,2.9vw,13px);
-      padding:0.68em 0.95em; gap:0; white-space:nowrap;
+      padding:0; gap:0; white-space:nowrap;
       margin-bottom:0; color:var(--yellow);
-      border-color:rgba(249,229,73,0.5);
+      border:none; border-radius:0;
     }
     .eyebrow::before{color:var(--yellow); font-size:0.85em; margin-right:0.55em;}
     .eyebrow-when{display:none;}
@@ -1136,7 +1145,6 @@
        phones. These follow the rules above, so a browser without svh/min()
        simply keeps the fixed values. */
     .hero{padding-top:min(22px,2.8svh);}
-    .hero-from-badge{margin-bottom:min(18px,2.2svh);}
     .hero-dateline{margin:min(16px,2svh) 0 min(20px,2.4svh);}
     h1.display{font-size:clamp(38px,min(14.6vw,7.5svh),78px);}
     .hero-sub--mobile{margin-top:min(28px,3.4svh); font-size:min(14px,1.9svh); line-height:1.5;}
@@ -1211,7 +1219,6 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="hero-from-badge">🚢 From the creators of Ship 30 for 30</div>
       <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span><span class="hero-dateline">: Aug 31 &ndash; Sep 4</span></div>
       <h1 class="display">Start<br class="br-sm"> writing<br>online in 5<br>days—<span style="color:#F9E549;">live</span>.</h1>
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
