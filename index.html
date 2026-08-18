@@ -1064,7 +1064,19 @@
       background:linear-gradient(158deg, #000000 0%, #2A1F8F 20%, #544CED 52%, #7B73F6 78%, #A9A2FF 100%);
     }
     .hero-grid{position:relative; gap:0;}
-    .hero-copy{position:relative; z-index:2; min-width:0;}
+    /* Reordered on mobile so the countdown sits directly above the buttons —
+       below them it could not clear the fold on common phone heights. */
+    .hero-copy{
+      position:relative; z-index:2; min-width:0;
+      display:flex; flex-direction:column;
+    }
+    .hero-from-badge{order:1;}
+    .hero-meta{order:2;}
+    h1.display{order:3;}
+    .hero-sub--mobile{order:4;}
+    .countdown-wrap{order:5;}
+    .hero-ctas{order:6;}
+    .hero-proof{order:7;}
     .laptop-note{display:none;}
     .hero-image{
       position:absolute; z-index:1; order:0; pointer-events:none;
@@ -1081,20 +1093,27 @@
       margin-bottom:22px;
     }
     .eyebrow{
-      display:inline-flex; font-size:13px; padding:9px 18px; gap:9px;
-      margin-bottom:0; color:var(--yellow);
+      display:inline-flex; font-size:clamp(9.2px,2.62vw,11.6px);
+      padding:0.68em 0.9em; gap:0.55em; white-space:nowrap;
+      margin-bottom:0; color:var(--yellow); vertical-align:middle;
       border-color:rgba(249,229,73,0.5);
     }
-    .eyebrow::before{color:var(--yellow); font-size:10px;}
+    .eyebrow::before{color:var(--yellow); font-size:0.85em;}
     .eyebrow-when{display:none;}
+    /* challenge badge and the dates ride on one line */
     .hero-dateline{
-      display:block; font-family:'Space Mono',monospace;
-      font-size:14px; letter-spacing:0.06em; text-transform:uppercase;
-      color:rgba(255,255,255,0.72); margin:16px 0 20px;
+      display:inline-block; font-family:'Space Mono',monospace;
+      font-size:clamp(9.2px,2.62vw,11.6px); letter-spacing:0;
+      text-transform:uppercase; white-space:nowrap;
+      color:rgba(255,255,255,0.72); margin:0 0 0 7px; vertical-align:middle;
     }
     h1.display{
       font-size:clamp(46px,14.9vw,78px); line-height:0.86;
-      letter-spacing:-0.02em; max-width:none; margin-bottom:0;
+      letter-spacing:-0.02em; max-width:none;
+      margin:min(20px,2.4svh) 0 0;
+      /* the copy sits higher now, so it crosses the brightest part of the
+         illustration — this keeps the white type off the highlights */
+      text-shadow:0 2px 18px rgba(22,11,79,0.45);
     }
     h1.display br.br-sm{display:none;}
     .hero-sub{display:none;}
@@ -1124,6 +1143,20 @@
     }
     .hero-stars{color:var(--yellow); letter-spacing:0.06em; font-size:clamp(10px,2.9vw,13px);}
     .hero-proof-students{white-space:nowrap;}
+
+    /* MOBILE HERO FIT — same idea as the desktop block: cap each vertical step
+       against the viewport height so the countdown clears the fold on short
+       phones. These follow the rules above, so a browser without svh/min()
+       simply keeps the fixed values. */
+    .hero{padding-top:min(26px,3.2svh);}
+    .hero-from-badge{margin-bottom:min(22px,2.6svh);}
+    .hero-dateline{margin:min(16px,2svh) 0 min(20px,2.4svh);}
+    h1.display{font-size:clamp(40px,min(14.9vw,8svh),78px);}
+    .hero-sub--mobile{margin-top:min(34px,4svh); line-height:1.6;}
+    .hero-ctas{margin-top:min(24px,3svh); gap:min(12px,1.5svh);}
+    .hero-ctas .pill{padding:min(19px,2.3svh) 22px;}
+    .countdown-wrap{margin-top:min(28px,3.4svh);}
+    .hero-proof{margin-top:min(26px,3svh);}
   }
 
   /* DESKTOP HERO FIT — the cart countdown is the last thing in the hero copy
@@ -1192,8 +1225,10 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <div class="hero-from-badge">🚢 From the creators of Ship 30 for 30</div>
-      <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span></div>
-      <div class="hero-dateline">Aug 31 &ndash; Sep 4 &middot; 8AM PT</div>
+      <div class="hero-meta">
+        <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span></div>
+        <div class="hero-dateline">Aug 31 &ndash; Sep 4 &middot; 8AM PT</div>
+      </div>
       <h1 class="display">Start<br class="br-sm"> writing<br>online in 5<br>days—<span style="color:#F9E549;">live</span>.</h1>
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
       <p class="hero-sub hero-sub--mobile">Publish your first post, build your personal brand, and attract life-changing opportunities. Built for beginners.</p>
