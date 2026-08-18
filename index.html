@@ -1081,19 +1081,18 @@
       margin-bottom:22px;
     }
     .eyebrow{
-      display:inline-flex; font-size:clamp(9.2px,2.62vw,11.6px);
-      padding:0.68em 0.9em; gap:0.55em; white-space:nowrap;
-      margin-bottom:0; color:var(--yellow); vertical-align:middle;
+      display:inline-block; font-size:clamp(10px,2.9vw,13px);
+      padding:0.68em 0.95em; gap:0; white-space:nowrap;
+      margin-bottom:0; color:var(--yellow);
       border-color:rgba(249,229,73,0.5);
     }
-    .eyebrow::before{color:var(--yellow); font-size:0.85em;}
+    .eyebrow::before{color:var(--yellow); font-size:0.85em; margin-right:0.55em;}
     .eyebrow-when{display:none;}
     /* challenge badge and the dates ride on one line */
     .hero-dateline{
-      display:inline-block; font-family:'Space Mono',monospace;
-      font-size:clamp(9.2px,2.62vw,11.6px); letter-spacing:0;
-      text-transform:uppercase; white-space:nowrap;
-      color:rgba(255,255,255,0.72); margin:0 0 0 7px; vertical-align:middle;
+      display:inline; font-family:inherit; font-size:inherit;
+      letter-spacing:inherit; text-transform:uppercase;
+      color:rgba(255,255,255,0.82); margin:0;
     }
     h1.display{
       font-size:clamp(46px,14.9vw,78px); line-height:0.86;
@@ -1213,10 +1212,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <div class="hero-from-badge">🚢 From the creators of Ship 30 for 30</div>
-      <div class="hero-meta">
-        <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span></div>
-        <div class="hero-dateline">Aug 31 &ndash; Sep 4 &middot; 8AM PT</div>
-      </div>
+      <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span><span class="hero-dateline">: Aug 31 &ndash; Sep 4</span></div>
       <h1 class="display">Start<br class="br-sm"> writing<br>online in 5<br>days—<span style="color:#F9E549;">live</span>.</h1>
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
       <p class="hero-sub hero-sub--mobile">Publish your first post, build your personal brand, and attract life-changing opportunities. Built for beginners.</p>
