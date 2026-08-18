@@ -107,6 +107,8 @@
   .pill.cream{background:var(--cream); color:var(--navy);}
   .pill.black{background:#000; color:var(--white); border-color:#000;}
   .pill.outline{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.3);}
+  /* struck-through list price sitting next to the early-bird price */
+  .pill .was{opacity:0.55; text-decoration-thickness:1.5px; margin-right:1px;}
 
   /* HERO */
   .hero{
@@ -622,6 +624,13 @@
     line-height:1;
     letter-spacing:-0.02em;
   }
+  .big-price .amt-was{
+    color:var(--faint);
+    text-decoration-thickness:2px;
+    font-size:0.5em;
+    margin-right:0.22em;
+    vertical-align:0.16em;
+  }
   .cta-big{margin-top:8px;}
   @media (max-width:800px){
     .stack-row span:first-child{max-width:220px;}
@@ -1046,7 +1055,7 @@
   }
 
   /* MOBILE HERO — image behind the headline, stacked full-width CTAs,
-     compact social-proof + countdown strip in place of the unit blocks */
+     stacked countdown, and a compact social-proof line */
   @media (max-width:700px){
     .navlinks .pill.outline{display:none;}
     .hero{
@@ -1098,7 +1107,15 @@
     .hero-ctas .pill{width:100%; justify-content:center; padding:19px 22px; font-size:15px;}
     .hero-ctas .pill.cream{background:var(--purple); color:var(--white); border-color:var(--purple);}
     .hero-ctas .pill.black{background:transparent; border-color:rgba(255,255,255,0.45);}
-    .countdown-wrap{display:none;}
+    .countdown-wrap{
+      display:flex; flex-direction:column; align-items:flex-start;
+      gap:10px; margin-top:28px;
+    }
+    .countdown-label{font-size:12px; color:rgba(255,255,255,0.8);}
+    .countdown-units{gap:10px;}
+    .countdown-unit .num{font-size:28px;}
+    .countdown-unit .lbl{font-size:11px;}
+    .countdown-colon{font-size:24px;}
     .hero-proof{
       display:flex; align-items:center; flex-wrap:wrap; gap:6px;
       margin-top:26px;
@@ -1106,15 +1123,7 @@
       text-transform:uppercase; color:rgba(255,255,255,0.78);
     }
     .hero-stars{color:var(--yellow); letter-spacing:0.06em; font-size:clamp(10px,2.9vw,13px);}
-    .hero-proof-students,
-    .hero-proof-close{white-space:nowrap;}
-    .hero-proof-rule{width:1px; height:13px; background:rgba(255,255,255,0.3);}
-    .hero-proof-timer{
-      font-family:'Jaro',sans-serif; font-optical-sizing:none;
-      font-variation-settings:'opsz' 8;
-      font-size:clamp(12.5px,3.3vw,16px); color:var(--yellow); letter-spacing:0.02em;
-    }
-    .hero-proof.is-urgent .hero-proof-timer{color:#FF6B4A;}
+    .hero-proof-students{white-space:nowrap;}
   }
 
   /* DESKTOP HERO FIT — the cart countdown is the last thing in the hero copy
@@ -1175,7 +1184,7 @@
   </div>
   <div class="navlinks">
     <a class="pill outline" href="#faq">FAQ</a>
-    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Nav">JOIN — $199</a>
+    <a class="pill purple" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Nav">JOIN — <s class="was">$199</s> $149</a>
   </div>
 </nav>
 
@@ -1189,11 +1198,11 @@
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
       <p class="hero-sub hero-sub--mobile">Publish your first post, build your personal brand, and attract life-changing opportunities. Built for beginners.</p>
       <div class="hero-ctas">
-        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Hero">JOIN TODAY — $199</a>
+        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Hero">JOIN TODAY — <s class="was">$199</s> $149</a>
         <a class="pill black" href="#gameplan">SEE THE 5-DAY PLAN →</a>
       </div>
-      <div class="countdown-wrap" id="cartCountdown" data-deadline="2026-08-30T00:00:00-04:00">
-        <span class="countdown-label">Cart closes in</span>
+      <div class="countdown-wrap" id="cartCountdown" data-deadline="2026-08-21T23:59:00-04:00">
+        <span class="countdown-label">Early Bird Pricing Ends In…</span>
         <div class="countdown-units">
           <div class="countdown-unit"><span class="num" id="cd-days">00</span><span class="lbl">days</span></div>
           <span class="countdown-colon">:</span>
@@ -1207,9 +1216,6 @@
       <div class="hero-proof">
         <span class="hero-stars">★★★★★</span>
         <span class="hero-proof-students">15,000+ students</span>
-        <span class="hero-proof-rule"></span>
-        <span class="hero-proof-close" id="cdCompactLabel">Cart closes <span id="cd-weekday">soon</span></span>
-        <span class="hero-proof-timer" id="cd-compact">00:00:00</span>
       </div>
     </div>
     <div class="hero-image">
@@ -1835,7 +1841,7 @@
     </div>
     <div class="big-price">
       <div class="today">JOIN TODAY FOR JUST</div>
-      <div class="amt amt-plain">$199</div>
+      <div class="amt amt-plain"><s class="amt-was">$199</s>$149</div>
       <a class="pill cream cta-big" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Pricing" style="font-size:15px; padding:16px 36px; margin-top:20px;">CLAIM MY SPOT &rarr;</a>
     </div>
   </div>
@@ -1975,15 +1981,6 @@
   var minsEl = document.getElementById('cd-mins');
   var secsEl = document.getElementById('cd-secs');
 
-  // Mobile hero shows the same countdown as one compact strip
-  var proofEl = document.querySelector('.hero-proof');
-  var compactEl = document.getElementById('cd-compact');
-  var compactLabelEl = document.getElementById('cdCompactLabel');
-  var weekdayEl = document.getElementById('cd-weekday');
-  if (weekdayEl){
-    weekdayEl.textContent = deadline.toLocaleDateString('en-US', { weekday: 'long' });
-  }
-
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
   function tick(){
@@ -1995,9 +1992,7 @@
       hoursEl.textContent = '00';
       minsEl.textContent = '00';
       secsEl.textContent = '00';
-      el.querySelector('.countdown-label').textContent = 'Cart is closed';
-      if (compactLabelEl) compactLabelEl.textContent = 'Cart is closed';
-      if (compactEl) compactEl.textContent = '00:00:00';
+      el.querySelector('.countdown-label').textContent = 'Early bird pricing has ended';
       clearInterval(timer);
       return;
     }
@@ -2012,15 +2007,8 @@
     minsEl.textContent = pad(mins);
     secsEl.textContent = pad(secs);
 
-    if (compactEl){
-      compactEl.textContent = days > 0
-        ? days + 'd ' + pad(hours) + ':' + pad(mins)
-        : pad(hours) + ':' + pad(mins) + ':' + pad(secs);
-    }
-
     if (diff < 1000 * 60 * 60 * 24){
       el.classList.add('is-urgent');
-      if (proofEl) proofEl.classList.add('is-urgent');
     }
   }
 
