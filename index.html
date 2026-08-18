@@ -1056,23 +1056,7 @@
      stacked countdown, and a compact social-proof line */
   @media (max-width:700px){
     .navlinks .pill.outline{display:none;}
-    /* credit line moves out of the hero and into the header, on its own row
-       under the logo — beside the JOIN button there is not room for it */
-    nav{
-      display:grid; align-items:center;
-      grid-template-columns:1fr auto;
-      grid-template-areas:"logo cta" "credit credit";
-      row-gap:5px; padding:12px 20px;
-    }
-    .nav-left{display:contents;}
-    .logo{grid-area:logo;}
-    .navlinks{grid-area:cta;}
-    .from-badge{
-      grid-area:credit; display:block;
-      font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
-      color:rgba(255,255,255,0.55);
-      padding:0; border:none; border-radius:0; white-space:nowrap;
-    }
+    .from-badge{display:none;}
     .hero{
       padding:26px 20px 40px; overflow:hidden;
       /* keep the bottom of the gradient dark enough for the proof strip to read */
@@ -1111,7 +1095,6 @@
          illustration — this keeps the white type off the highlights */
       text-shadow:0 2px 18px rgba(22,11,79,0.45);
     }
-    h1.display br.br-sm{display:none;}
     .hero-sub{display:none;}
     .hero-sub--mobile{
       display:block; font-family:'Space Mono',monospace;
@@ -1120,7 +1103,10 @@
     }
     .hero-ctas{flex-direction:column; gap:12px; margin-top:30px;}
     .hero-ctas .pill{width:100%; justify-content:center; padding:19px 22px; font-size:15px;}
-    .hero-ctas .pill.cream{background:var(--purple); color:var(--white); border-color:var(--purple);}
+    .hero-ctas .pill.cream{
+      background:var(--purple); color:var(--white);
+      border:2px solid rgba(255,255,255,0.92);
+    }
     .hero-ctas .pill.black{background:transparent; border-color:rgba(255,255,255,0.45);}
     .countdown-wrap{
       display:flex; flex-direction:column; align-items:flex-start;
@@ -1146,9 +1132,10 @@
        simply keeps the fixed values. */
     .hero{padding-top:min(22px,2.8svh);}
     .hero-dateline{margin:min(16px,2svh) 0 min(20px,2.4svh);}
-    h1.display{font-size:clamp(38px,min(14.6vw,7.5svh),78px);}
+    h1.display{font-size:clamp(44px,min(18.6vw,10.2svh),96px);}
     .hero-sub--mobile{margin-top:min(28px,3.4svh); font-size:min(14px,1.9svh); line-height:1.5;}
     .hero-ctas{margin-top:min(20px,2.6svh); gap:min(11px,1.4svh);}
+    .hero-ctas .pill.black{display:none;}
     .hero-ctas .pill{padding:min(17px,2.1svh) 22px;}
     .countdown-wrap{margin-top:min(22px,2.8svh);}
     .hero-proof{margin-top:min(26px,3svh);}
