@@ -48,8 +48,8 @@
     --panel:rgba(255,255,255,0.04);
     --line:rgba(255,255,255,0.12);
     --white:#FFFFFF;
-    --muted:rgba(255,255,255,0.68);
-    --faint:rgba(255,255,255,0.45);
+    --muted:#FFFFFF;
+    --faint:#FFFFFF;
     --purple:#544CED;
     --yellow:#F9E549;
     --navy:#0F172A;
@@ -114,7 +114,7 @@
   .nav-left{display:flex; align-items:center; gap:16px;}
   .from-badge{
     font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.3px;
-    color:rgba(255,255,255,0.65);
+    color:var(--white);
     padding:6px 12px; border:1px solid var(--line); border-radius:20px;
     display:flex; align-items:center; gap:6px; white-space:nowrap;
   }
@@ -175,12 +175,26 @@
     .hero-grid{grid-template-columns:1fr;}
     .hero-image{aspect-ratio:4/3; order:-1; margin-right:0; padding:24px;}
   }
+  /* The event details make this pill wider than the copy column. Left in the
+     column it would set that track's min-content width, overriding the
+     0.85/1.15 split and squeezing the laptop. Lifting it above both columns
+     lets it run full width on one line while the split holds. Below this the
+     pill wraps inside the column instead, which keeps it off the split too. */
+  @media (min-width:1080px){
+    .hero-grid{position:relative; padding-top:70px;}
+    .eyebrow{
+      position:absolute; top:0; left:0;
+      margin-bottom:0; white-space:nowrap;
+    }
+  }
   .eyebrow{
     display:inline-flex; align-items:center; gap:10px;
     font-family:'Space Mono',monospace; font-size:13px; color:var(--muted);
     border:1px solid var(--line); border-radius:999px;
     padding:8px 16px; margin-bottom:32px;
   }
+  .eyebrow-details{color:var(--muted);}
+  .eyebrow-dates::after{content:".";}
   .eyebrow::before{content:"●"; font-size:9px; color:var(--faint);}
   @media (max-width:800px){
     .eyebrow{font-size:11px; padding:7px 14px; gap:8px;}
@@ -356,9 +370,9 @@
   .timeline{background:linear-gradient(to bottom, #000000 0%, #0F172A 25%, #0F172A 100%); border-bottom:1px solid var(--line); padding-top:90px;}
   @media (max-width:800px){ .timeline{padding-top:56px;} }
   .timeline-meta{
-    display:flex; flex-wrap:wrap; gap:10px 28px;
+    display:flex; flex-wrap:wrap; gap:12px 30px;
     margin-top:22px;
-    font-family:'Space Mono',monospace; font-size:13px; color:var(--faint);
+    font-family:'Space Mono',monospace; font-size:16px; line-height:1.55; font-weight:700; color:var(--white);
   }
   .timeline-meta span{position:relative; padding-left:16px;}
   .timeline-meta span::before{content:"●"; position:absolute; left:0; top:1px; font-size:8px; color:var(--purple);}
@@ -550,7 +564,7 @@
   .bonuses-intro .sec-label{color:var(--yellow);}
   .bonuses-intro .display{color:var(--white); margin-top:16px;}
   .bonuses-intro p{
-    font-size:17px; line-height:1.6; color:rgba(245,243,255,0.85);
+    font-size:17px; line-height:1.6; color:var(--white);
     margin-top:20px; max-width:600px;
   }
   .bonus-rows{display:flex; flex-direction:column;}
@@ -567,7 +581,7 @@
     margin:0 0 18px; line-height:1.15;
   }
   .bonus-intro-copy{
-    font-size:16px; line-height:1.6; color:rgba(245,243,255,0.8);
+    font-size:16px; line-height:1.6; color:var(--white);
     max-width:600px; margin:0;
   }
   .bonus-content{
@@ -587,20 +601,20 @@
     background:rgba(0,0,0,0.15);
     display:flex; align-items:center; justify-content:center;
     font-family:'Space Mono',monospace; font-size:13px;
-    letter-spacing:0.06em; color:rgba(245,243,255,0.55);
+    letter-spacing:0.06em; color:var(--white);
     text-transform:uppercase; text-align:center; padding:24px;
   }
   .bonus-product-img{
     width:100%; height:auto; display:block; border-radius:16px;
   }
   .bonus-list-label{
-    font-size:12.5px; letter-spacing:0.01em; color:rgba(245,243,255,0.6);
+    font-size:12.5px; letter-spacing:0.01em; color:var(--white);
     margin:0 0 20px; text-transform:uppercase; font-family:'Space Mono',monospace;
   }
   .bonus-resource-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px;}
   .bonus-resource-list li{
     position:relative; padding-left:34px; font-size:15.5px; line-height:1.55;
-    color:rgba(245,243,255,0.85); max-width:520px;
+    color:var(--white); max-width:520px;
   }
   .bonus-resource-list li::before{
     content:"\2713"; position:absolute; left:0; top:2px; width:22px; height:22px; border-radius:50%;
@@ -610,7 +624,7 @@
   .bonus-resource-list strong{color:var(--white); font-weight:700;}
   .bonus-extra{margin-top:28px; max-width:520px;}
   .bonus-extra-copy{
-    font-size:15px; line-height:1.6; color:rgba(245,243,255,0.7);
+    font-size:15px; line-height:1.6; color:var(--white);
     max-width:520px; margin:0;
   }
   .bonus-extra-copy + .bonus-extra-copy{margin-top:14px;}
@@ -672,10 +686,21 @@
   .faq-item summary::after{content:"+"; font-family:'Space Mono',monospace; font-size:22px; color:var(--white);}
   .faq-item[open] summary::after{content:"−";}
   .faq-item p{margin-top:14px; font-size:15.5px; color:var(--muted); max-width:760px;}
+  .faq-close{display:flex; flex-direction:column; align-items:center; margin-top:56px;}
+  .faq-cta{display:flex; justify-content:center; margin-top:24px;}
+  .faq-cta .pill{font-size:15px; padding:17px 34px;}
+  .bottom-countdown{justify-content:center; margin:0;}
+  .bottom-countdown .countdown-label,
+  .bottom-countdown .countdown-unit .lbl,
+  .bottom-countdown .countdown-colon{color:var(--white);}
+  @media (max-width:520px){
+    .bottom-countdown{flex-direction:column; align-items:center;}
+  }
 
   /* FOOTER */
   footer{background:#000000; padding:64px 64px 40px; border-top:1px solid var(--line);}
   .foot-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; max-width:1240px; margin:0 auto;}
+  .foot-grid[hidden], .foot-logos[hidden]{display:none!important;}
   .foot-col h5{font-family:'Space Mono',monospace; font-size:13px; color:var(--muted); margin-bottom:16px; text-transform:uppercase;}
   .foot-col a{display:block; font-size:14.5px; color:var(--muted); margin-bottom:10px;}
   .foot-logos{max-width:1240px; margin:40px auto 0; display:flex; align-items:center; gap:36px; flex-wrap:wrap; opacity:0.85;}
@@ -971,7 +996,7 @@
     flex-shrink:0;
   }
   .testimonial-name{font-size:15.5px; font-weight:700; color:#0F172A;}
-  .testimonial-date{font-family:'Space Mono',monospace; font-size:11px; color:rgba(15,23,42,0.5); margin-top:2px;}
+  .testimonial-date{display:none;}
   .testimonial-quote{font-size:15.5px; line-height:1.6; color:rgba(15,23,42,0.8);}
   .testimonial-card--placeholder{
     background:rgba(255,255,255,0.04);
@@ -988,7 +1013,7 @@
   .testimonial-date--placeholder{color:rgba(255,255,255,0.25) !important;}
   .testimonial-quote--placeholder{color:rgba(255,255,255,0.35) !important; font-style:italic;}
   @media (max-width:800px){
-    .testimonial-scroller{grid-auto-columns:280px; gap:16px;}
+    .testimonial-scroller{grid-auto-columns:100%; gap:16px;}
     .testimonial-card{padding:24px 22px;}
     .testimonial-quote{font-size:14.5px;}
   }
@@ -1082,8 +1107,8 @@
     .cred-card{flex-direction:column; align-items:flex-start;}
   }
 
-  /* MOBILE HERO — image behind the headline, stacked full-width CTAs,
-     stacked countdown, and a compact social-proof line */
+  /* MOBILE HERO — compact copy-first layout with stacked full-width CTAs,
+     countdown, and social proof kept above the fold on standard iPhones. */
   @media (max-width:700px){
     .navlinks .pill.outline{display:none;}
     .from-badge{display:none;}
@@ -1095,27 +1120,26 @@
     .hero-grid{position:relative; gap:0;}
     .hero-copy{position:relative; z-index:2; min-width:0;}
     .laptop-note, .eb .laptop-note{display:none;}
-    .hero-image{
-      position:absolute; z-index:1; order:0; pointer-events:none;
-      top:168px; right:-16%; width:96%;
-      aspect-ratio:auto; margin:0; padding:0;
-      -webkit-mask-image:linear-gradient(to bottom, #000 42%, rgba(0,0,0,0) 80%);
-      mask-image:linear-gradient(to bottom, #000 42%, rgba(0,0,0,0) 80%);
-    }
+    .hero-image{display:none;}
     .logo svg{height:24px!important;}
     .eyebrow{
-      display:inline-block; font-size:clamp(10px,2.9vw,13px);
-      padding:0; gap:0; white-space:nowrap;
+      display:grid; grid-template-columns:auto 1fr; align-items:start;
+      font-size:clamp(10px,2.9vw,13px); line-height:1.45;
+      padding:0; gap:0 0.55em; white-space:normal;
       margin-bottom:0; color:var(--yellow);
       border:none; border-radius:0;
     }
-    .eyebrow::before{color:var(--yellow); font-size:0.85em; margin-right:0.55em;}
+    .eyebrow::before{grid-column:1; grid-row:1; color:var(--yellow); font-size:0.85em;}
+    .eyebrow-label{grid-column:2; grid-row:1;}
+    .eyebrow-dates{grid-column:2; grid-row:2;}
+    .eyebrow-dates::after{content:"";}
+    .eyebrow-time{grid-column:2; grid-row:3;}
     .eyebrow-when{display:none;}
     /* challenge badge and the dates ride on one line */
     .hero-dateline{
       display:inline; font-family:inherit; font-size:inherit;
       letter-spacing:inherit; text-transform:uppercase;
-      color:rgba(255,255,255,0.82); margin:0;
+      color:var(--white); margin:0;
     }
     h1.display{
       font-size:clamp(46px,14.9vw,78px); line-height:0.86;
@@ -1128,7 +1152,7 @@
     .hero-sub{display:none;}
     .hero-sub--mobile{
       display:block; font-family:'Space Mono',monospace;
-      font-size:14px; line-height:1.75; color:rgba(255,255,255,0.78);
+      font-size:14px; font-weight:700; line-height:1.75; color:var(--white);
       max-width:none; margin-top:34px;
     }
     .hero-ctas{flex-direction:column; gap:12px; margin-top:30px;}
@@ -1137,38 +1161,40 @@
       background:var(--purple); color:var(--white);
       border:2px solid rgba(255,255,255,0.92);
     }
-    .hero-ctas .pill.black{background:transparent; border-color:rgba(255,255,255,0.45);}
+    .hero-ctas .pill.black{
+      display:inline-flex; order:-1;
+      background:transparent; border-color:rgba(255,255,255,0.45);
+    }
     .countdown-wrap{
       display:flex; flex-direction:column; align-items:flex-start;
       gap:10px; margin-top:28px;
     }
-    .countdown-label{font-size:12px; color:rgba(255,255,255,0.8);}
+    .countdown-label{font-size:12px; color:var(--white);}
     .countdown-units{gap:10px;}
     .countdown-unit .num{font-size:28px;}
-    .countdown-unit .lbl{font-size:11px;}
+    .countdown-unit .lbl{font-size:11px; color:var(--white);}
     .countdown-colon{font-size:24px;}
     .hero-proof{
-      display:flex; align-items:center; flex-wrap:wrap; gap:6px;
+      display:flex; align-items:center; flex-wrap:wrap; gap:8px;
       margin-top:26px;
-      font-family:'Space Mono',monospace; font-size:clamp(9px,2.55vw,12px); letter-spacing:0.03em;
-      text-transform:uppercase; color:rgba(255,255,255,0.78);
+      font-family:'Space Mono',monospace; font-size:clamp(10px,2.8vw,13px); font-weight:700; letter-spacing:0.03em;
+      text-transform:uppercase; color:var(--white);
     }
-    .hero-stars{color:var(--yellow); letter-spacing:0.06em; font-size:clamp(10px,2.9vw,13px);}
+    .hero-stars{color:var(--yellow); letter-spacing:0.08em; font-size:17px; line-height:1;}
     .hero-proof-students{white-space:nowrap;}
 
     /* MOBILE HERO FIT — same idea as the desktop block: cap each vertical step
        against the viewport height so the countdown clears the fold on short
        phones. These follow the rules above, so a browser without svh/min()
        simply keeps the fixed values. */
-    .hero{padding-top:min(22px,2.8svh);}
+    .hero{padding-top:min(10px,1.3svh);}
     .hero-dateline{margin:min(16px,2svh) 0 min(20px,2.4svh);}
-    h1.display{font-size:clamp(44px,min(18.6vw,10.2svh),96px);}
-    .hero-sub--mobile{margin-top:min(28px,3.4svh); font-size:min(14px,1.9svh); line-height:1.5;}
-    .hero-ctas{margin-top:min(20px,2.6svh); gap:min(11px,1.4svh);}
-    .hero-ctas .pill.black{display:none;}
-    .hero-ctas .pill{padding:min(17px,2.1svh) 22px;}
-    .countdown-wrap{margin-top:min(22px,2.8svh);}
-    .hero-proof{margin-top:min(26px,3svh);}
+    h1.display{font-size:clamp(44px,min(17.6vw,9.6svh),96px);}
+    .hero-sub--mobile{margin-top:min(20px,2svh); font-size:min(14px,1.9svh); line-height:1.5;}
+    .hero-ctas{margin-top:min(14px,1.5svh); gap:min(9px,1svh);}
+    .hero-ctas .pill{padding:min(14px,1.6svh) 22px;}
+    .countdown-wrap{margin-top:min(16px,1.7svh);}
+    .hero-proof{margin-top:min(18px,1.8svh);}
   }
 
   /* DESKTOP HERO FIT — the cart countdown is the last thing in the hero copy
@@ -1236,7 +1262,7 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow"><span style="color:#F9E549;">5-DAY LIVE CHALLENGE</span><span class="eyebrow-when"> · STARTS THIS MONDAY</span><span class="hero-dateline">: Aug 31 &ndash; Sep 4</span></div>
+      <div class="eyebrow"><span class="eyebrow-label" style="color:#F9E549;">5-Day Live Event:</span><span class="eyebrow-details eyebrow-dates">Monday Aug 31 to Friday Sep 4</span><span class="eyebrow-details eyebrow-time">60 minutes per day, every day, at 12 PM ET</span></div>
       <h1 class="display">Start<br class="br-sm"> writing<br>online in 5<br>days—<span style="color:#F9E549;">live</span>.</h1>
       <p class="hero-sub">Stop overthinking your first post. Hit publish, build your personal brand in a niche, and start attracting life-changing opportunities.</p>
       <p class="hero-sub hero-sub--mobile">Publish your first post, build your personal brand, and attract life-changing opportunities. Built for beginners.</p>
@@ -1244,21 +1270,21 @@
         <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Hero">JOIN TODAY — <span class="eb-only"><s class="was">$199</s> $149</span><span class="no-eb">$199</span></a>
         <a class="pill black" href="#gameplan">SEE THE 5-DAY PLAN →</a>
       </div>
-      <div class="countdown-wrap" id="cartCountdown">
+      <div class="countdown-wrap" id="cartCountdown" data-countdown>
         <span class="countdown-label"><span class="eb-only">Early Bird Pricing Ends In…</span><span class="no-eb">Cart Closes In…</span></span>
         <div class="countdown-units">
-          <div class="countdown-unit"><span class="num" id="cd-days">00</span><span class="lbl">days</span></div>
+          <div class="countdown-unit"><span class="num cd-days" id="cd-days">00</span><span class="lbl">days</span></div>
           <span class="countdown-colon">:</span>
-          <div class="countdown-unit"><span class="num" id="cd-hours">00</span><span class="lbl">hrs</span></div>
+          <div class="countdown-unit"><span class="num cd-hours" id="cd-hours">00</span><span class="lbl">hrs</span></div>
           <span class="countdown-colon">:</span>
-          <div class="countdown-unit"><span class="num" id="cd-mins">00</span><span class="lbl">min</span></div>
+          <div class="countdown-unit"><span class="num cd-mins" id="cd-mins">00</span><span class="lbl">min</span></div>
           <span class="countdown-colon">:</span>
-          <div class="countdown-unit"><span class="num" id="cd-secs">00</span><span class="lbl">sec</span></div>
+          <div class="countdown-unit"><span class="num cd-secs" id="cd-secs">00</span><span class="lbl">sec</span></div>
         </div>
       </div>
       <div class="hero-proof">
         <span class="hero-stars">★★★★★</span>
-        <span class="hero-proof-students">15,000+ students</span>
+        <span class="hero-proof-students">10,000+ New Writers Helped</span>
       </div>
     </div>
     <div class="hero-image">
@@ -1632,8 +1658,10 @@
     <h2 class="display">Here's what you'll build.</h2>
     <div class="timeline-meta">
       <span>All sessions 60 Minutes + 30 Minutes of Optional Breakout Rooms</span>
-      <span>8AM PT, Monday – Friday</span>
+      <span>9 AM PT / 12 PM ET, Monday – Friday</span>
       <span>Monday, August 31st – Friday, September 4th</span>
+      <span>All Sessions Recorded &amp; Replays Distributed Same-Day</span>
+      <span>Lifetime Access to All Course Materials</span>
     </div>
 
     <div class="day-rows">
@@ -1928,11 +1956,28 @@
         <p>We've made this sprint as financially accessible as possible already, so we don't offer additional discounts on it.</p>
       </details>
     </div>
+    <div class="faq-close">
+      <div class="countdown-wrap bottom-countdown" data-countdown>
+        <span class="countdown-label"><span class="eb-only">Early Bird Pricing Ends In…</span><span class="no-eb">Cart Closes In…</span></span>
+        <div class="countdown-units">
+          <div class="countdown-unit"><span class="num cd-days">00</span><span class="lbl">days</span></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit"><span class="num cd-hours">00</span><span class="lbl">hrs</span></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit"><span class="num cd-mins">00</span><span class="lbl">min</span></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit"><span class="num cd-secs">00</span><span class="lbl">sec</span></div>
+        </div>
+      </div>
+      <div class="faq-cta">
+        <a class="pill cream" href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Post FAQ">JOIN TODAY — <span class="eb-only"><s class="was">$199</s> $149</span><span class="no-eb">$199</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="foot-grid">
+  <div class="foot-grid" hidden>
     <div class="foot-col">
       <h5>Start here</h5>
       <a href="https://ship.samcart.com/products/start-writing-online-sprint" data-cta="Footer">Join the sprint</a>
@@ -1951,7 +1996,7 @@
       <a href="https://www.linkedin.com/in/nicolascole" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
-  <div class="foot-logos">
+  <div class="foot-logos" hidden>
       <a class="foot-logo-link" href="https://www.skool.com/ai-writing-skool/about" target="_blank" rel="noopener" aria-label="AI Writing Skool">
       <svg role="img" aria-label="AI Writing Skool" style="height:32px;width:auto;" width="520" height="238" viewBox="0 0 520 238" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M509.122 165.161C501.928 158.421 490.605 153.352 475.152 149.949L460.065 146.447C450.339 144.244 443.38 141.608 439.185 138.539C435.055 135.405 432.992 131.333 432.992 126.33C432.992 120.258 435.623 115.288 440.885 111.419C446.148 107.55 452.909 105.615 461.169 105.615C469.894 105.615 476.923 107.851 482.251 112.323C487.579 116.794 490.511 122.965 491.042 130.839L516.118 130.839C515.719 116.027 510.621 104.382 500.834 95.9099C491.108 87.4376 477.919 83.1968 461.268 83.1968C450.344 83.1968 440.754 85.0654 432.494 88.8026C424.3 92.4739 417.905 97.642 413.31 104.316C408.781 110.991 406.516 118.761 406.516 127.638C406.516 138.116 410.045 146.687 417.106 153.361C424.168 160.035 435.125 165.072 449.977 168.475L465.961 172.076C475.885 174.344 482.979 177.145 487.241 180.482C491.502 183.753 493.636 188.022 493.636 193.294C493.636 199.832 490.807 205.07 485.145 209.005C479.484 212.874 472.022 214.809 462.766 214.809C452.378 214.809 444.25 212.272 438.386 207.202C432.593 202.133 429.628 195.092 429.496 186.083L403.617 186.083C403.617 202.03 408.813 214.54 419.202 223.615C429.661 232.624 444.113 237.128 462.564 237.128C474.287 237.128 484.445 235.293 493.039 231.621C501.632 227.884 508.257 222.613 512.923 215.806C517.584 209 519.919 200.961 519.919 191.684C519.919 180.741 516.32 171.901 509.127 165.161L509.122 165.161Z" fill="white"/>
@@ -2003,18 +2048,13 @@
 
 <script>
 (function(){
-  var el = document.getElementById('cartCountdown');
+  var els = document.querySelectorAll('[data-countdown]');
   var OFFER = window.SWO_OFFER;
-  if (!el || !OFFER) return;
+  if (!els.length || !OFFER) return;
 
   var ebEnd = Date.parse(OFFER.earlyBirdEnd);
   var cartClose = Date.parse(OFFER.cartClose);
   var root = document.documentElement;
-
-  var daysEl = document.getElementById('cd-days');
-  var hoursEl = document.getElementById('cd-hours');
-  var minsEl = document.getElementById('cd-mins');
-  var secsEl = document.getElementById('cd-secs');
 
   // Tracked so the page can flip phases live, for anyone sitting on it when
   // early-bird pricing lapses — no reload needed.
@@ -2040,21 +2080,30 @@
     var diff = (phase === 'eb' ? ebEnd : cartClose) - now;
 
     if (diff <= 0){
-      daysEl.textContent = '00';
-      hoursEl.textContent = '00';
-      minsEl.textContent = '00';
-      secsEl.textContent = '00';
-      el.querySelector('.countdown-label').textContent = 'Cart is closed';
+      for (var i = 0; i < els.length; i++){
+        els[i].querySelector('.cd-days').textContent = '00';
+        els[i].querySelector('.cd-hours').textContent = '00';
+        els[i].querySelector('.cd-mins').textContent = '00';
+        els[i].querySelector('.cd-secs').textContent = '00';
+        els[i].querySelector('.countdown-label').textContent = 'Cart is closed';
+      }
       clearInterval(timer);
       return;
     }
 
-    daysEl.textContent = pad(Math.floor(diff / 86400000));
-    hoursEl.textContent = pad(Math.floor((diff % 86400000) / 3600000));
-    minsEl.textContent = pad(Math.floor((diff % 3600000) / 60000));
-    secsEl.textContent = pad(Math.floor((diff % 60000) / 1000));
-
-    el.classList.toggle('is-urgent', diff < 86400000);
+    var values = {
+      days: pad(Math.floor(diff / 86400000)),
+      hours: pad(Math.floor((diff % 86400000) / 3600000)),
+      mins: pad(Math.floor((diff % 3600000) / 60000)),
+      secs: pad(Math.floor((diff % 60000) / 1000))
+    };
+    for (var i = 0; i < els.length; i++){
+      els[i].querySelector('.cd-days').textContent = values.days;
+      els[i].querySelector('.cd-hours').textContent = values.hours;
+      els[i].querySelector('.cd-mins').textContent = values.mins;
+      els[i].querySelector('.cd-secs').textContent = values.secs;
+      els[i].classList.toggle('is-urgent', diff < 86400000);
+    }
   }
 
   tick();
@@ -2065,8 +2114,6 @@
   var scroller = document.getElementById('testimonialScroller');
   var dotsWrap = document.getElementById('testimonialDots');
   if (!scroller || !dotsWrap) return;
-
-  var COLUMNS_PER_GROUP = 3; // 3 columns x 2 rows = 6 cards per group
 
   function getColumnPositions(){
     var cards = Array.prototype.slice.call(scroller.querySelectorAll('.testimonial-card'));
@@ -2083,7 +2130,8 @@
   function getGroupPositions(){
     var columns = getColumnPositions();
     var groups = [];
-    for (var i = 0; i < columns.length; i += COLUMNS_PER_GROUP){
+    var columnsPerGroup = window.innerWidth <= 800 ? 1 : 3;
+    for (var i = 0; i < columns.length; i += columnsPerGroup){
       groups.push(columns[i]);
     }
     return groups;
