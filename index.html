@@ -175,11 +175,23 @@
     .hero-grid{grid-template-columns:1fr;}
     .hero-image{aspect-ratio:4/3; order:-1; margin-right:0; padding:24px;}
   }
+  /* The event details make this pill wider than the copy column. Left in the
+     column it would set that track's min-content width, overriding the
+     0.85/1.15 split and squeezing the laptop. Lifting it above both columns
+     lets it run full width on one line while the split holds. Below this the
+     pill wraps inside the column instead, which keeps it off the split too. */
+  @media (min-width:1080px){
+    .hero-grid{position:relative; padding-top:70px;}
+    .eyebrow{
+      position:absolute; top:0; left:0;
+      margin-bottom:0; white-space:nowrap;
+    }
+  }
   .eyebrow{
     display:inline-flex; align-items:center; gap:10px;
     font-family:'Space Mono',monospace; font-size:13px; color:var(--muted);
     border:1px solid var(--line); border-radius:999px;
-    padding:8px 16px; margin-bottom:32px; white-space:nowrap;
+    padding:8px 16px; margin-bottom:32px;
   }
   .eyebrow-details{color:var(--muted);}
   .eyebrow-dates::after{content:".";}
