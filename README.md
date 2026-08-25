@@ -26,7 +26,7 @@ npm run preview  # serve the built dist/
   explain that before anyone scrolls further.
 - **Checkout:** all 6 CTAs point at the SamCart checkout for the AIWS 30-day free
   trial with the sprint bundled in
-  (`https://ship.samcart.com/products/ai-writing-skool-30-day-free-trial-sprint-addon`).
+  (`https://ship.samcart.com/products/ai-writing-skool-monthly-sprint`).
   Search `data-cta` in `index.html` to find them all. The footer's two plain
   "AI Writing Skool" links are deliberately different — they point at the Skool
   community page, since they're navigation rather than a buy button.
