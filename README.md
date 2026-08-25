@@ -20,12 +20,18 @@ npm run preview  # serve the built dist/
 
 ## Things to know
 
-- **Checkout:** every purchase CTA points at the SamCart checkout
-  (`https://ship.samcart.com/products/start-writing-online-sprint?coupon=SAVE50`).
-  Search `data-cta` in `index.html` to find them all.
-- **Countdown:** the cart timer reads `data-deadline` on `#cartCountdown` in `index.html`.
-  Update that ISO timestamp to change the deadline; with no attribute it falls back to
-  the upcoming Monday at midnight local time.
+- **The offer:** the sprint is not sold on its own. It is bundled into an AI Writing
+  Skool membership, and AIWS has a 30-day free trial — so the page's price is "FREE"
+  and the ask is "start the trial." The `#trial` section right below the hero exists to
+  explain that before anyone scrolls further.
+- **Checkout:** every CTA points at the AIWS trial signup. There are 6 of them; find
+  them with `data-cta` in `index.html`. To repoint them all:
+  `sed -i 's|https://www.skool.com/ai-writing-skool/about|<NEW-URL>|g' index.html`
+  (the footer's two plain AIWS links use the same URL and will be swapped too — check
+  those two if the new URL is a checkout page rather than the community page).
+- **Countdown:** both timers count down to `SWO_OFFER.sprintStart` — the ISO timestamp
+  in the config script at the top of `index.html`. Set it to the first live session.
+  Once it passes, the timers zero out and read "The sprint is underway."
 - **Analytics:** Fathom (site `IUQCZTMO`), loaded in `<head>`. CTA clicks and FAQ opens
   are tracked as events by the script at the bottom of the page.
 - **Images:** the design's PNGs are stored as WebP (~1.5 MB total, down from ~17 MB).
